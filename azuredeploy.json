@@ -1,40 +1,49 @@
 {
-  "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
-  "contentVersion": "1.0.0.0",
-  "parameters": {},
-  "variables": {
-    "accountName": "accountname",
-    "containerName": "containername"
-  },
-  "resources": [
-    {
-      "type": "Microsoft.Storage/storageAccounts",
-      "name": "[variables('accountName')]",
-      "apiVersion": "2018-02-01",
-      "location": "westeurope",
-      "kind": "BlobStorage",
-      "sku": {
-        "name": "Standard_LRS",
-        "tier": "Standard"
-      },
-      "tags": {},
-      "dependsOn": [],
-      "properties": {
-        "accessTier": "Cool"
-      },
-      "resources": [
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "StorageAccountName": {
+            "type": "String",
+            "metadata": {
+                "description": "Storage account name"
+            }
+        },
+        "ContainerName": {
+            "type": "String",
+            "metadata": {
+                "description": "Container name"
+            }
+        },
+        "StorageAccountType": {
+            "type": "String",
+            "metadata": {
+                "description": "Storage Account Type"
+            }
+        },
+
+    "variables": {
+        "templatelink": "https://raw.githubusercontent.com/sam-cogan/Demos/master/DemoExamples/newStorageAccount.json"
+    },
+    "resources": [
         {
-          "type": "blobServices/containers",
-          "apiVersion": "2018-03-01-preview",
-          "name": "[concat('default/', variables('containerName'))]",
-          "dependsOn": [
-            "[variables('accountName')]"
-          ],
-          "properties": {
-              "publicAccess": "None"
-          }
+            "apiVersion": "2015-01-01",
+            "name": "nestedTemplate",
+            "type": "Microsoft.Resources/deployments",
+            "properties": {
+                "mode": "incremental",
+                "templateLink": {
+                    "uri": "[variables('templatelink')]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "StorageAccountName": {
+                        "value": "[parameters('StorageAccountName')]"
+                    },
+                    "ContainerName":{
+                         "value": "[parameters('ContainerName')]"
+                    }
+                }
+            }
         }
-      ]
-    }
-  ]
+    ]
 }
