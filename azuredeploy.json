@@ -22,7 +22,7 @@
         },
 
     "variables": {
-        "templatelink": "https://raw.githubusercontent.com/sam-cogan/Demos/master/DemoExamples/newStorageAccount.json"
+        "templatelink": "https://raw.githubusercontent.com/amruta125/storageccount/main/newstorage.json"
     },
     "resources": [
         {
@@ -41,7 +41,10 @@
                     },
                     "ContainerName":{
                          "value": "[parameters('ContainerName')]"
-                    }
+                    },
+                     "StorageAccountType": {
+                         "value": "[parameters('StorageAccountType')]"
+                    
                 }
             }
         }
