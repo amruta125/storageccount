@@ -21,9 +21,7 @@
             }
         },
 
-    "variables": {
-        "templatelink": "https://raw.githubusercontent.com/amruta125/storageccount/main/newstorage.json"
-    },
+    "variables": {},
     "resources": [
         {
             "apiVersion": "2015-01-01",
