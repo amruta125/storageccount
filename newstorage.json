@@ -23,7 +23,7 @@
     {
       "type": "Microsoft.Storage/storageAccounts",
       "name": "[parameters('StorageAccountName')]",
-      "apiVersion": "2015-06-15",
+      "apiVersion": "2019-06-01",
       "location": "[resourceGroup().location]",
        "sku": {
         "tier": "Standard",
@@ -40,7 +40,7 @@
     {
        "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
        "apiVersion": "2019-06-01",
-       "name": "[concat('default/blobServices/', parameters('containerName'))]",
+       "name": "[concat('default/', parameters('containerName'))]",
         "dependsOn": [
             "[parameters('storageAccountName')]"
           ],
