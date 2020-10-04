@@ -48,6 +48,18 @@
                 "denyEncryptionScopeOverride": false,
                 "publicAccess": "Container"
             }
+    },
+    {
+        "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
+        "apiVersion": "2019-04-01",
+        "name": "[concat(parameters('storageAccounts_sneha_name'), '/default/container1')]",
+        "dependsOn": [
+            "[resourceId('Microsoft.Storage/storageAccounts/blobServices', parameters('storageAccountName'), 'default')]",
+            "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]"
+        ],
+        "properties": {
+            "publicAccess": "Blob"
+        }
     }
   ],
 	"outputs": {
