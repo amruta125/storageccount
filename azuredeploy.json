@@ -32,7 +32,7 @@
             "properties": {
                 "mode": "incremental",
                 "templateLink": {
-                    "uri": "[variables('templatelink')]",
+                    "uri": "https://raw.githubusercontent.com/amruta125/storageccount/main/newstorage.json",
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
