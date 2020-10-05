@@ -13,87 +13,31 @@
       }
     },
     "variables": {},
-    "resources": [{
-    "name": "[concat(parameters('serviceName'), '/' ,parameters('apiName'))]",
-    "type": "Microsoft.ApiManagement/service/apis",
-    "apiVersion": "2019-12-01",
-    "properties": {
-      "description": "string",
-      "authenticationSettings": {
-        "oAuth2": null,
-        "openid": null,
-      "subscriptionKeyParameterNames": {
-        "header": "Apim-Subscription-Key",
-        "query": "subscription-key"
-      },
-      "type": "string",
-      "apiRevision": "[parameters('apiRevision')]",
-      "apiVersion": "2017-03-01",
-      "isCurrent": "boolean",
-      "apiRevisionDescription": "string",
-      "apiVersionDescription": "string",
-      "apiVersionSetId": "string",
-      "subscriptionRequired": "false",
-      "sourceApiId": "string",
-      "displayName": "[concat(parameters('serviceName'), '/' ,parameters('apiName'))]",
-      "serviceUrl": "string",
-      "path": "b2c",
-      "protocols": [
-        "https"
-      ],
-      "apiVersionSet": {
-        "id": "string",
-        "name": "string",
-        "description": "string",
-        "versioningScheme": "string",
-        "versionQueryName": "string",
-        "versionHeaderName": "string"
-      },
-      "value": "string",
-      "format": "string",
-      "wsdlSelector": {
-        "wsdlServiceName": null,
-        "wsdlEndpointName": null
-      },
-      "apiType": "string"
-    },
     "resources": [
     {
-          "type": "Microsoft.ApiManagement/service/apis/operations",
-          "name": "[concat(parameters('serviceName'), '/' ,parameters('apiName'),'orders')]",
-          "apiVersion": "2017-03-01",
-          "properties": {
-            "displayName": "Orders",
-            "method": "POST",
-            "urlTemplate": "/orders",
-            "templateParameters": [],
-            "description": "",
-            "request": {
-              "queryParameters": [],
-              "headers": [],
-              "representations": []
-            },
-            "responses": [
-              {
-                "statusCode": 200,
-                "description": "",
-                "representations": [],
-                "headers": []
-              },
-              {
-                "statusCode": 500,
-                "description": "",
-                "representations": [],
-                "headers": []
-              },
-              {
-                "statusCode": 400,
-                "description": "",
-                "representations": [],
-                "headers": []
-              }
-            ],
-            "policies": null
-          }
-    ]
-  }
+      "type": "Microsoft.ApiManagement/service/apis",
+      "name": "[concat(parameters('service_name'), '/' ,parameters('apiname'))]",
+      "apiVersion": "2017-03-01",
+      "properties": {
+        "displayName": "[concat(parameters('service_name'), '/' ,parameters('apiname'))]",
+        "apiRevision": "[parameters('api_revision')]",
+        "description": "",
+        "serviceUrl": null,
+        "path": "b2c",
+        "protocols": [
+          "https"
+        ],
+        "authenticationSettings": {
+          "oAuth2": null,
+          "openid": null
+        },
+        "subscriptionKeyParameterNames": {
+          "header": "Ocp-Apim-Subscription-Key",
+          "query": "subscription-key"
+        },
+        "isCurrent": null
+      }
+    }
+  ],
+  "outputs": {}
+}
