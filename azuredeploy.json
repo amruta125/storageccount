@@ -53,7 +53,7 @@
     },
     "variables": {},
     "resources": [
-     {
+    /* {
             "apiVersion": "2015-01-01",
             "type": "Microsoft.Resources/deployments",
             "name": "storage",
@@ -98,7 +98,7 @@
                     }
                 }
             }
-        },
+        }, */
         {
             "apiVersion": "2015-01-01",
             "type": "Microsoft.Resources/deployments",
