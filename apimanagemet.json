@@ -6,10 +6,10 @@
         "type": "string"
       },
       "apiName": {
-        "type": "object"
+        "type": "string"
       },
       "apiRevision": {
-        "type": "object"
+        "type": "string"
       }
     },
     "variables": {},
