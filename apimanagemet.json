@@ -2,19 +2,19 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-      "service_name": {
+      "serviceName": {
         "type": "string"
       },
-      "apiname": {
+      "apiName": {
         "type": "object"
       },
-      "api_revision": {
+      "apiRevision": {
         "type": "object"
       }
     },
     "variables": {},
     "resources": [{
-    "name": "[concat(parameters('service_name'), '/' ,parameters('apiname'))]",
+    "name": "[concat(parameters('serviceName'), '/' ,parameters('apiName'))]",
     "type": "Microsoft.ApiManagement/service/apis",
     "apiVersion": "2019-12-01",
     "properties": {
@@ -27,7 +27,7 @@
         "query": "subscription-key"
       },
       "type": "string",
-      "apiRevision": "[parameters('api_revision')]",
+      "apiRevision": "[parameters('apiRevision')]",
       "apiVersion": "2017-03-01",
       "isCurrent": "boolean",
       "apiRevisionDescription": "string",
@@ -35,7 +35,7 @@
       "apiVersionSetId": "string",
       "subscriptionRequired": "false",
       "sourceApiId": "string",
-      "displayName": "[concat(parameters('service_name'), '/' ,parameters('apiname'))]",
+      "displayName": "[concat(parameters('serviceName'), '/' ,parameters('apiName'))]",
       "serviceUrl": "string",
       "path": "b2c",
       "protocols": [
