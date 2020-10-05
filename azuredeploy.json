@@ -2,6 +2,42 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
+       "storageAccountName": {
+            "type": "string",
+            "metadata": {
+                "description": "Storage account name"
+            }
+        },
+        "containerName": {
+            "type": "string",
+            "metadata": {
+                "description": "Container name"
+            }
+        },
+        "storageAccountType": {
+            "type": "string",
+            "metadata": {
+                "description": "Storage Account Type"
+            }
+        },
+       "serviceName": {
+            "type": "string",
+             "metadata": {
+                "description": "Service Name for API"
+            }
+        },
+       "apiName": {
+            "type": "string",
+            "metadata": {
+                "description": "API Name"
+            }
+        },
+       "apiRevision": {
+            "type": "string",
+            "metadata": {
+                "description": "API revision"
+            }
+        }, 
        "integration_account_name": {
            "type": "string",
             "metadata": {
@@ -17,6 +53,52 @@
     },
     "variables": {},
     "resources": [
+     {
+            "apiVersion": "2015-01-01",
+            "type": "Microsoft.Resources/deployments",
+            "name": "storage",
+            "properties": {
+                "mode": "incremental",
+                "templateLink": {
+                    "uri": "https://raw.githubusercontent.com/amruta125/storageccount/main/newstorage.json",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "storageAccountName": {
+                        "value": "[parameters('storageAccountName')]"
+                    },
+                    "containerName":{
+                         "value": "[parameters('containerName')]"
+                    },
+                     "storageAccountType": {
+                         "value": "[parameters('storageAccountType')]"
+                    }
+                }
+            }
+        },   
+        {
+            "apiVersion": "2015-01-01",
+            "type": "Microsoft.Resources/deployments",
+            "name": "api",
+            "properties": {
+                "mode": "incremental",
+                "templateLink": {
+                    "uri": "https://raw.githubusercontent.com/amruta125/storageccount/main/apimanagemet.json",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "serviceName": {
+                         "value": "[parameters('serviceName')]"
+                    },
+                    "apiName": {
+                         "value": "[parameters('apiName')]"
+                    },
+                    "apiRevision": {
+                         "value": "[parameters('apiRevision')]"
+                    }
+                }
+            }
+        }, 
         {
             "apiVersion": "2015-01-01",
             "type": "Microsoft.Resources/deployments",
@@ -40,3 +122,4 @@
         }
       ]
     }
+
