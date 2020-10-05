@@ -44,9 +44,15 @@
                      "storageAccountType": {
                          "value": "[parameters('storageAccountType')]"
                     },
-                    "service_name": {
-                         "value": "[parameters('service_name')]"
-                  }
+                    "serviceName": {
+                         "value": "[parameters('serviceName')]"
+                    },
+                    "apiName": {
+                       "value": "[parameters('apiName')]"
+                    },
+                    "apiRevision": {
+                       "value": "[parameters('apiRevision')]"
+                    } 
                 }
             }
         },
@@ -61,18 +67,16 @@
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
-                    "storageAccountName": {
-                        "value": "[parameters('storageAccountName')]"
+                    "serviceName": {
+                         "value": "[parameters('serviceName')]"
                     },
-                    "containerName":{
-                         "value": "[parameters('containerName')]"
+                    "apiName": {
+                         "value": "[parameters('apiName')]"
                     },
-                     "storageAccountType": {
-                         "value": "[parameters('storageAccountType')]"
-                    },
-                  "service_name": {
-                         "value": "[parameters('service_name')]"
-                  },
+                    "apiRevision": {
+                         "value": "[parameters('apiRevision')]"
+                    }
+                  
                 }
             }
         }
