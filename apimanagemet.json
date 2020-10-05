@@ -1,1 +1,61 @@
-hi
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+      "service_name": {
+        "type": "string"
+      },
+      "apiname": {
+        "type": "object"
+      },
+      "api_revision": {
+        "type": "object"
+      }
+    },
+    "variables": {},
+    "resources": [{
+    "name": "[concat(parameters('service_name'), '/' ,parameters('apiname'))]",
+    "type": "Microsoft.ApiManagement/service/apis",
+    "apiVersion": "2019-12-01",
+    "properties": {
+      "description": "string",
+      "authenticationSettings": {
+        "oAuth2": null,
+        "openid": null,
+      "subscriptionKeyParameterNames": {
+        "header": "Apim-Subscription-Key",
+        "query": "subscription-key"
+      },
+      "type": "string",
+      "apiRevision": "[parameters('api_revision')]",
+      "apiVersion": "2017-03-01",
+      "isCurrent": "boolean",
+      "apiRevisionDescription": "string",
+      "apiVersionDescription": "string",
+      "apiVersionSetId": "string",
+      "subscriptionRequired": "false",
+      "sourceApiId": "string",
+      "displayName": "[concat(parameters('service_name'), '/' ,parameters('apiname'))]",
+      "serviceUrl": "string",
+      "path": "b2c",
+      "protocols": [
+        "https"
+      ],
+      "apiVersionSet": {
+        "id": "string",
+        "name": "string",
+        "description": "string",
+        "versioningScheme": "string",
+        "versionQueryName": "string",
+        "versionHeaderName": "string"
+      },
+      "value": "string",
+      "format": "string",
+      "wsdlSelector": {
+        "wsdlServiceName": null,
+        "wsdlEndpointName": null
+      },
+      "apiType": "string"
+    },
+    "resources": []
+  }
