@@ -4,23 +4,41 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "storageAccountName": {
-            "type": "String",
+            "type": "string",
             "metadata": {
                 "description": "Storage account name"
             }
         },
         "containerName": {
-            "type": "String",
+            "type": "string",
             "metadata": {
                 "description": "Container name"
             }
         },
         "storageAccountType": {
-            "type": "String",
+            "type": "string",
             "metadata": {
                 "description": "Storage Account Type"
             }
-        }
+        },
+        "serviceName": {
+            "type": "string",
+             "metadata": {
+                "description": "Service Name for API"
+            }
+        },
+       "apiName": {
+            "type": "string",
+            "metadata": {
+                "description": "API Name"
+            }
+        },
+       "apiRevision": {
+            "type": "string",
+            "metadata": {
+                "description": "API revision"
+            }
+        }            
     },
     "variables": {},
     "resources": [
@@ -43,16 +61,7 @@
                     },
                      "storageAccountType": {
                          "value": "[parameters('storageAccountType')]"
-                    },
-                    "serviceName": {
-                         "value": "[parameters('serviceName')]"
-                    },
-                    "apiName": {
-                       "value": "[parameters('apiName')]"
-                    },
-                    "apiRevision": {
-                       "value": "[parameters('apiRevision')]"
-                    } 
+                    }
                 }
             }
         },
