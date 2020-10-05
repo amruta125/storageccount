@@ -60,7 +60,7 @@
     "resources": [
     {
           "type": "Microsoft.ApiManagement/service/apis/operations",
-          "name": "[concat(parameters('service_companyglobal_name'), '/', parameters('api_b2c').name, '/', 'orders')]",
+          "name": "[concat(parameters('serviceName'), '/' ,parameters('apiName'),'orders')]",
           "apiVersion": "2017-03-01",
           "properties": {
             "displayName": "Orders",
