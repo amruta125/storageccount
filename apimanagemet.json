@@ -16,11 +16,11 @@
     "resources": [
     {
       "type": "Microsoft.ApiManagement/service/apis",
-      "name": "[concat(parameters('service_name'), '/' ,parameters('apiname'))]",
+      "name": "[concat(parameters('serviceName'), '/' ,parameters('apiName'))]",
       "apiVersion": "2017-03-01",
       "properties": {
-        "displayName": "[concat(parameters('service_name'), '/' ,parameters('apiname'))]",
-        "apiRevision": "[parameters('api_revision')]",
+        "displayName": "[concat(parameters('serviceName'), '/' ,parameters('apiName'))]",
+        "apiRevision": "[parameters('apiRevision')]",
         "description": "",
         "serviceUrl": null,
         "path": "b2c",
