@@ -22,7 +22,7 @@
   "resources": [
     {
       "type": "Microsoft.Storage/storageAccounts",
-      "name": "[parameters('StorageAccountName')]",
+      "name": "[parameters('storageAccountName')]",
       "apiVersion": "2019-06-01",
       "location": "[resourceGroup().location]",
        "sku": {
@@ -64,7 +64,7 @@
   ],
 	"outputs": {
 		"storageAccountInfo": {
-			"value": "[reference(concat('Microsoft.Storage/storageAccounts/', parameters('StorageAccountName')),providers('Microsoft.Storage', 'storageAccounts').apiVersions[0])]",
+			"value": "[reference(concat('Microsoft.Storage/storageAccounts/', parameters('storageAccountName')),providers('Microsoft.Storage', 'storageAccounts').apiVersions[0])]",
 			"type" : "object"
 		}
 	}
