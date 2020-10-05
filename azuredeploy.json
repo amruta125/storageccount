@@ -37,7 +37,19 @@
             "metadata": {
                 "description": "API revision"
             }
-        }            
+        },
+       "integration_account_name": {
+           "type": "string",
+            "metadata": {
+                "description": "Integration Account Name"
+            }
+        },
+       "workflows_name": {
+           "type": "string",
+           "metadata": {
+                "description": "Workflows Name"
+            }
+        }
     },
     "variables": {},
     "resources": [
@@ -84,9 +96,29 @@
                     "apiRevision": {
                          "value": "[parameters('apiRevision')]"
                     }
-                  
                 }
             }
+        },
+        {
+            "apiVersion": "2015-01-01",
+            "type": "Microsoft.Resources/deployments",
+            "name": "LogicAppIntegrationAccount",
+            "properties": {
+                "mode": "incremental",
+                "templateLink": {
+                    "uri": "https://raw.githubusercontent.com/amruta125/storageccount/main/logicappintegrationacc",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "integration_account_name": {
+                         "value": "[parameters('integration_account_name')]"
+                    },
+                    "workflows_name": {
+                         "value": "[parameters('workflows_name')]"
+                    }
+                }
+            }
+
         }
       ]
     }
