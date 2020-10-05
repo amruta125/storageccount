@@ -23,7 +23,7 @@
         "apiRevision": "[parameters('apiRevision')]",
         "description": "",
         "serviceUrl": null,
-        "path": "b2c",
+        "path": "api_poc",
         "protocols": [
           "https"
         ],
