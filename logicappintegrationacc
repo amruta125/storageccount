@@ -4,11 +4,11 @@
   "parameters": {
     "integration_account_name": {
       "defaultValue": "integration-account",
-      "type": "String"
+      "type": "string"
     },
     "workflows_name": {
       "defaultValue": "workflows_name",
-      "type": "String"
+      "type": "string"
     }
   },
   "variables": {},
