@@ -57,5 +57,43 @@
       },
       "apiType": "string"
     },
-    "resources": []
+    "resources": [
+    {
+          "type": "Microsoft.ApiManagement/service/apis/operations",
+          "name": "[concat(parameters('service_companyglobal_name'), '/', parameters('api_b2c').name, '/', 'orders')]",
+          "apiVersion": "2017-03-01",
+          "properties": {
+            "displayName": "Orders",
+            "method": "POST",
+            "urlTemplate": "/orders",
+            "templateParameters": [],
+            "description": "",
+            "request": {
+              "queryParameters": [],
+              "headers": [],
+              "representations": []
+            },
+            "responses": [
+              {
+                "statusCode": 200,
+                "description": "",
+                "representations": [],
+                "headers": []
+              },
+              {
+                "statusCode": 500,
+                "description": "",
+                "representations": [],
+                "headers": []
+              },
+              {
+                "statusCode": 400,
+                "description": "",
+                "representations": [],
+                "headers": []
+              }
+            ],
+            "policies": null
+          }
+    ]
   }
