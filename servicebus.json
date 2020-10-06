@@ -22,8 +22,8 @@
                 "ManagedWith": "ArmTemplate"            
             },
             "sku": {
-                "name": "Standard",
-                "tier": "Standard"
+                "name": "Premium",
+                "tier": "Premium"
             },
             "properties": {
                 "zoneRedundant": false
