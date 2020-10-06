@@ -23,7 +23,7 @@
         "apiRevision": "[parameters('apiRevision')]",
         "description": "",
         "serviceUrl": null,
-        "path": "api_poc",
+        "path": "apipoc",
         "protocols": [
           "https"
         ],
