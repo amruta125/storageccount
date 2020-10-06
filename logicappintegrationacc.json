@@ -28,9 +28,9 @@
       }
     },
     {
-     
-         "name": "[parameters('customConnectorName')]",
+        "name": "[parameters('customConnectorName')]",
          "type": "Microsoft.Web/customApis",
+         "apiVersion": "2016-06-01",
          "location": "East US",
          "properties": {
              "description": "A sample custom API",
