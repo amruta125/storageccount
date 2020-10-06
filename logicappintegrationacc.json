@@ -8,9 +8,10 @@
     "workflows_name": {
       "type": "string"
     },
-    "customApis_textanalyticsCustomconnector_name": {
+    "customConnectorName": {
       "type": "string"
     }
+   
   },
   "variables": {},
   "resources": [
@@ -27,30 +28,28 @@
       }
     },
     {
-      "type": "Microsoft.Web/customApis",
-      "apiVersion": "2016-06-01",
-      "name": "[parameters('customApis_textanalyticsCustomconnector_name')]",
-      "location": "eastus2",
-      "properties": {
-          "connectionParameters": {
-              "api_key": {
-           "type": "securestring",
-           "uiDefinition": {
-               "displayName": "API Key",
-               "description": "The API Key for this api",
-               "tooltip": "Provide your API Key",
-               "constraints": {
-                   "tabIndex": 2,
-                   "clearText": false,
-                   "required": "true"
-                         }
-                     }
-                 }
+     
+         "name": "[parameters('customConnectorName')]",
+         "type": "Microsoft.Web/customApis",
+         "location": "East US",
+         "properties": {
+             "description": "A sample custom API",
+             "displayName": "[parameters('customConnectorName')]",
+             "backendService": {
+               "serviceUrl": "http://petstore.swagger.io/api"
              },
-         "description": "Uses the Cognitive Services Text Analytics Sentiment API to determine whether text is positive or negative",
-         "displayName": "[parameters('customApis_textanalyticsCustomconnector_name')]",
-         "iconUri": "/Content/retail/assets/default-connection-icon.e6bb72160664a5e37b9923c3d9f50ca5.2.svg"
-     }
+             "swagger": { 
+               "swagger": "2.0",
+               "info": { },
+               "host": "petstore.swagger.io",
+               "schemes": ["http"],
+               "consumes": ["application/json"],
+                  "produces": ["application/json"],
+                  "paths": { },
+                  "definitions": { }
+                },
+                "apiType": "Rest"
+            }
     },
     {
       "type": "Microsoft.Logic/workflows",
