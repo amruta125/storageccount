@@ -14,12 +14,12 @@
             "name": "[parameters('sb_namespaces')]",
             "location": "[resourceGroup().location]",
             "tags": {
-                CaseCode = var.CaseCode,
-                Tier = var.Tier,
-                Department = var.Department,
-                Owner = var.Owner,
-                Application = "Service Bus"
-                ManagedWith = "Terraform"            
+                "CaseCode": "s4du",
+                "Tier": "Sandbox",
+                "Department": "TSG",
+                "Owner": "TSGCloudOps",
+                "Application": "Service Bus"
+                "ManagedWith": "Arm_Template"            
             },
             "sku": {
                 "name": "Standard",
