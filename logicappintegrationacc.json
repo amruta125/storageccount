@@ -3,13 +3,14 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "integration_account_name": {
-      "defaultValue": "integration-account",
       "type": "string"
     },
     "workflows_name": {
-      "defaultValue": "workflows_name",
       "type": "string"
-    }
+    },
+     "customApis_logic_name": {
+            "type": "String"
+     }
   },
   "variables": {},
   "resources": [
@@ -24,6 +25,15 @@
       "properties": {
         "state": "Enabled"
       }
+    },
+    {
+            "type": "Microsoft.Web/customApis",
+            "apiVersion": "2016-06-01",
+            "name": "[parameters('customApis_soapuilogic_name')]",
+            "location": "East US",
+            "properties": {
+                "displayName": "[parameters('customApis_soapuilogic_name')]"
+            }
     },
     {
       "type": "Microsoft.Logic/workflows",
