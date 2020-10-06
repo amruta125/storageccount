@@ -49,7 +49,13 @@
            "metadata": {
                 "description": "Workflows Name"
             }
-        }
+        },
+       "sb_namespaces":{
+           "type": "string",
+           "metadata": {
+                "description": "Namespace Name"
+            }
+       }
     },
     "variables": {},
     "resources": [
@@ -129,16 +135,12 @@
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
-                    "integration_account_name": {
-                         "value": "[parameters('integration_account_name')]"
-                    },
-                    "workflows_name": {
-                         "value": "[parameters('workflows_name')]"
+                    "sb_namespaces": {
+                         "value": "[parameters('sb_namespaces')]"
                     }
+                   
                 }
-            },
-         
-
+            }
         }
       ]
     }
