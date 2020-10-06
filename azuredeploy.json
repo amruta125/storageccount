@@ -57,7 +57,7 @@
                 "description": "Namespace Name"
             }
        },
-       "customApis_textanalyticsCustomconnector_name": {
+       "customConnectorName": {
            "type": "string",
             "metadata": {
                 "description": "Custom Connector Name"
@@ -129,8 +129,8 @@
                     "workflows_name": {
                          "value": "[parameters('workflows_name')]"
                     },
-                    "customApis_textanalyticsCustomconnector_name": {
-                         "value": "[parameters('customApis_textanalyticsCustomconnector_name')]"
+                    "customConnectorName": {
+                         "value": "[parameters('customConnectorName')]"
                     }
                 }
            }
