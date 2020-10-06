@@ -29,10 +29,10 @@
     {
             "type": "Microsoft.Web/customApis",
             "apiVersion": "2016-06-01",
-            "name": "[parameters('customApis_soapuilogic_name')]",
+            "name": "[parameters('customApis_logic_name')]",
             "location": "East US",
             "properties": {
-                "displayName": "[parameters('customApis_soapuilogic_name')]"
+                "displayName": "[parameters('customApis_logic_name')]"
             }
     },
     {
