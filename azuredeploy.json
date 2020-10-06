@@ -90,7 +90,7 @@
             "properties": {
                 "mode": "incremental",
                 "templateLink": {
-                    "uri": "https://raw.githubusercontent.com/amruta125/storageccount/main/apimanagemet.json",
+                    "uri": "https://raw.githubusercontent.com/amruta125/storageccount/main/api.json",
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
