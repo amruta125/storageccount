@@ -7,10 +7,8 @@
     },
     "workflows_name": {
       "type": "string"
-    },
-     "customApis_logic_name": {
-            "type": "String"
-     }
+    }
+    
   },
   "variables": {},
   "resources": [
@@ -26,16 +24,6 @@
         "state": "Enabled"
       }
     },
-    /*
-    {
-      "type": "Microsoft.Web/customApis",
-      "apiVersion": "2016-06-01",
-      "name": "[parameters('customApis_logic_name')]",
-      "location": "East US",
-      "properties": {
-             "displayName": "[parameters('customApis_logic_name')]"
-        }
-    },*/
     {
       "type": "Microsoft.Logic/workflows",
       "apiVersion": "2017-07-01",
