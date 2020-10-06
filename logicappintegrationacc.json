@@ -27,13 +27,13 @@
       }
     },
     {
-            "type": "Microsoft.Web/customApis",
-            "apiVersion": "2016-06-01",
-            "name": "[parameters('customApis_logic_name')]",
-            "location": "East US",
-            "properties": {
-                "displayName": "[parameters('customApis_logic_name')]"
-            }
+      "type": "Microsoft.Web/customApis",
+      "apiVersion": "2016-06-01",
+      "name": "[parameters('customApis_logic_name')]",
+      "location": "East US",
+      "properties": {
+             "displayName": "[parameters('customApis_logic_name')]"
+        }
     },
     {
       "type": "Microsoft.Logic/workflows",
