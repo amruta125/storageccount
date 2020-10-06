@@ -23,7 +23,7 @@
         "apiRevision": "[parameters('apiRevision')]",
         "description": "",
         "serviceUrl": null,
-        "path": "apipaths",
+        "path": "apipath2",
         "protocols": [
           "https"
         ],
