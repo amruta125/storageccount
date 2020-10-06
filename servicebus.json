@@ -18,8 +18,8 @@
                 "Tier": "Sandbox",
                 "Department": "TSG",
                 "Owner": "TSGCloudOps",
-                "Application": "Service Bus",
-                "ManagedWith": "Arm_Template"            
+                "Application": "ServiceBus",
+                "ManagedWith": "ArmTemplate"            
             },
             "sku": {
                 "name": "Standard",
@@ -123,20 +123,6 @@
                 "status": "Active",
                 "enableBatchedOperations": true,
                 "autoDeleteOnIdle": "P10675198DT2H48M5S"
-            }
-        },
-        {
-            "type": "Microsoft.ServiceBus/namespaces/topics/subscriptions/rules",
-            "apiVersion": "2017-04-01",
-            "name": "[concat(parameters('sb_namespaces'), '/topic/subscription/LocationCode')]",
-            "location": "[resourceGroup().location]",
-            "dependsOn": [
-                "[resourceId('Microsoft.ServiceBus/namespaces/topics/subscriptions', parameters('sb_namespaces'), 'topic', 'subscription')]",
-                "[resourceId('Microsoft.ServiceBus/namespaces/topics', parameters('sb_namespaces'), 'topic')]",
-                "[resourceId('Microsoft.ServiceBus/namespaces', parameters('sb_namespaces'))]"
-            ],
-            "properties": {
-                "action": {}
             }
         }
     ]
