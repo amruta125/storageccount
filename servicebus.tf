@@ -1,0 +1,143 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "sb_namespaces": {
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.ServiceBus/namespaces",
+            "apiVersion": "2018-01-01-preview",
+            "name": "[parameters('sb_namespaces')]",
+            "location": "[resourceGroup().location]",
+            "tags": {
+                CaseCode = var.CaseCode,
+                Tier = var.Tier,
+                Department = var.Department,
+                Owner = var.Owner,
+                Application = "Service Bus"
+                ManagedWith = "Terraform"            
+            },
+            "sku": {
+                "name": "Standard",
+                "tier": "Standard"
+            },
+            "properties": {
+                "zoneRedundant": false
+            }
+        },
+        {
+            "type": "Microsoft.ServiceBus/namespaces/AuthorizationRules",
+            "apiVersion": "2017-04-01",
+            "name": "[concat(parameters('sb_namespaces'), '/RootManageSharedAccessKey')]",
+            "location": "[resourceGroup().location]",
+            "dependsOn": [
+                "[resourceId('Microsoft.ServiceBus/namespaces', parameters('sb_namespaces'))]"
+            ],
+            "properties": {
+                "rights": [
+                    "Listen",
+                    "Manage",
+                    "Send"
+                ]
+            }
+        },
+        {
+            "type": "Microsoft.ServiceBus/namespaces/networkRuleSets",
+            "apiVersion": "2018-01-01-preview",
+            "name": "[concat(parameters('sb_namespaces'), '/default')]",
+            "location": "[resourceGroup().location]",
+            "dependsOn": [
+                "[resourceId('Microsoft.ServiceBus/namespaces', parameters('sb_namespaces'))]"
+            ],
+            "properties": {
+                "defaultAction": "Deny",
+                "virtualNetworkRules": [],
+                "ipRules": []
+            }
+        },
+        {
+            "type": "Microsoft.ServiceBus/namespaces/queues",
+            "apiVersion": "2017-04-01",
+            "name": "[concat(parameters('sb_namespaces'), '/queue')]",
+            "location": "[resourceGroup().location]",
+            "dependsOn": [
+                "[resourceId('Microsoft.ServiceBus/namespaces', parameters('sb_namespaces'))]"
+            ],
+            "properties": {
+                "lockDuration": "PT30S",
+                "maxSizeInMegabytes": 1024,
+                "requiresDuplicateDetection": false,
+                "requiresSession": false,
+                "defaultMessageTimeToLive": "P14D",
+                "deadLetteringOnMessageExpiration": false,
+                "enableBatchedOperations": true,
+                "duplicateDetectionHistoryTimeWindow": "PT10M",
+                "maxDeliveryCount": 10,
+                "status": "Active",
+                "autoDeleteOnIdle": "P10675199DT2H48M5.4775807S",
+                "enablePartitioning": false,
+                "enableExpress": false
+            }
+        },
+        {
+            "type": "Microsoft.ServiceBus/namespaces/topics",
+            "apiVersion": "2017-04-01",
+            "name": "[concat(parameters('sb_namespaces'), '/topic')]",
+            "location": "[resourceGroup().location]",
+            "dependsOn": [
+                "[resourceId('Microsoft.ServiceBus/namespaces', parameters('sb_namespaces'))]"
+            ],
+            "properties": {
+                "defaultMessageTimeToLive": "P14D",
+                "maxSizeInMegabytes": 1024,
+                "requiresDuplicateDetection": false,
+                "duplicateDetectionHistoryTimeWindow": "PT10M",
+                "enableBatchedOperations": true,
+                "status": "Active",
+                "supportOrdering": true,
+                "autoDeleteOnIdle": "P10675199DT2H48M5.4775807S",
+                "enablePartitioning": false,
+                "enableExpress": false
+            }
+        },
+        {
+            "type": "Microsoft.ServiceBus/namespaces/topics/subscriptions",
+            "apiVersion": "2017-04-01",
+            "name": "[concat(parameters('sb_namespaces'), '/topic/subscription')]",
+            "location": "East US 2",
+            "dependsOn": [
+                "[resourceId('Microsoft.ServiceBus/namespaces/topics', parameters('sb_namespaces'), 'topic')]",
+                "[resourceId('Microsoft.ServiceBus/namespaces', parameters('sb_namespaces'))]"
+            ],
+            "properties": {
+                "lockDuration": "PT30S",
+                "requiresSession": false,
+                "defaultMessageTimeToLive": "P14D",
+                "deadLetteringOnMessageExpiration": false,
+                "deadLetteringOnFilterEvaluationExceptions": false,
+                "maxDeliveryCount": 1000,
+                "status": "Active",
+                "enableBatchedOperations": true,
+                "autoDeleteOnIdle": "P10675198DT2H48M5S"
+            }
+        },
+        {
+            "type": "Microsoft.ServiceBus/namespaces/topics/subscriptions/rules",
+            "apiVersion": "2017-04-01",
+            "name": "[concat(parameters('sb_namespaces'), '/topic/subscription/LocationCode')]",
+            "location": "[resourceGroup().location]",
+            "dependsOn": [
+                "[resourceId('Microsoft.ServiceBus/namespaces/topics/subscriptions', parameters('sb_namespaces'), 'topic', 'subscription')]",
+                "[resourceId('Microsoft.ServiceBus/namespaces/topics', parameters('sb_namespaces'), 'topic')]",
+                "[resourceId('Microsoft.ServiceBus/namespaces', parameters('sb_namespaces'))]"
+            ],
+            "properties": {
+                "action": {}
+            }
+        }
+    ]
+}
