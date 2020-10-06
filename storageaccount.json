@@ -32,7 +32,7 @@
       "kind": "StorageV2",
       "properties": {
         "accessTier": "Hot",
-        "allowBlobPublicAccess": false,
+        "allowBlobPublicAccess": true,
          "supportsHttpsTrafficOnly": true,
         "accountType": "[parameters('storageAccountType')]"
       }
