@@ -56,7 +56,13 @@
            "metadata": {
                 "description": "Namespace Name"
             }
-       }
+       },
+      "customApis_logic_name": {
+           "type": "string",
+           "metadata": {
+                "description": "Custom Connector Name"
+            }
+      }
     },
     "variables": {},
     "resources": [
@@ -122,7 +128,10 @@
                     },
                     "workflows_name": {
                          "value": "[parameters('workflows_name')]"
-                    }
+                    },
+                     "customApis_logic_name": {
+                          "value": "[parameters('customApis_logic_name')]"
+                     }
                 }
            }
         },
