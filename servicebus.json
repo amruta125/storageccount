@@ -18,7 +18,7 @@
                 "Tier": "Sandbox",
                 "Department": "TSG",
                 "Owner": "TSGCloudOps",
-                "Application": "Service Bus"
+                "Application": "Service Bus",
                 "ManagedWith": "Arm_Template"            
             },
             "sku": {
