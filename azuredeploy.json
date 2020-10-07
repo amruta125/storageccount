@@ -62,6 +62,42 @@
             "metadata": {
                 "description": "Custom Connector Name"
             }
+       },
+       "ApimServiceName": {
+           "type": "string"
+       },
+       "ApiName": {
+           "type": "string"
+       },    
+       "ServiceUrl": {
+           "type": "string"    
+       },
+       "ApiSuffix": {
+         "type": "string"    
+       },
+       "ApiVersion": {
+         "type": "string"    
+       },    
+       "SwaggerPath": {
+         "type": "string"    
+       },    
+       "OpenIdProvider": {
+         "type": "string"    
+       },    
+       "OpenIdUrl": {
+         "type": "string"    
+       },    
+       "SigningKey": {
+         "type": "string"    
+       },    
+       "Issuer": {
+         "type": "string"    
+       },
+       "Product": {
+         "type": "string"    
+       },
+       "ApplicationInsight": {
+         "type": "string"    
        }
     },
     "variables": {},
@@ -96,19 +132,49 @@
             "properties": {
                 "mode": "incremental",
                 "templateLink": {
-                    "uri": "https://raw.githubusercontent.com/amruta125/storageccount/main/api.json",
+                    "uri": "https://raw.githubusercontent.com/amruta125/storageccount/main/apim.json",
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
                     "serviceName": {
                          "value": "[parameters('serviceName')]"
                     },
-                    "apiName": {
-                         "value": "[parameters('apiName')]"
-                    },
-                    "apiRevision": {
-                         "value": "[parameters('apiRevision')]"
-                    }
+                   "ApimServiceName": {
+                     "value": "[parameters('ApimServiceName')]"
+                   },
+                   "ApiName": {
+                     "value": "[parameters('ApiName')]"
+                   },    
+                   "ServiceUrl": {
+                     "value": "[parameters('ServiceUrl')]"
+                   },
+                   "ApiSuffix": {
+                     "value": "[parameters('ApiSuffix')]" 
+                   },
+                   "ApiVersion": {
+                     "value": "[parameters('ApiVersion')]"   
+                   },    
+                   "SwaggerPath": {
+                    "value": "[parameters('SwaggerPath')]" 
+                   },    
+                   "OpenIdProvider": {
+                     "value": "[parameters('OpenIdProvider')]"
+                   },    
+                   "OpenIdUrl": {
+                     "value": "[parameters('OpenIdUrl')]"  
+                   },    
+                   "SigningKey": {
+                     "value": "[parameters('SigningKey')]" 
+                   },    
+                   "Issuer": {
+                     "value": "[parameters('Issuer')]"  
+                   },
+                   "Product": {
+                     "value": "[parameters('Product')]"
+                   },
+                   "ApplicationInsight": {
+                     "value": "[parameters('ApplicationInsight')]"
+                   }
                 }
             }
         }, 
