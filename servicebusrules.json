@@ -60,7 +60,31 @@
       "properties": {
         "messagingSku": 2
       },
-      "resources": [
+     "resources": [
+        {
+          "apiVersion": "[variables('sbVersion')]",
+          "name": "[variables('queueName')]",
+          "type": "Queues",
+           "location": "[variables('location')]",
+          "dependsOn": [
+            "[concat('Microsoft.ServiceBus/namespaces/', variables('sbNamespace'))]"
+          ],
+          "properties": {
+            "lockDuration": "PT30S",
+            "maxSizeInMegabytes": 1024,
+            "requiresDuplicateDetection": false,
+            "requiresSession": false,
+            "defaultMessageTimeToLive": "P14D",
+            "deadLetteringOnMessageExpiration": false,
+            "enableBatchedOperations": true,
+            "duplicateDetectionHistoryTimeWindow": "PT10M",
+            "maxDeliveryCount": 10,
+            "status": "Active",
+            "autoDeleteOnIdle": "P10675199DT2H48M5.4775807S",
+            "enablePartitioning": false,
+            "enableExpress": false
+          },
+       "resources": [
         {
           "apiVersion": "[variables('sbVersion')]",
           "name": "[variables('topicName')]",
@@ -69,7 +93,16 @@
             "[concat('Microsoft.ServiceBus/namespaces/', variables('sbNamespace'))]"
           ],
           "properties": {
-            "path": "[variables('topicName')]"
+                "defaultMessageTimeToLive": "P14D",
+                "maxSizeInMegabytes": 1024,
+                "requiresDuplicateDetection": false,
+                "duplicateDetectionHistoryTimeWindow": "PT10M",
+                "enableBatchedOperations": true,
+                "status": "Active",
+                "supportOrdering": true,
+                "autoDeleteOnIdle": "P10675199DT2H48M5.4775807S",
+                "enablePartitioning": false,
+                "enableExpress": false
           },
           "resources": [
             {
@@ -80,6 +113,15 @@
                 "[variables('topicName')]"
               ],
               "properties": {
+                "lockDuration": "PT30S",
+                "requiresSession": false,
+                "defaultMessageTimeToLive": "P14D",
+                "deadLetteringOnMessageExpiration": false,
+                "deadLetteringOnFilterEvaluationExceptions": false,
+                "maxDeliveryCount": 1000,
+                "status": "Active",
+                "enableBatchedOperations": true,
+                "autoDeleteOnIdle": "P10675198DT2H48M5S"
               }
             }
           ]
@@ -105,30 +147,6 @@
           }
         }
       ]
-    },
-    {
-         "type": "Microsoft.ServiceBus/namespaces/queues",
-        "apiVersion": "[variables('sbVersion')]",
-        "name": "[concat(variables('sbNamespace'),variables('queueName'))]",
-        "location": "[variables('location')]",
-        "dependsOn": [
-            "[concat('Microsoft.ServiceBus/namespaces/', variables('sbNamespace'))]"
-        ],
-        "properties": {
-            "lockDuration": "PT30S",
-            "maxSizeInMegabytes": 1024,
-            "requiresDuplicateDetection": false,
-            "requiresSession": false,
-            "defaultMessageTimeToLive": "P14D",
-            "deadLetteringOnMessageExpiration": false,
-            "enableBatchedOperations": true,
-            "duplicateDetectionHistoryTimeWindow": "PT10M",
-            "maxDeliveryCount": 10,
-            "status": "Active",
-            "autoDeleteOnIdle": "P10675199DT2H48M5.4775807S",
-            "enablePartitioning": false,
-            "enableExpress": false
-       }
     }
   ],
   "outputs": {
