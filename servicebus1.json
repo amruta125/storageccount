@@ -75,7 +75,7 @@
     },
     {
               "apiVersion": "[variables('sbVersion')]",
-              "name": "[concat(variables('sbNamespace'),'/',variables('topicSubscriptionName'))]",
+              "name": "[concat(variables('sbNamespace'),'/topic/',variables('topicSubscriptionName'))]",
               "type": "Microsoft.ServiceBus/namespaces/topics/subscriptions",
               "dependsOn": [
                 "[variables('topicName')]"
