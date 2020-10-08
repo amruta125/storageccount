@@ -15,6 +15,18 @@
         "description": "The email address of the owner of the service"
       }
     },
+    "apis_service_fabric_app_name": {
+            "type": "string"
+        },
+        "apim_service_fabric_product_name": {
+             "type": "string"
+        },
+        "service_fabric_backend_name": {
+            "type": "string"
+        },
+        "apis_service_fabric_app_name_operation": {
+             "type": "string"
+        },
     "apimSku": {
       "type": "string",
       "allowedValues": [
