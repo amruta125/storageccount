@@ -127,7 +127,7 @@
                 "enablePartitioning": false,
                 "enableExpress": false
             }
-        },
+        }
       ]
     }
   ],
