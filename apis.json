@@ -20,38 +20,6 @@
   },
   "variables": {},
   "resources": [
-    /*{
-      "type": "Microsoft.ApiManagement/service",
-      "sku": {
-        "name": "Basic",
-        "capacity": 1
-      },
-      "name": "[parameters('service_companyglobal_name')]",
-      "apiVersion": "2018-01-01",
-      "location": "Central US",
-      "tags": {},
-      "scale": null,
-      "properties": {
-        "publisherEmail": "user@company.com",
-        "publisherName": "company",
-        "notificationSenderEmail": "apimgmt-noreply@mail.windowsazure.com",
-        "hostnameConfigurations": [],
-        "additionalLocations": null,
-        "virtualNetworkConfiguration": null,
-        "customProperties": {
-          "Microsoft.WindowsAzure.ApiManagement.Gateway.Security.Protocols.Tls10": "False",
-          "Microsoft.WindowsAzure.ApiManagement.Gateway.Security.Protocols.Tls11": "False",
-          "Microsoft.WindowsAzure.ApiManagement.Gateway.Security.Protocols.Ssl30": "False",
-          "Microsoft.WindowsAzure.ApiManagement.Gateway.Security.Ciphers.TripleDes168": "False",
-          "Microsoft.WindowsAzure.ApiManagement.Gateway.Security.Backend.Protocols.Tls10": "False",
-          "Microsoft.WindowsAzure.ApiManagement.Gateway.Security.Backend.Protocols.Tls11": "False",
-          "Microsoft.WindowsAzure.ApiManagement.Gateway.Security.Backend.Protocols.Ssl30": "False"
-        },
-        "virtualNetworkType": "None",
-        "certificates": null
-      },
-      "dependsOn": []
-    },*/
     {
       "type": "Microsoft.ApiManagement/service/apis",
       "name": "[concat(parameters('service_companyglobal_name'), '/' ,parameters('api_b2c').name)]",
@@ -146,7 +114,6 @@
         }
       ],
       "dependsOn": [
-        //"[resourceId('Microsoft.ApiManagement/service', parameters('service_companyglobal_name') )]"
       ]
     },
     {
@@ -187,7 +154,6 @@
         }
       ],
       "dependsOn": [
-        //"[resourceId('Microsoft.ApiManagement/service', parameters('service_companyglobal_name') )]"
       ]
     },
     {
@@ -250,7 +216,6 @@
         }
       ],
       "dependsOn": [
-        //"[resourceId('Microsoft.ApiManagement/service', parameters('service_companyglobal_name') )]"
       ]
     }
   ],
