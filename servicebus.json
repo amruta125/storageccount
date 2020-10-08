@@ -76,9 +76,9 @@
           "type": "Microsoft.ServiceBus/namespaces/authorizationRules",
             "location": "[resourceGroup().location]",
             "dependsOn": [
-                "[concat('Microsoft.ServiceBus/namespaces', parameters('sbNamespace'))]",
-                "[concat('Microsoft.Resources/deployments/', 'primaryKey')]",
-                "[concat('Microsoft.Resources/deployments/', 'secondaryKey')]"
+                "[resourceId('Microsoft.ServiceBus/namespaces', parameters('sbNamespace'))]",
+                "[resourceId('Microsoft.Resources/deployments/', 'primaryKey')]",
+                "[resourceId('Microsoft.Resources/deployments/', 'secondaryKey')]"
             ],
             "properties": {
                     "KeyName": "SendOnlyKey",
