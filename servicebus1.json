@@ -59,9 +59,10 @@
       "location": "[variables('location')]",
       "properties": {
         "messagingSku": 2
-      },
-      "resources": [
-        {
+      }
+
+    },
+    {
           "apiVersion": "[variables('sbVersion')]",
           "name": "[variables('topicName')]",
           "type": "Topics",
@@ -70,9 +71,9 @@
           ],
           "properties": {
             "path": "[variables('topicName')]"
-          },
-          "resources": [
-            {
+          }
+    },
+    {
               "apiVersion": "[variables('sbVersion')]",
               "name": "[variables('topicSubscriptionName')]",
               "type": "Subscriptions",
@@ -81,10 +82,8 @@
               ],
               "properties": {
               }
-            }
-          ]
-        },
-        {
+   },
+   {
           "apiVersion": "[variables('sbVersion')]",
           "name": "[concat(variables('sbNamespace'),'/SendOnlyKey')]",
           "type": "Microsoft.ServiceBus/namespaces/authorizationRules",
@@ -103,9 +102,6 @@
             "Rights": [ "Send" ],
             "Revision": -1
           }
-        }
-      
-      ]
     },
     {
         "type": "Microsoft.ServiceBus/namespaces/queues",
