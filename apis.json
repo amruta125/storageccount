@@ -42,6 +42,7 @@
   },
   "variables": {
     "location": "[string(resourceGroup().location)]"
+  },
   "resources": [ 
      {
             "type": "Microsoft.ApiManagement/service/apis",
