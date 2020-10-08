@@ -104,10 +104,10 @@
             "Revision": -1
           }
         },
-         {
+        {
             "type": "Microsoft.ServiceBus/namespaces/queues",
             "apiVersion": "[variables('sbVersion')]",
-            "name": "[concat(variables('sbNamespace'),'/queueName')]",
+            "name": "[concat(variables('sbNamespace'),'/',variables('queueName'))]",
             "location": "[variables('location')]",
             "dependsOn": [
                 "[concat('Microsoft.ServiceBus/namespaces/', variables('sbNamespace'))]"
