@@ -1,223 +1,191 @@
 {
- "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "service_companyglobal_name": {
+    "ApimServiceName": {
       "type": "string"
     },
-    "api_b2c": {
-      "type": "object"
-    },
-    "api_b2c_orders": {
-      "type": "object"
-    },
-    "product_reporting_name": {
+    "ApiName": {
       "type": "string"
+    },    
+    "ServiceUrl": {
+      "type": "string"    
     },
-    "product_unlimited_name": {
-      "type": "string"
+    "ApiSuffix": {
+      "type": "string"    
+    },
+    "ApiVersion": {
+      "type": "string"    
+    },    
+    "SwaggerPath": {
+      "type": "string"    
+    },    
+    "OpenIdProvider": {
+      "type": "string"    
+    },    
+    "OpenIdUrl": {
+      "type": "string"    
+    },    
+    "SigningKey": {
+      "type": "string"    
+    },    
+    "Issuer": {
+      "type": "string"    
+    },
+    "Product": {
+      "type": "string"    
+    },
+    "ApplicationInsight": {
+      "type": "string"    
     }
   },
   "variables": {},
   "resources": [
     {
-      "type": "Microsoft.ApiManagement/service/apis",
-      "name": "[concat(parameters('service_companyglobal_name'), '/' ,parameters('api_b2c').name)]",
-      "apiVersion": "2017-03-01",
-      "properties": {
-        "displayName": "B2C",
-        "apiRevision": "[parameters('api_b2c').apiRevision]",
-        "description": "",
-        "serviceUrl": "[parameters('api_b2c').serviceUrl]",
-        "path": "b2c",
-        "protocols": [
-          "https"
-        ],
-        "authenticationSettings": {
-          "oAuth2": null,
-          "openid": null
-        },
-        "subscriptionKeyParameterNames": {
-          "header": "Ocp-Apim-Subscription-Key",
-          "query": "subscription-key"
-        },
-        "isCurrent": "[parameters('api_b2c').isCurrent]"
-      },
-      "resources": [
-        {
-          "type": "Microsoft.ApiManagement/service/apis/operations",
-          "name": "[concat(parameters('service_companyglobal_name'), '/', parameters('api_b2c').name, '/', 'orders')]",
-          "apiVersion": "2017-03-01",
-          "properties": {
-            "displayName": "Orders",
-            "method": "POST",
-            "urlTemplate": "/orders",
-            "templateParameters": [],
-            "description": "",
-            "request": {
-              "queryParameters": [],
-              "headers": [],
-              "representations": []
-            },
-            "responses": [
-              {
-                "statusCode": 200,
-                "description": "",
-                "representations": [],
-                "headers": []
-              },
-              {
-                "statusCode": 500,
-                "description": "",
-                "representations": [],
-                "headers": []
-              },
-              {
-                "statusCode": 400,
-                "description": "",
-                "representations": [],
-                "headers": []
-              }
+            "apiVersion": "2018-11-01",
+            "name": "ImportAPIDeployment",
+            "type": "Microsoft.Resources/deployments",
+            "dependsOn": [
+                "[concat('Microsoft.ApiManagement/service/', parameters('ApimServiceName'), '/apiVersionSets/' ,parameters('ApiName'))]"
             ],
-            "policies": null
-          },
-          "resources": [
-            {
-              "type": "Microsoft.ApiManagement/service/apis/operations/policies",
-              "name": "[concat(parameters('service_companyglobal_name'), '/', parameters('api_b2c').name, '/', 'orders', '/', 'policy')]",
-              "apiVersion": "2017-03-01",
-              "properties": {
-                "policyContent": "[Concat('<!--\r\n    IMPORTANT:\r\n    - Policy elements can appear only within the <inbound>, <outbound>, <backend> section elements.\r\n    - Only the <forward-request> policy element can appear within the <backend> section element.\r\n    - To apply a policy to the incoming request (before it is forwarded to the backend service), place a corresponding policy element within the <inbound> section element.\r\n    - To apply a policy to the outgoing response (before it is sent back to the caller), place a corresponding policy element within the <outbound> section element.\r\n    - To add a policy position the cursor at the desired insertion point and click on the round button associated with the policy.\r\n    - To remove a policy, delete the corresponding policy statement from the policy document.\r\n    - Position the <base> element within a section element to inherit all policies from the corresponding section element in the enclosing scope.\r\n    - Remove the <base> element to prevent inheriting policies from the corresponding section element in the enclosing scope.\r\n    - Policies are applied in the order of their appearance, from the top down.\r\n-->\r\n<policies>\r\n  <inbound>\r\n    <base />\r\n    <rewrite-uri template=\"/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=',parameters('api_b2c_orders').sig,'\" />\r\n    <set-method>POST</set-method>\r\n    <set-backend-service base-url=\"https://',parameters('api_b2c_orders').server,'.logic.azure.com:443/workflows/',parameters('api_b2c_orders').workflowId,'/triggers\" />\r\n    <set-header name=\"Content-Type\" exists-action=\"override\">\r\n      <value>application/xml</value>\r\n    </set-header>\r\n  </inbound>\r\n  <backend>\r\n    <base />\r\n  </backend>\r\n  <outbound>\r\n    <base />\r\n  </outbound>\r\n  <on-error>\r\n    <base />\r\n  </on-error>\r\n</policies>')]"
-              },
-              "resources": [],
-              "dependsOn": [
-                "[resourceId('Microsoft.ApiManagement/service/apis', parameters('service_companyglobal_name') , parameters('api_b2c').name)]",
-                "[resourceId('Microsoft.ApiManagement/service/apis/operations', parameters('service_companyglobal_name'), parameters('api_b2c').name, 'orders')]"
-              ]
+            "properties": {
+                "mode": "Incremental",
+                "template": {
+                    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+
+                    "contentVersion": "1.0.0.0",
+                    "parameters": {},
+                    "variables": {},
+                    "resources": [
+                        {
+                          "type": "Microsoft.ApiManagement/service/apis",
+                          "name": "[concat(parameters('ApimServiceName'),'/', parameters('ApiName'), '-',parameters('ApiVersion') )]",
+                          "apiVersion": "2019-01-01",
+                          "properties": {
+                            "displayName": "[concat(parameters('ApiName'),'-',parameters('ApiVersion'))]",
+                            "description": "[concat(parameters('ApiName'),'-',parameters('ApiVersion'))]",
+                            "path": "[parameters('ApiSuffix')]",
+                            "protocols": [
+                              "https"
+                            ],        
+                            "value": "[parameters('SwaggerPath')]",
+                            "format": "swagger-json",
+                            "apiVersion": "[parameters('ApiVersion')]",    
+                            "apiVersionSetId": "[concat(resourceId('Microsoft.ApiManagement/service', parameters('ApimServiceName')), '/apiVersionSets/' ,parameters('ApiName'))]",
+                            "isCurrent": true
+                          },
+                          "resources": [
+                                {
+                                  "apiVersion": "2019-01-01",
+                                  "type": "policies",
+                                  "name": "policy",
+                                  "dependsOn": [
+                                      "[concat('Microsoft.ApiManagement/service/', parameters('ApimServiceName'), '/apis/', parameters('ApiName'), '-',parameters('ApiVersion'))]"
+                                  ],
+                                "properties": {
+                                    "value": "[concat('<!--\r\n    IMPORTANT:\r\n    - Policy elements can appear only within the <inbound>, <outbound>, <backend> section elements.\r\n    - To apply a policy to the incoming request (before it is forwarded to the backend service), place a corresponding policy element within the <inbound> section element.\r\n    - To apply a policy to the outgoing response (before it is sent back to the caller), place a corresponding policy element within the <outbound> section element.\r\n    - To add a policy, place the cursor at the desired insertion point and select a policy from the sidebar.\r\n    - To remove a policy, delete the corresponding policy statement from the policy document.\r\n    - Position the <base> element within a section element to inherit all policies from the corresponding section element in the enclosing scope.\r\n    - Remove the <base> element to prevent inheriting policies from the corresponding section element in the enclosing scope.\r\n    - Policies are applied in the order of their appearance, from the top down.\r\n    - Comments within policy elements are not supported and may disappear. Place your comments between policy elements or at a higher level scope.\r\n-->\r\n<policies>\r\n  <inbound>\r\n    <validate-jwt header-name=\"Authorization\" failed-validation-httpcode=\"401\" failed-validation-error-message=\"Unauthorized\" require-expiration-time=\"true\" require-scheme=\"Bearer\" require-signed-tokens=\"true\">\r\n      <openid-config url=\"', parameters('OpenIdUrl'), '\" />\r\n      <issuer-signing-keys>\r\n        <key>', parameters('SigningKey'),'</key>\r\n      </issuer-signing-keys>\r\n      <issuers>\r\n        <issuer>', parameters('Issuer'),'</issuer>\r\n      </issuers>\r\n      <required-claims>\r\n        <claim name=\"azp\">\r\n          <value>','ICPADMIN-V1' ,'</value>\r\n        </claim>\r\n      </required-claims>\r\n    </validate-jwt>\r\n    <base />\r\n  </inbound>\r\n  <backend>\r\n    <base />\r\n  </backend>\r\n  <outbound>\r\n    <base />\r\n  </outbound>\r\n  <on-error>\r\n    <base />\r\n  </on-error>\r\n</policies>')]",
+                                    "format": "xml"
+                                }
+                                }
+                          ]      
+                        }
+                    ]
+                }
             }
-          ],
-          "dependsOn": [
-            "[resourceId('Microsoft.ApiManagement/service/apis', parameters('service_companyglobal_name'),parameters('api_b2c').name)]"
-          ]
-        },
-        {
-          "type": "Microsoft.ApiManagement/service/apis/policies",
-          "name": "[concat(parameters('service_companyglobal_name'), '/', parameters('api_b2c').name, '/', 'policy')]",
-          "apiVersion": "2017-03-01",
-          "properties": {
-            "policyContent": "<!--\r\n    IMPORTANT:\r\n    - Policy elements can appear only within the <inbound>, <outbound>, <backend> section elements.\r\n    - Only the <forward-request> policy element can appear within the <backend> section element.\r\n    - To apply a policy to the incoming request (before it is forwarded to the backend service), place a corresponding policy element within the <inbound> section element.\r\n    - To apply a policy to the outgoing response (before it is sent back to the caller), place a corresponding policy element within the <outbound> section element.\r\n    - To add a policy position the cursor at the desired insertion point and click on the round button associated with the policy.\r\n    - To remove a policy, delete the corresponding policy statement from the policy document.\r\n    - Position the <base> element within a section element to inherit all policies from the corresponding section element in the enclosing scope.\r\n    - Remove the <base> element to prevent inheriting policies from the corresponding section element in the enclosing scope.\r\n    - Policies are applied in the order of their appearance, from the top down.\r\n-->\r\n<policies>\r\n  <inbound>\r\n    <base />\r\n    <set-header name=\"Ocp-Apim-Subscription-Key\" exists-action=\"delete\" />\r\n  </inbound>\r\n  <backend>\r\n    <base />\r\n  </backend>\r\n  <outbound>\r\n    <base />\r\n  </outbound>\r\n  <on-error>\r\n    <base />\r\n  </on-error>\r\n</policies>"
-          },
-          "resources": [],
-          "dependsOn": [
-            "[resourceId('Microsoft.ApiManagement/service/apis', parameters('service_companyglobal_name') , parameters('api_b2c').name)]"
-          ]
-        }
-      ],
-      "dependsOn": [
-      ]
     },
     {
-      "type": "Microsoft.ApiManagement/service/products",
-      "name": "[concat(parameters('service_companyglobal_name'), '/' ,parameters('product_reporting_name'))]",
-      "apiVersion": "2017-03-01",
-      "properties": {
-        "displayName": "Reporting",
-        "description": "Contains API's that extract reporting data from the company data sources",
-        "terms": null,
-        "subscriptionRequired": true,
-        "approvalRequired": false,
-        "subscriptionsLimit": 1,
-        "state": "published"
-      },
-      "resources": [
-        {
-          "type": "Microsoft.ApiManagement/service/products/apis",
-          "name": "[concat(parameters('service_companyglobal_name'), '/', parameters('product_reporting_name'), '/reporting')]",
-          "apiVersion": "2017-03-01",
-          "properties": {
-            "displayName": "Reporting",
-            "apiRevision": "1",
-            "description": "",
-            "serviceUrl": "https://xxxx-99.centralus.logic.azure.com/workflows/1234abcd1234/triggers",
-            "path": "reporting",
-            "protocols": [
-              "https"
-            ],
-            "authenticationSettings": null,
-            "subscriptionKeyParameterNames": null,
-            "isCurrent": true
-          },
-          "resources": [],
-          "dependsOn": [
-            "[resourceId('Microsoft.ApiManagement/service/products', parameters('service_companyglobal_name'), parameters('product_reporting_name'))]"
-          ]
-        }
-      ],
-      "dependsOn": [
-      ]
+            "apiVersion": "2018-11-01",
+            "name": "UpdateAPISettingsTemplate",
+            "type": "Microsoft.Resources/deployments",
+            "dependsOn": [
+                "[concat('Microsoft.ApiManagement/service/', parameters('ApimServiceName'), '/apiVersionSets/' , parameters('ApiName'))]",
+                "[concat('Microsoft.Resources/deployments/', 'ImportAPIDeployment')]"
+            ],    
+            "properties": {
+                "mode": "Incremental",
+                "template": {
+                    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+
+                    "contentVersion": "1.0.0.0",
+                    "parameters": {},
+                    "variables": {},
+                    "resources": [
+                        {
+                          "type": "Microsoft.ApiManagement/service/apis",
+                          "name": "[concat(parameters('ApimServiceName'),'/', parameters('ApiName'),'-',parameters('ApiVersion'))]",
+                          "apiVersion": "2019-01-01",
+                          "properties": {
+                            "displayName": "[concat(parameters('ApiName'),'-',parameters('ApiVersion'))]",                              
+                            "authenticationSettings": {
+                                "openid": {
+                                    "openidProviderId": "[parameters('OpenIdProvider')]",
+                                    "bearerTokenSendingMethods": [
+                                        "authorizationHeader"
+                                    ]
+                                },
+                                "subscriptionKeyRequired": true
+                            },
+                            "path": "[parameters('ApiSuffix')]",                            
+                            "protocols": [
+                              "https"
+                            ],                                                    
+                            "serviceUrl": "[parameters('ServiceUrl')]",
+                            "apiVersion": "[parameters('ApiVersion')]",    
+                            "apiVersionSetId": "[concat(resourceId('Microsoft.ApiManagement/service', parameters('ApimServiceName')), '/apiVersionSets/' , parameters('ApiName') )]"
+                          }  
+                        }
+                    ]
+                }
+            }
     },
     {
-      "type": "Microsoft.ApiManagement/service/products",
-      "name": "[concat(parameters('service_companyglobal_name'), '/' ,parameters('product_unlimited_name'))]",
-      "apiVersion": "2017-03-01",
-      "properties": {
-        "displayName": "Unlimited",
-        "description": "Subscribers have completely unlimited access to the API. Administrator approval is required.",
-        "terms": null,
-        "subscriptionRequired": true,
-        "approvalRequired": true,
-        "subscriptionsLimit": 1,
-        "state": "published"
-      },
-      "resources": [
-        {
-          "type": "Microsoft.ApiManagement/service/products/apis",
-          "name": "[concat(parameters('service_companyglobal_name'), '/', parameters('product_unlimited_name'), '/b2c')]",
-          "apiVersion": "2017-03-01",
-          "properties": {
-            "displayName": "B2C",
-            "apiRevision": "1",
-            "description": "",
-            "serviceUrl": "https://xxxx-99.centralus.logic.azure.com/workflows/1234abcd1234/triggers",
-            "path": "b2c",
-            "protocols": [
-              "https"
-            ],
-            "authenticationSettings": null,
-            "subscriptionKeyParameterNames": null,
-            "isCurrent": true
-          },
-          "resources": [],
-          "dependsOn": [
-            "[resourceId('Microsoft.ApiManagement/service/products', parameters('service_companyglobal_name'), parameters('product_unlimited_name'))]"
-          ]
-        },
-        {
-          "type": "Microsoft.ApiManagement/service/products/apis",
-          "name": "[concat(parameters('service_companyglobal_name'), '/', parameters('product_unlimited_name'), '/dynamics')]",
-          "apiVersion": "2017-03-01",
-          "properties": {
-            "displayName": "Dynamics",
-            "apiRevision": "1",
-            "description": "",
-            "serviceUrl": "https://xxxx-99.centralus.logic.azure.com/workflows/1234abcd1234/triggers",
-            "path": "dynamics",
-            "protocols": [
-              "https"
-            ],
-            "authenticationSettings": null,
-            "subscriptionKeyParameterNames": null,
-            "isCurrent": true
-          },
-          "resources": [],
-          "dependsOn": [
-            "[resourceId('Microsoft.ApiManagement/service/products', parameters('service_companyglobal_name'), parameters('product_unlimited_name'))]"
-          ]
+        "type": "Microsoft.ApiManagement/service/apis/diagnostics",
+        "apiVersion": "2019-01-01",
+        "name": "[concat(parameters('ApimServiceName'), '/', parameters('ApiName') , '-', parameters('ApiVersion'),'/applicationinsights')]",
+        "dependsOn": [
+            "[concat('Microsoft.Resources/deployments/', 'ImportAPIDeployment')]"
+        ],
+        "properties": {
+            "alwaysLog": "allErrors",
+            "enableHttpCorrelationHeaders": true,
+            "loggerId": "[resourceId('Microsoft.ApiManagement/service/loggers', parameters('ApimServiceName'), parameters('ApplicationInsight'))]",
+            "sampling": {
+                "samplingType": "fixed",
+                "percentage": 100
+            },
+            "frontend": {
+                "request": {
+                    "headers": [],
+                    "body": {
+                        "bytes": 0
+                    }
+                },
+                "response": {
+                    "headers": [],
+                    "body": {
+                        "bytes": 0
+                    }
+                }
+            },
+            "backend": {
+                "request": {
+                    "headers": [],
+                    "body": {
+                        "bytes": 0
+                    }
+                },
+                "response": {
+                    "headers": [],
+                    "body": {
+                        "bytes": 0
+                    }
+                }
+            }
         }
-      ],
-      "dependsOn": [
-      ]
-    }
-  ],
-  "outputs": {}
+    }   
+ 
+  ]
 }
+
+
