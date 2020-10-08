@@ -107,7 +107,7 @@
                 "enablePartitioning": false,
                 "enableExpress": false
             }
-        }
+        },
         {
           "apiVersion": "[variables('sbVersion')]",
           "name": "[concat(variables('sbNamespace'),'/SendOnlyKey')]",
