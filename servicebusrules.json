@@ -108,9 +108,9 @@
     },
     {
     "apiVersion": "[variables('sbVersion')]",
-    "name": "[variables('queueName')]",
     "type": "Microsoft.ServiceBus/namespaces/queues",
-     "location": "[variables('location')]",
+    "name": "[concat(variables('sbNamespace'),'/',variables('queueName'))]",
+    "location": "[variables('location')]",
     "dependsOn": [
       "[concat('Microsoft.ServiceBus/namespaces/', variables('sbNamespace'))]"
     ],
