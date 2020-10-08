@@ -94,51 +94,7 @@
                 }
             }
     },
-    {
-            "apiVersion": "2018-11-01",
-            "name": "UpdateAPISettingsTemplate",
-            "type": "Microsoft.Resources/deployments",
-            "dependsOn": [
-                "[concat('Microsoft.ApiManagement/service/', parameters('ApimServiceName'), '/apiVersionSets/' , parameters('ApiName'))]",
-                "[concat('Microsoft.Resources/deployments/', 'ImportAPIDeployment')]"
-            ],    
-            "properties": {
-                "mode": "Incremental",
-                "template": {
-                    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-
-                    "contentVersion": "1.0.0.0",
-                    "parameters": {},
-                    "variables": {},
-                    "resources": [
-                        {
-                          "type": "Microsoft.ApiManagement/service/apis",
-                          "name": "[concat(parameters('ApimServiceName'),'/', parameters('ApiName'),'-',parameters('ApiVersion'))]",
-                          "apiVersion": "2019-01-01",
-                          "properties": {
-                            "displayName": "[concat(parameters('ApiName'),'-',parameters('ApiVersion'))]",                              
-                            "authenticationSettings": {
-                                "openid": {
-                                    "openidProviderId": "[parameters('OpenIdProvider')]",
-                                    "bearerTokenSendingMethods": [
-                                        "authorizationHeader"
-                                    ]
-                                },
-                                "subscriptionKeyRequired": true
-                            },
-                            "path": "[parameters('ApiSuffix')]",                            
-                            "protocols": [
-                              "https"
-                            ],                                                    
-                            "serviceUrl": "[parameters('ServiceUrl')]",
-                            "apiVersion": "[parameters('ApiVersion')]",    
-                            "apiVersionSetId": "[concat(resourceId('Microsoft.ApiManagement/service', parameters('ApimServiceName')), '/apiVersionSets/' , parameters('ApiName') )]"
-                          }  
-                        }
-                    ]
-                }
-            }
-    },
+    
     {
         "type": "Microsoft.ApiManagement/service/apis/diagnostics",
         "apiVersion": "2019-01-01",
