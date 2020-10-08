@@ -51,6 +51,18 @@
                 "description": "Workflows Name"
             }
         },
+        "skuName": {
+          "type": "string",
+          "metadata": {
+                "description": "Sku Name"
+            }
+       },
+      "workflowState": {
+           "type": "string",
+           "metadata": {
+                "description": "Workflow state"
+            }
+       },
        "sb_namespaces":{
            "type": "string",
            "metadata": {
@@ -62,42 +74,6 @@
             "metadata": {
                 "description": "Custom Connector Name"
             }
-       },
-       "ApimServiceName": {
-           "type": "string"
-       },
-       "ApiName": {
-           "type": "string"
-       },    
-       "ServiceUrl": {
-           "type": "string"    
-       },
-       "ApiSuffix": {
-         "type": "string"    
-       },
-       "ApiVersion": {
-         "type": "string"    
-       },    
-       "SwaggerPath": {
-         "type": "string"    
-       },    
-       "OpenIdProvider": {
-         "type": "string"    
-       },    
-       "OpenIdUrl": {
-         "type": "string"    
-       },    
-       "SigningKey": {
-         "type": "string"    
-       },    
-       "Issuer": {
-         "type": "string"    
-       },
-       "Product": {
-         "type": "string"    
-       },
-       "ApplicationInsight": {
-         "type": "string"    
        }
     },
     "variables": {},
@@ -197,6 +173,12 @@
                     },
                     "customConnectorName": {
                          "value": "[parameters('customConnectorName')]"
+                    },
+                    "workflowState": {
+                        "value": "[parameters('workflowState')]"
+                    },
+                    "skuName": {
+                        "value": "[parameters('skuName')]"
                     }
                 }
            }
