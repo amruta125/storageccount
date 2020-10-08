@@ -37,42 +37,8 @@
       "metadata": {
         "description": "The pricing tier of this API Management service. Only Developer and Premium are supported when deploying into a shared VNET."
       }
-    },
-    "vnetName": {
-      "defaultValue": "sf-apim-vnet",
-      "type": "string",
-      "metadata": {
-        "description": "The name of the VNET that contains the Service Fabric cluster and API Management service deployment."
-      }
-    },
-    "subnetName": {
-      "defaultValue": "apim-subnet",
-      "type": "string",
-      "metadata": {
-        "description": "The name subnet to deploy the API Management service to. This subnet cannot have any other resources in it and must be in the same VNET that contains the Service Fabric cluster back-end."
-      }
-    },
-    "vnetVersion": {
-      "defaultValue": "2017-03-01",
-      "type": "string",
-      "metadata": {
-        "description": "The version of the VNET resource to which the subnet belongs as defined by the subnetName parameter."
-      }
-    },
-    "networkSecurityGroupName": {
-      "defaultValue": "apim-vnet-security",
-      "type": "string",
-      "metadata": {
-        "description": "The name Network Security Group to deploy the API Management service to. This NSG must be applied to the subnet in the 'subnetName' parameter."
-      }
-    },
-    "networkSecurityGroupVersion": {
-      "defaultValue": "2017-03-01",
-      "type": "string",
-      "metadata": {
-        "description": "The version of the Network Security Group resource."
-      }
     }
+   
   },
   "variables": {
     "location": "[string(resourceGroup().location)]",
