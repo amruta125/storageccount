@@ -1,44 +1,27 @@
+
 {
   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
     "apimInstanceName": {
       "type": "string",
-      "defaultValue": "tsg-sb-demo"
+      "defaultValue": "tsg-sb-demo",
       "metadata": {
         "description": "The name of your API Management service."
-      }
-    },
-    "apimPublisherEmail": {
-      "type": "string",
-      "minLength": 1,
-      "metadata": {
-        "description": "The email address of the owner of the service"
       }
     },
     "apis_service_fabric_app_name": {
             "type": "string"
         },
-        "apim_service_fabric_product_name": {
+    "apim_service_fabric_product_name": {
              "type": "string"
         },
-        "service_fabric_backend_name": {
+    "service_fabric_backend_name": {
             "type": "string"
         },
-        "apis_service_fabric_app_name_operation": {
+    "apis_service_fabric_app_name_operation": {
              "type": "string"
-        },
-    "apimSku": {
-      "type": "string",
-      "allowedValues": [
-        "Developer",
-        "Premium"
-      ],
-      "defaultValue": "Developer",
-      "metadata": {
-        "description": "The pricing tier of this API Management service. Only Developer and Premium are supported when deploying into a shared VNET."
-      }
-    }
+        }
    
   },
   "variables": {
@@ -67,8 +50,8 @@
             "dependsOn": [
                 "[resourceId('Microsoft.ApiManagement/service', parameters('apimInstanceName'))]"
             ]
-        },
-        {
+     },
+     {
             "type": "Microsoft.ApiManagement/service/apis/operations",
             "name": "[concat(parameters('apimInstanceName'), '/', parameters('apis_service_fabric_app_name'), '/', parameters('apis_service_fabric_app_name_operation'))]",
             "apiVersion": "2017-03-01",
@@ -84,8 +67,8 @@
                 "[resourceId('Microsoft.ApiManagement/service', parameters('apimInstanceName'))]",
                 "[resourceId('Microsoft.ApiManagement/service/apis', parameters('apimInstanceName'), parameters('apis_service_fabric_app_name'))]"
             ]
-        },
-        {
+      },
+      {
             "type": "Microsoft.ApiManagement/service/apis/policies",
             "name": "[concat(parameters('apimInstanceName'), '/', parameters('apis_service_fabric_app_name'), '/', parameters('policies_policy_name'))]",
             "apiVersion": "2017-03-01",
@@ -97,8 +80,8 @@
                 "[resourceId('Microsoft.ApiManagement/service/apis', parameters('apimInstanceName'), parameters('apis_service_fabric_app_name'))]",
                 "[resourceId('Microsoft.ApiManagement/service/backends', parameters('apimInstanceName'), parameters('service_fabric_backend_name'))]"
             ]
-        },
-        {
+      },
+      {
             "type": "Microsoft.ApiManagement/service/products/apis",
             "name": "[concat(parameters('apimInstanceName'), '/', parameters('apim_service_fabric_product_name'), '/', parameters('apis_service_fabric_app_name'))]",
             "apiVersion": "2017-03-01",
@@ -109,6 +92,6 @@
                 "[resourceId('Microsoft.ApiManagement/service/apis', parameters('apimInstanceName'), parameters('apis_service_fabric_app_name'))]",
                 "[resourceId('Microsoft.ApiManagement/service/products', parameters('apimInstanceName'), parameters('apim_service_fabric_product_name'))]"
             ]
-        }
+      }
   ]
 }
