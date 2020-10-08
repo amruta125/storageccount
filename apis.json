@@ -4,6 +4,7 @@
   "parameters": {
     "apimInstanceName": {
       "type": "string",
+      "defaultValue": "tsg-sb-demo"
       "metadata": {
         "description": "The name of your API Management service."
       }
