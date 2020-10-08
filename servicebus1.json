@@ -64,7 +64,7 @@
     },
     {
           "apiVersion": "[variables('sbVersion')]",
-          "name": "[(variables('sbNamespace')]",
+          "name": "[variables('sbNamespace')]",
           "type": "Microsoft.ServiceBus/namespaces/topics",
           "dependsOn": [
             "[concat('Microsoft.ServiceBus/namespaces/', variables('sbNamespace'))]"
