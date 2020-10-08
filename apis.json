@@ -1,1 +1,191 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "ApimServiceName": {
+      "type": "string"
+    },
+    "ApiName": {
+      "type": "string"
+    },    
+    "ServiceUrl": {
+      "type": "string"    
+    },
+    "ApiSuffix": {
+      "type": "string"    
+    },
+    "ApiVersion": {
+      "type": "string"    
+    },    
+    "SwaggerPath": {
+      "type": "string"    
+    },    
+    "OpenIdProvider": {
+      "type": "string"    
+    },    
+    "OpenIdUrl": {
+      "type": "string"    
+    },    
+    "SigningKey": {
+      "type": "string"    
+    },    
+    "Issuer": {
+      "type": "string"    
+    },
+    "Product": {
+      "type": "string"    
+    },
+    "ApplicationInsight": {
+      "type": "string"    
+    }
+  },
+  "variables": {},
+  "resources": [
+    {
+            "apiVersion": "2018-11-01",
+            "name": "ImportAPIDeployment",
+            "type": "Microsoft.Resources/deployments",
+            "dependsOn": [
+                "[concat('Microsoft.ApiManagement/service/', parameters('ApimServiceName'), '/apiVersionSets/' ,parameters('ApiName'))]"
+            ],
+            "properties": {
+                "mode": "Incremental",
+                "template": {
+                    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+
+                    "contentVersion": "1.0.0.0",
+                    "parameters": {},
+                    "variables": {},
+                    "resources": [
+                        {
+                          "type": "Microsoft.ApiManagement/service/apis",
+                          "name": "[concat(parameters('ApimServiceName'),'/', parameters('ApiName'), '-',parameters('ApiVersion') )]",
+                          "apiVersion": "2019-01-01",
+                          "properties": {
+                            "displayName": "[concat(parameters('ApiName'),'-',parameters('ApiVersion'))]",
+                            "description": "[concat(parameters('ApiName'),'-',parameters('ApiVersion'))]",
+                            "path": "[parameters('ApiSuffix')]",
+                            "protocols": [
+                              "https"
+                            ],        
+                            "value": "[parameters('SwaggerPath')]",
+                            "format": "swagger-json",
+                            "apiVersion": "[parameters('ApiVersion')]",    
+                            "apiVersionSetId": "[concat(resourceId('Microsoft.ApiManagement/service', parameters('ApimServiceName')), '/apiVersionSets/' ,parameters('ApiName'))]",
+                            "isCurrent": true
+                          },
+                          "resources": [
+                                {
+                                  "apiVersion": "2019-01-01",
+                                  "type": "policies",
+                                  "name": "policy",
+                                  "dependsOn": [
+                                      "[concat('Microsoft.ApiManagement/service/', parameters('ApimServiceName'), '/apis/', parameters('ApiName'), '-',parameters('ApiVersion'))]"
+                                  ],
+                                "properties": {
+                                    "value": "[concat('<!--\r\n    IMPORTANT:\r\n    - Policy elements can appear only within the <inbound>, <outbound>, <backend> section elements.\r\n    - To apply a policy to the incoming request (before it is forwarded to the backend service), place a corresponding policy element within the <inbound> section element.\r\n    - To apply a policy to the outgoing response (before it is sent back to the caller), place a corresponding policy element within the <outbound> section element.\r\n    - To add a policy, place the cursor at the desired insertion point and select a policy from the sidebar.\r\n    - To remove a policy, delete the corresponding policy statement from the policy document.\r\n    - Position the <base> element within a section element to inherit all policies from the corresponding section element in the enclosing scope.\r\n    - Remove the <base> element to prevent inheriting policies from the corresponding section element in the enclosing scope.\r\n    - Policies are applied in the order of their appearance, from the top down.\r\n    - Comments within policy elements are not supported and may disappear. Place your comments between policy elements or at a higher level scope.\r\n-->\r\n<policies>\r\n  <inbound>\r\n    <validate-jwt header-name=\"Authorization\" failed-validation-httpcode=\"401\" failed-validation-error-message=\"Unauthorized\" require-expiration-time=\"true\" require-scheme=\"Bearer\" require-signed-tokens=\"true\">\r\n      <openid-config url=\"', parameters('OpenIdUrl'), '\" />\r\n      <issuer-signing-keys>\r\n        <key>', parameters('SigningKey'),'</key>\r\n      </issuer-signing-keys>\r\n      <issuers>\r\n        <issuer>', parameters('Issuer'),'</issuer>\r\n      </issuers>\r\n      <required-claims>\r\n        <claim name=\"azp\">\r\n          <value>','ICPADMIN-V1' ,'</value>\r\n        </claim>\r\n      </required-claims>\r\n    </validate-jwt>\r\n    <base />\r\n  </inbound>\r\n  <backend>\r\n    <base />\r\n  </backend>\r\n  <outbound>\r\n    <base />\r\n  </outbound>\r\n  <on-error>\r\n    <base />\r\n  </on-error>\r\n</policies>')]",
+                                    "format": "xml"
+                                }
+                                }
+                          ]      
+                        }
+                    ]
+                }
+            }
+    },
+    {
+            "apiVersion": "2018-11-01",
+            "name": "UpdateAPISettingsTemplate",
+            "type": "Microsoft.Resources/deployments",
+            "dependsOn": [
+                "[concat('Microsoft.ApiManagement/service/', parameters('ApimServiceName'), '/apiVersionSets/' , parameters('ApiName'))]",
+                "[concat('Microsoft.Resources/deployments/', 'ImportAPIDeployment')]"
+            ],    
+            "properties": {
+                "mode": "Incremental",
+                "template": {
+                    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+
+                    "contentVersion": "1.0.0.0",
+                    "parameters": {},
+                    "variables": {},
+                    "resources": [
+                        {
+                          "type": "Microsoft.ApiManagement/service/apis",
+                          "name": "[concat(parameters('ApimServiceName'),'/', parameters('ApiName'),'-',parameters('ApiVersion'))]",
+                          "apiVersion": "2019-01-01",
+                          "properties": {
+                            "displayName": "[concat(parameters('ApiName'),'-',parameters('ApiVersion'))]",                              
+                            "authenticationSettings": {
+                                "openid": {
+                                    "openidProviderId": "[parameters('OpenIdProvider')]",
+                                    "bearerTokenSendingMethods": [
+                                        "authorizationHeader"
+                                    ]
+                                },
+                                "subscriptionKeyRequired": true
+                            },
+                            "path": "[parameters('ApiSuffix')]",                            
+                            "protocols": [
+                              "https"
+                            ],                                                    
+                            "serviceUrl": "[parameters('ServiceUrl')]",
+                            "apiVersion": "[parameters('ApiVersion')]",    
+                            "apiVersionSetId": "[concat(resourceId('Microsoft.ApiManagement/service', parameters('ApimServiceName')), '/apiVersionSets/' , parameters('ApiName') )]"
+                          }  
+                        }
+                    ]
+                }
+            }
+    },
+    {
+        "type": "Microsoft.ApiManagement/service/apis/diagnostics",
+        "apiVersion": "2019-01-01",
+        "name": "[concat(parameters('ApimServiceName'), '/', parameters('ApiName') , '-', parameters('ApiVersion'),'/applicationinsights')]",
+        "dependsOn": [
+            "[concat('Microsoft.Resources/deployments/', 'ImportAPIDeployment')]"
+        ],
+        "properties": {
+            "alwaysLog": "allErrors",
+            "enableHttpCorrelationHeaders": true,
+            "loggerId": "[resourceId('Microsoft.ApiManagement/service/loggers', parameters('ApimServiceName'), parameters('ApplicationInsight'))]",
+            "sampling": {
+                "samplingType": "fixed",
+                "percentage": 100
+            },
+            "frontend": {
+                "request": {
+                    "headers": [],
+                    "body": {
+                        "bytes": 0
+                    }
+                },
+                "response": {
+                    "headers": [],
+                    "body": {
+                        "bytes": 0
+                    }
+                }
+            },
+            "backend": {
+                "request": {
+                    "headers": [],
+                    "body": {
+                        "bytes": 0
+                    }
+                },
+                "response": {
+                    "headers": [],
+                    "body": {
+                        "bytes": 0
+                    }
+                }
+            }
+        }
+    }   
+ 
+  ]
+}
+
 
