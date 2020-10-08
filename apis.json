@@ -41,10 +41,7 @@
    
   },
   "variables": {
-    "location": "[string(resourceGroup().location)]",
-    "apimIP": "[concat(parameters('apimInstanceName'), '-public-ip')]",
-    "apimSubnetId": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('vnetName'), parameters('subnetName'))]"
-  },
+    "location": "[string(resourceGroup().location)]"
   "resources": [ 
      {
             "type": "Microsoft.ApiManagement/service/apis",
