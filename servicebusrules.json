@@ -14,6 +14,7 @@
     "sbVersion": "2014-09-01",
     "sbNamespace": "[concat(parameters('sbNamespace'),uniqueString(resourceGroup().id))]",
     "topicName": "testTopic",
+    "queueName": "testQueue",
     "defaultSASKeyName": "RootManageSharedAccessKey",
     "authRuleResourceId": "[resourceId('Microsoft.ServiceBus/namespaces/authorizationRules', variables('sbNamespace'), variables('defaultSASKeyName'))]",
     "sendAuthRuleResourceId": "[resourceId('Microsoft.ServiceBus/namespaces/authorizationRules', variables('sbNamespace'), 'SendOnlyKey')]",
@@ -108,7 +109,7 @@
     {
          "type": "Microsoft.ServiceBus/namespaces/queues",
         "apiVersion": "[variables('sbVersion')]",
-        "name": "[concat(variables('sbNamespace'),'/queue')]",
+        "name": "[concat(variables('sbNamespace'),variables('queueName'))]",
         "location": "[variables('location')]",
         "dependsOn": [
             "[concat('Microsoft.ServiceBus/namespaces/', variables('sbNamespace'))]"
