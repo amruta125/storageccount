@@ -10,6 +10,12 @@
     },
     "customConnectorName": {
       "type": "string"
+    },
+    "skuName": {
+      "type": "string"
+    },
+    "workflowState": {
+      "type": "string"
     }
    
   },
@@ -21,10 +27,10 @@
       "name": "[parameters('integration_account_name')]",
       "location": "East US",
       "sku": {
-        "name": "Free"
+        "name": "[parameters('skuName')]",
       },
       "properties": {
-        "state": "Enabled"
+        "state": "[parameters('workflowState')]"
       }
     },
     {
