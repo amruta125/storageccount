@@ -85,9 +85,9 @@
           ]
         },
         {
-          "apiVersion": "[variables('sbVersion')]",
-          "name": "[concat(variables('sbNamespace'),'/SendOnlyKey')]",
+          "apiVersion": "	2017-04-01",
           "type": "Microsoft.ServiceBus/namespaces/authorizationRules",
+          "name": "[concat(variables('sbNamespace'),'/SendOnlyKey')]",
           "dependsOn": [
             "[concat('Microsoft.ServiceBus/namespaces/', variables('sbNamespace'))]",
             "[concat('Microsoft.Resources/deployments/', 'primaryKey')]",
@@ -107,7 +107,7 @@
       ]
     },
     {
-    "apiVersion": "[variables('sbVersion')]",
+    "apiVersion": "2017-04-01",
     "type": "Microsoft.ServiceBus/namespaces/queues",
     "name": "[concat(variables('sbNamespace'),'/',variables('queueName'))]",
     "location": "[variables('location')]",
