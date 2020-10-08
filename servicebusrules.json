@@ -85,7 +85,7 @@
           ]
         },
         {
-          "apiVersion": "	2017-04-01",
+          "apiVersion": "2017-04-01",
           "type": "Microsoft.ServiceBus/namespaces/authorizationRules",
           "name": "[concat(variables('sbNamespace'),'/SendOnlyKey')]",
           "dependsOn": [
