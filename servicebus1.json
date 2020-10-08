@@ -76,7 +76,7 @@
     {
               "apiVersion": "[variables('sbVersion')]",
               "name": "[variables('topicSubscriptionName')]",
-              "type": "Microsoft.ServiceBus/namespaces/topics/subscriptions"",
+              "type": "Microsoft.ServiceBus/namespaces/topics/subscriptions",
               "dependsOn": [
                 "[variables('topicName')]"
               ],
