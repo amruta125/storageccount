@@ -85,26 +85,6 @@
           ]
         },
         {
-          "apiVersion": "[variables('sbVersion')]",
-          "name": "[concat(variables('sbNamespace'),'/SendOnlyKey')]",
-          "type": "Microsoft.ServiceBus/namespaces/authorizationRules",
-          "dependsOn": [
-            "[concat('Microsoft.ServiceBus/namespaces/', variables('sbNamespace'))]",
-            "[concat('Microsoft.Resources/deployments/', 'primaryKey')]",
-            "[concat('Microsoft.Resources/deployments/', 'secondaryKey')]"
-          ],
-          "location": "[variables('location')]",
-          "properties": {
-            "KeyName": "SendOnlyKey",
-            "ClaimType": "SendSharedAccessKey",
-            "ClaimValue": "None",
-            "PrimaryKey": "[reference('primaryKey').outputs.key.value]",
-            "SecondaryKey": "[reference('secondaryKey').outputs.key.value]",
-            "Rights": [ "Send" ],
-            "Revision": -1
-          }
-        },
-        {
             "type": "Microsoft.ServiceBus/namespaces/queues",
             "apiVersion": "[variables('sbVersion')]",
             "name": "[concat(variables('sbNamespace'),'/',variables('queueName'))]",
@@ -128,6 +108,27 @@
                 "enableExpress": false
             }
         }
+        {
+          "apiVersion": "[variables('sbVersion')]",
+          "name": "[concat(variables('sbNamespace'),'/SendOnlyKey')]",
+          "type": "Microsoft.ServiceBus/namespaces/authorizationRules",
+          "dependsOn": [
+            "[concat('Microsoft.ServiceBus/namespaces/', variables('sbNamespace'))]",
+            "[concat('Microsoft.Resources/deployments/', 'primaryKey')]",
+            "[concat('Microsoft.Resources/deployments/', 'secondaryKey')]"
+          ],
+          "location": "[variables('location')]",
+          "properties": {
+            "KeyName": "SendOnlyKey",
+            "ClaimType": "SendSharedAccessKey",
+            "ClaimValue": "None",
+            "PrimaryKey": "[reference('primaryKey').outputs.key.value]",
+            "SecondaryKey": "[reference('secondaryKey').outputs.key.value]",
+            "Rights": [ "Send" ],
+            "Revision": -1
+          }
+        }
+      
       ]
     }
   ],
