@@ -32,7 +32,7 @@
       "kind": "StorageV2",
       "properties": {
         "accessTier": "Hot",
-        "allowBlobPublicAccess": true,
+        "allowBlobPublicAccess": false,
          "supportsHttpsTrafficOnly": true,
         "accountType": "[parameters('storageAccountType')]"
       }
@@ -58,7 +58,7 @@
             "[resourceId('Microsoft.Storage/storageAccounts/blobServices', parameters('storageAccountName'), 'default')]"
         ],
         "properties": {
-            "publicAccess": "Blob"
+            "publicAccess": "Container"
         }
     }
   ],
