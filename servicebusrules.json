@@ -54,7 +54,7 @@
         },
         {
             "apiVersion": "2015-01-01",
-            "name": "secondaryKey1",
+            "name": "secondaryKey",
             "type": "Microsoft.Resources/deployments",
             "properties": {
                 "mode": "incremental",
