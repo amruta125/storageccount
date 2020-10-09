@@ -24,6 +24,9 @@
     },
     "policies_policy_name": {
       "type": "string"
+    },
+    "api_schemaname": {
+      "type": "string"
     }
 
   },
@@ -85,7 +88,7 @@
     {
             "type": "Microsoft.ApiManagement/service/apis/schemas",
             "apiVersion": "2019-12-01",
-            "name": "[concat(parameters('apimInstanceName'),parameters('apimInstanceName'))]",
+            "name": "[concat(parameters('apimInstanceName'),'/', parameters('apis_service_app_name'), '/', parameters('api_schemaname'))]",
             "dependsOn": [
                 "[resourceId('Microsoft.ApiManagement/service/apis', parameters('apimInstanceName'), parameters('apis_service_app_name'))]",
             ],
