@@ -38,10 +38,10 @@
       "apiVersion": "2017-03-01",
       "scale": null,
       "properties": {
-        "displayName": "Service Fabric App",
+        "displayName": "BAIN Service App",
         "apiRevision": "1",
         "description": "",
-        "serviceUrl": "http://servicefabric",
+        "serviceUrl": "http://bainserviceapp",
         "path": "Bainapp",
         "protocols": [
           "http",
