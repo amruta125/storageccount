@@ -2,6 +2,9 @@
   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
+    "location": {
+       "type": "string"
+    },
     "integration_account_name": {
       "type": "string"
     },
@@ -14,7 +17,6 @@
     "workflowState": {
       "type": "string"
     }
-   
   },
   "variables": {},
   "resources": [
@@ -22,7 +24,7 @@
       "type": "Microsoft.Logic/integrationAccounts",
       "apiVersion": "2016-06-01",
       "name": "[parameters('integration_account_name')]",
-      "location": "East US",
+      "location": "[parameters('location')]",
       "sku": {
         "name": "[parameters('skuName')]",
       },
@@ -34,7 +36,7 @@
       "type": "Microsoft.Logic/workflows",
       "apiVersion": "2017-07-01",
       "name": "[parameters('workflows_name')]",
-      "location": "East US",
+      "location": "[parameters('location')]",
       "dependsOn": [
         "[resourceId('Microsoft.Logic/integrationAccounts', parameters('integration_account_name'))]"
       ],
