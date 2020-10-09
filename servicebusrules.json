@@ -194,18 +194,8 @@
                 "enablePartitioning": false,
                 "enableExpress": false
             }
-        },
-        {
-            "apiVersion": "[variables('sbVersion')]",
-            "name": "[concat(variables('sbNamespace'),'/',parameters('queueName'),'/',parameters('queueAuthorizationRuleName'))]",
-            "type": "Microsoft.ServiceBus/namespaces/queues/authorizationRules",
-            "dependsOn": [
-                "[concat(variables('sbNamespace'),'/',parameters('queueName'))]"
-            ],
-            "properties": {
-                "Rights": [ "Listen" ]
-            }
-      }
+        }
+        
     ],
     "outputs": {
         "NamespaceDefaultConnectionString": {
