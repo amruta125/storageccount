@@ -10,18 +10,21 @@
         "description": "The name of your API Management service."
       }
     },
-    "apis_service_fabric_app_name": {
+    "apis_service_app_name": {
             "type": "string"
         },
-    "apim_service_fabric_product_name": {
+    "apim_service_product_name": {
              "type": "string"
         },
     "service_fabric_backend_name": {
             "type": "string"
         },
-    "apis_service_fabric_app_name_operation": {
+    "apis_app_name_operation": {
              "type": "string"
-        }
+        },
+    "policies_policy_name": {
+        "type": "string"
+    }
    
   },
   "variables": {
@@ -30,7 +33,7 @@
   "resources": [ 
      {
             "type": "Microsoft.ApiManagement/service/apis",
-            "name": "[concat(parameters('apimInstanceName'), '/', parameters('apis_service_fabric_app_name'))]",
+            "name": "[concat(parameters('apimInstanceName'), '/', parameters('apis_service_app_name'))]",
             "apiVersion": "2017-03-01",
             "scale": null,
             "properties": {
@@ -53,7 +56,7 @@
      },
      {
             "type": "Microsoft.ApiManagement/service/apis/operations",
-            "name": "[concat(parameters('apimInstanceName'), '/', parameters('apis_service_fabric_app_name'), '/', parameters('apis_service_fabric_app_name_operation'))]",
+            "name": "[concat(parameters('apimInstanceName'), '/', parameters('apis_service_app_name'), '/', parameters('apis_app_name_operation'))]",
             "apiVersion": "2017-03-01",
             "scale": null,
             "properties": {
@@ -65,32 +68,32 @@
             },
             "dependsOn": [
                 "[resourceId('Microsoft.ApiManagement/service', parameters('apimInstanceName'))]",
-                "[resourceId('Microsoft.ApiManagement/service/apis', parameters('apimInstanceName'), parameters('apis_service_fabric_app_name'))]"
+                "[resourceId('Microsoft.ApiManagement/service/apis', parameters('apimInstanceName'), parameters('apis_service_app_name'))]"
             ]
       },
       {
             "type": "Microsoft.ApiManagement/service/apis/policies",
-            "name": "[concat(parameters('apimInstanceName'), '/', parameters('apis_service_fabric_app_name'), '/', parameters('policies_policy_name'))]",
+            "name": "[concat(parameters('apimInstanceName'), '/', parameters('apis_service_app_name'), '/', parameters('policies_policy_name'))]",
             "apiVersion": "2017-03-01",
             "properties": {
                 "policyContent": "<policies>\r\n  <inbound>\r\n    <base />\r\n    <set-backend-service backend-id=\"servicefabric\" sf-service-instance-name=\"fabric:/ApiApplication/WebApiService\" sf-resolve-condition=\"@((int)context.Response.StatusCode != 200)\" />\r\n  </inbound>\r\n  <backend>\r\n    <base />\r\n  </backend>\r\n  <outbound>\r\n    <base />\r\n  </outbound>\r\n  <on-error>\r\n    <base />\r\n  </on-error>\r\n</policies>"
             },
             "dependsOn": [
                 "[resourceId('Microsoft.ApiManagement/service', parameters('apimInstanceName'))]",
-                "[resourceId('Microsoft.ApiManagement/service/apis', parameters('apimInstanceName'), parameters('apis_service_fabric_app_name'))]",
+                "[resourceId('Microsoft.ApiManagement/service/apis', parameters('apimInstanceName'), parameters('apis_service_app_name'))]",
                 "[resourceId('Microsoft.ApiManagement/service/backends', parameters('apimInstanceName'), parameters('service_fabric_backend_name'))]"
             ]
       },
       {
             "type": "Microsoft.ApiManagement/service/products/apis",
-            "name": "[concat(parameters('apimInstanceName'), '/', parameters('apim_service_fabric_product_name'), '/', parameters('apis_service_fabric_app_name'))]",
+            "name": "[concat(parameters('apimInstanceName'), '/', parameters('apim_service_product_name'), '/', parameters('apis_service_app_name'))]",
             "apiVersion": "2017-03-01",
             "scale": null,
             "properties": {},
             "dependsOn": [
                 "[resourceId('Microsoft.ApiManagement/service', parameters('apimInstanceName'))]",
-                "[resourceId('Microsoft.ApiManagement/service/apis', parameters('apimInstanceName'), parameters('apis_service_fabric_app_name'))]",
-                "[resourceId('Microsoft.ApiManagement/service/products', parameters('apimInstanceName'), parameters('apim_service_fabric_product_name'))]"
+                "[resourceId('Microsoft.ApiManagement/service/apis', parameters('apimInstanceName'), parameters('apis_service_app_name'))]",
+                "[resourceId('Microsoft.ApiManagement/service/products', parameters('apimInstanceName'), parameters('apim_service_product_name'))]"
             ]
       }
   ]
