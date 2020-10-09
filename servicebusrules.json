@@ -39,7 +39,7 @@
     "resources": [
         {
             "apiVersion": "2015-01-01",
-            "name": "primaryKey",
+            "name": "primaryKey1",
             "type": "Microsoft.Resources/deployments",
             "properties": {
                 "mode": "incremental",
