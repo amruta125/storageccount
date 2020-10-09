@@ -51,7 +51,6 @@
         "isCurrent": true
       },
       "dependsOn": [
-        "[resourceId('Microsoft.ApiManagement/service', parameters('apimInstanceName'))]"
       ]
     },
     {
