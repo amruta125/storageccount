@@ -21,24 +21,6 @@
                 "description": "Storage Account Type"
             }
         },
-       "serviceName": {
-            "type": "string",
-             "metadata": {
-                "description": "Service Name for API"
-            }
-        },
-       "apiName": {
-            "type": "string",
-            "metadata": {
-                "description": "API Name"
-            }
-        },
-       "apiRevision": {
-            "type": "string",
-            "metadata": {
-                "description": "API revision"
-            }
-        }, 
        "integration_account_name": {
            "type": "string",
             "metadata": {
@@ -63,16 +45,10 @@
                 "description": "Workflow state"
             }
        },
-       "sb_namespaces":{
-           "type": "string",
-           "metadata": {
-                "description": "Namespace Name"
-            }
-       },
-       "customConnectorName": {
+       "location": {
            "type": "string",
             "metadata": {
-                "description": "Custom Connector Name"
+                "description": "location"
             }
        }
     },
@@ -104,59 +80,6 @@
         {
             "apiVersion": "2015-01-01",
             "type": "Microsoft.Resources/deployments",
-            "name": "api",
-            "properties": {
-                "mode": "incremental",
-                "templateLink": {
-                    "uri": "https://raw.githubusercontent.com/amruta125/storageccount/main/apim.json",
-                    "contentVersion": "1.0.0.0"
-                },
-                "parameters": {
-                    "serviceName": {
-                         "value": "[parameters('serviceName')]"
-                    },
-                   "ApimServiceName": {
-                     "value": "[parameters('ApimServiceName')]"
-                   },
-                   "ApiName": {
-                     "value": "[parameters('ApiName')]"
-                   },    
-                   "ServiceUrl": {
-                     "value": "[parameters('ServiceUrl')]"
-                   },
-                   "ApiSuffix": {
-                     "value": "[parameters('ApiSuffix')]" 
-                   },
-                   "ApiVersion": {
-                     "value": "[parameters('ApiVersion')]"   
-                   },    
-                   "SwaggerPath": {
-                    "value": "[parameters('SwaggerPath')]" 
-                   },    
-                   "OpenIdProvider": {
-                     "value": "[parameters('OpenIdProvider')]"
-                   },    
-                   "OpenIdUrl": {
-                     "value": "[parameters('OpenIdUrl')]"  
-                   },    
-                   "SigningKey": {
-                     "value": "[parameters('SigningKey')]" 
-                   },    
-                   "Issuer": {
-                     "value": "[parameters('Issuer')]"  
-                   },
-                   "Product": {
-                     "value": "[parameters('Product')]"
-                   },
-                   "ApplicationInsight": {
-                     "value": "[parameters('ApplicationInsight')]"
-                   }
-                }
-            }
-        }, 
-        {
-            "apiVersion": "2015-01-01",
-            "type": "Microsoft.Resources/deployments",
             "name": "LogicAppIntegrationAccount",
             "properties": {
                 "mode": "incremental",
@@ -171,35 +94,18 @@
                     "workflows_name": {
                          "value": "[parameters('workflows_name')]"
                     },
-                    "customConnectorName": {
-                         "value": "[parameters('customConnectorName')]"
-                    },
                     "workflowState": {
                         "value": "[parameters('workflowState')]"
                     },
                     "skuName": {
                         "value": "[parameters('skuName')]"
-                    }
+                    },
+                   "location": {
+                        "value": "[parameters('location')]"
+                     }
                 }
            }
-        },
-        {
-            "apiVersion": "2015-01-01",
-            "type": "Microsoft.Resources/deployments",
-            "name": "ServiceBus",
-            "properties": {
-                "mode": "incremental",
-                "templateLink": {
-                    "uri": "https://raw.githubusercontent.com/amruta125/storageccount/main/servicebus.json",
-                    "contentVersion": "1.0.0.0"
-                },
-                "parameters": {
-                    "sb_namespaces": {
-                         "value": "[parameters('sb_namespaces')]"
-                    }
-                   
-                }
-            }
         }
+       
       ]
     }
