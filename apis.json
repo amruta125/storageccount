@@ -16,9 +16,6 @@
     "apim_service_product_name": {
       "type": "string"
     },
-    "service_fabric_backend_name": {
-      "type": "string"
-    },
     "apis_app_name_operation": {
       "type": "string"
     },
