@@ -197,7 +197,7 @@
         },
         {
             "apiVersion": "[variables('sbVersion')]",
-            "name": "[concat(variables('sbNamespace'),'/',parameters('topicName'),'/',parameters('topicAuthorizationRuleName'))]",
+            "name": "[concat(variables('sbNamespace'),'/', parameters('topicName'),'/', parameters('topicAuthorizationRuleName'))]",
             "type": "Microsoft.ServiceBus/namespaces/topics/authorizationRules",
             "dependsOn": [
                 "[concat(variables('sbNamespace'),'/',parameters('topicName'))]"
