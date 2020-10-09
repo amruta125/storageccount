@@ -8,18 +8,6 @@
                 "description": "The service bus namespace"
             }
         },
-        "queueAuthorizationRuleName": {
-            "type": "string",
-            "metadata": {
-                "description": "Service bus queue authorization rules"
-            }
-        },
-        "topicAuthorizationRuleName": {
-            "type": "string",
-            "metadata": {
-                "description": "Service bus topic authorization rules"
-            }
-        },
         "topicName": {
             "type": "string",
             "metadata": {
@@ -131,26 +119,6 @@
                 },
                 {
                     "apiVersion": "2017-04-01",
-                    "type": "Microsoft.ServiceBus/namespaces/topics/authorizationRules",
-                    "name": "[concat(variables('sbNamespace'),'/SendOnlyKey')]",
-                    "dependsOn": [
-                        "[concat('Microsoft.ServiceBus/namespaces/', variables('sbNamespace'))]",
-                        "[concat('Microsoft.Resources/deployments/', 'primaryKey')]",
-                        "[concat('Microsoft.Resources/deployments/', 'secondaryKey')]"
-                    ],
-                    "location": "[variables('location')]",
-                    "properties": {
-                        "KeyName": "SendOnlyKey",
-                        "ClaimType": "SendSharedAccessKey",
-                        "ClaimValue": "None",
-                        "PrimaryKey": "[reference('primaryKey').outputs.key.value]",
-                        "SecondaryKey": "[reference('secondaryKey').outputs.key.value]",
-                        "Rights": [ "Send" ],
-                        "Revision": -1
-                    }
-                },
-                {
-                    "apiVersion": "2017-04-01",
                     "type": "Microsoft.ServiceBus/namespaces/authorizationRules",
                     "name": "[concat(variables('sbNamespace'),'/SendOnlyKey')]",
                     "dependsOn": [
@@ -194,29 +162,8 @@
                 "enablePartitioning": false,
                 "enableExpress": false
             }
-        },
-        {
-            "apiVersion": "[variables('sbVersion')]",
-            "name": "[parameters('queueAuthorizationRuleName')]",
-            "type": "Microsoft.ServiceBus/namespaces/topics/authorizationRules",
-            "dependsOn": [
-                "[concat(variables('sbNamespace'),'/',parameters('queueName'))]"
-            ],
-            "properties": {
-                "Rights": [ "Listen" ]
-            }
-        },
-        {
-            "apiVersion": "[variables('sbVersion')]",
-            "name": "[parameters('topicAuthorizationRuleName')]",
-            "type": "Microsoft.ServiceBus/namespaces/queues/authorizationRules",
-            "dependsOn": [
-                "[concat(variables('sbNamespace'),'/',parameters('queueName'))]"
-            ],
-            "properties": {
-                "Rights": [ "Listen" ]
-            }
         }
+        
     ],
     "outputs": {
         "NamespaceDefaultConnectionString": {
