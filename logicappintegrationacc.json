@@ -8,9 +8,6 @@
     "workflows_name": {
       "type": "string"
     },
-    "customConnectorName": {
-      "type": "string"
-    },
     "skuName": {
       "type": "string"
     },
@@ -32,30 +29,6 @@
       "properties": {
         "state": "[parameters('workflowState')]"
       }
-    },
-    {
-        "name": "[parameters('customConnectorName')]",
-         "type": "Microsoft.Web/customApis",
-         "apiVersion": "2016-06-01",
-         "location": "East US",
-         "properties": {
-             "description": "A sample custom API",
-             "displayName": "[parameters('customConnectorName')]",
-             "backendService": {
-               "serviceUrl": "http://petstore.swagger.io/api"
-             },
-             "swagger": { 
-               "swagger": "2.0",
-               "info": { },
-               "host": "petstore.swagger.io",
-               "schemes": ["http"],
-               "consumes": ["application/json"],
-                  "produces": ["application/json"],
-                  "paths": { },
-                  "definitions": { }
-                },
-                "apiType": "Rest"
-            }
     },
     {
       "type": "Microsoft.Logic/workflows",
