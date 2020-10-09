@@ -50,8 +50,7 @@
         "subscriptionKeyParameterNames": null,
         "isCurrent": true
       },
-      "dependsOn": [
-      ]
+    
     },
     {
       "type": "Microsoft.ApiManagement/service/apis/operations",
