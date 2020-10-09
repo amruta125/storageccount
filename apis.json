@@ -85,20 +85,7 @@
         "[resourceId('Microsoft.ApiManagement/service/apis/operations', parameters('apimInstanceName'), parameters('apis_service_app_name'), parameters('apis_app_name_operation'))]"
       ]
     },
-    {
-            "type": "Microsoft.ApiManagement/service/apis/schemas",
-            "apiVersion": "2019-12-01",
-            "name": "[concat(parameters('apimInstanceName'),'/', parameters('apis_service_app_name'), '/', parameters('api_schemaname'))]",
-            "dependsOn": [
-                "[resourceId('Microsoft.ApiManagement/service/apis', parameters('apimInstanceName'), parameters('apis_service_app_name'))]",
-            ],
-            "properties": {
-                "contentType": "application/vnd.ms-azure-apim.swagger.definitions+json",
-                "document": {
-                    "definitions": {}
-                }
-            }
-     },
+   
     {
       "type": "Microsoft.ApiManagement/service/apis/policies",
       "name": "[concat(parameters('apimInstanceName'), '/', parameters('apis_service_app_name'), '/', parameters('policies_policy_name'))]",
