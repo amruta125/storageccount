@@ -80,8 +80,8 @@
       },
       "resources": [],
       "dependsOn": [
-        "[resourceId('Microsoft.ApiManagement/service/apis', parameters('service_companyglobal_name') , parameters('api_b2c').name)]",
-        "[resourceId('Microsoft.ApiManagement/service/apis/operations', parameters('service_companyglobal_name'), parameters('api_b2c').name, 'orders')]"
+        "[resourceId('Microsoft.ApiManagement/service/apis', parameters('apimInstanceName') , parameters('apis_service_app_name'))]",
+        "[resourceId('Microsoft.ApiManagement/service/apis/operations', parameters('apimInstanceName'), parameters('apis_service_app_name'), parameters('apis_app_name_operation'))]"
       ]
     },
     {
@@ -92,7 +92,7 @@
         "policyContent": "<policies>\r\n  <inbound>\r\n    <base />\r\n    <set-backend-service backend-id=\"servicefabric\" sf-service-instance-name=\"fabric:/ApiApplication/WebApiService\" sf-resolve-condition=\"@((int)context.Response.StatusCode != 200)\" />\r\n  </inbound>\r\n  <backend>\r\n    <base />\r\n  </backend>\r\n  <outbound>\r\n    <base />\r\n  </outbound>\r\n  <on-error>\r\n    <base />\r\n  </on-error>\r\n</policies>"
       },
       "dependsOn": [
-        "[resourceId('Microsoft.ApiManagement/service/apis', parameters('apimInstanceName'), parameters('apis_service_app_name'))]",
+        "[resourceId('Microsoft.ApiManagement/service/apis', parameters('apimInstanceName'), parameters('apis_service_app_name'))]"
       ]
     }
 
