@@ -1,160 +1,231 @@
 {
-  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-  "contentVersion": "1.0.0.0",
-  "parameters": {
-    "sbNamespace": {
-      "type": "string",
-      "metadata": {
-        "description": "The service bus namespace"
-      }
-    }
-  },
-  "variables": {
-    "location": "[resourceGroup().location]",
-    "sbVersion": "2014-09-01",
-    "sbNamespace": "[concat(parameters('sbNamespace'),uniqueString(resourceGroup().id))]",
-    "topicName": "testTopic",
-    "defaultSASKeyName": "RootManageSharedAccessKey",
-    "authRuleResourceId": "[resourceId('Microsoft.ServiceBus/namespaces/authorizationRules', variables('sbNamespace'), variables('defaultSASKeyName'))]",
-    "sendAuthRuleResourceId": "[resourceId('Microsoft.ServiceBus/namespaces/authorizationRules', variables('sbNamespace'), 'SendOnlyKey')]",
-    "topicSubscriptionName": "testSubscription",
-    "queueName": "testQueue",
-    "keyGeneratorTemplateUri": "https://raw.githubusercontent.com/amruta125/storageccount/main/keygenerator.json"
-  },
-  "resources": [
-    {
-      "apiVersion": "2015-01-01",
-      "name": "primaryKey",
-      "type": "Microsoft.Resources/deployments",
-      "properties": {
-        "mode": "incremental",
-        "templateLink": {
-          "uri": "[variables('keyGeneratorTemplateUri')]",
-          "contentVersion": "1.0.0.0"
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "sbNamespace": {
+            "type": "string",
+            "metadata": {
+                "description": "The service bus namespace"
+            }
         },
-        "parameters": {
-          "seed": { "value": "1234a5" }
-        }
-      }
-    },
-    {
-      "apiVersion": "2015-01-01",
-      "name": "secondaryKey",
-      "type": "Microsoft.Resources/deployments",
-      "properties": {
-        "mode": "incremental",
-        "templateLink": {
-          "uri": "[variables('keyGeneratorTemplateUri')]",
-          "contentVersion": "1.0.0.0"
+        "queueAuthorizationRuleName": {
+            "type": "string",
+            "metadata": {
+                "description": "Service bus queue authorization rules"
+            }
         },
-        "parameters": {
-          "seed": { "value": "ac34a5" }
+        "topicAuthorizationRuleName": {
+            "type": "string",
+            "metadata": {
+                "description": "Service bus topic authorization rules"
+            }
+        },
+        "topicName": {
+            "type": "string",
+            "metadata": {
+                "description": "Service bus topic name"
+            }
+        },
+        "queueName": {
+            "type": "string",
+            "metadata": {
+                "description": "Service bus queue name"
+            }
+        },
+        "topicSubscriptionName": {
+            "type": "string",
+            "metadata": {
+                "description": "Service bus topic subscription name"
+            }
         }
-      }
     },
-    {
-      "apiVersion": "[variables('sbVersion')]",
-      "name": "[variables('sbNamespace')]",
-      "type": "Microsoft.ServiceBus/namespaces",
-      "location": "[variables('location')]",
-      "properties": {
-        "messagingSku": 2
-      }
-
+    "variables": {
+        "location": "[resourceGroup().location]",
+        "sbVersion": "2014-09-01",
+        "sbNamespace": "[concat(parameters('sbNamespace'),uniqueString(resourceGroup().id))]",
+        "defaultSASKeyName": "RootManageSharedAccessKey",
+        "authRuleResourceId": "[resourceId('Microsoft.ServiceBus/namespaces/authorizationRules', variables('sbNamespace'), variables('defaultSASKeyName'))]",
+        "sendAuthRuleResourceId": "[resourceId('Microsoft.ServiceBus/namespaces/authorizationRules', variables('sbNamespace'), 'SendOnlyKey')]",
+        "keyGeneratorTemplateUri": "https://raw.githubusercontent.com/sjkp/Azure.ARM.ServiceBus/master/Azure.ARM.ServiceBus/Templates/keygenerator.json"
     },
-    {
-          "apiVersion": "[variables('sbVersion')]",
-          "type": "Microsoft.ServiceBus/namespaces/topics",
-          "name": "[concat(parameters('sbNamespace'), '/topic')]",
-          "dependsOn": [
-            "[concat('Microsoft.ServiceBus/namespaces/', variables('sbNamespace'))]"
-          ],
-          "properties": {
-               "defaultMessageTimeToLive": "P14D",
+    "resources": [
+        {
+            "apiVersion": "2015-01-01",
+            "name": "primaryKey",
+            "type": "Microsoft.Resources/deployments",
+            "properties": {
+                "mode": "incremental",
+                "templateLink": {
+                    "uri": "[variables('keyGeneratorTemplateUri')]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "seed": { "value": "1234a5" }
+                }
+            }
+        },
+        {
+            "apiVersion": "2015-01-01",
+            "name": "secondaryKey",
+            "type": "Microsoft.Resources/deployments",
+            "properties": {
+                "mode": "incremental",
+                "templateLink": {
+                    "uri": "[variables('keyGeneratorTemplateUri')]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "seed": { "value": "ac34a5" }
+                }
+            }
+        },
+        {
+            "apiVersion": "[variables('sbVersion')]",
+            "name": "[variables('sbNamespace')]",
+            "type": "Microsoft.ServiceBus/namespaces",
+            "location": "[variables('location')]",
+            "properties": {
+                "messagingSku": 2
+            },
+            "resources": [
+                {
+                    "apiVersion": "[variables('sbVersion')]",
+                    "name": "[parameters('topicName')]",
+                    "type": "Topics",
+                    "dependsOn": [
+                        "[concat('Microsoft.ServiceBus/namespaces/', variables('sbNamespace'))]"
+                    ],
+                    "properties": {
+                        "defaultMessageTimeToLive": "P14D",
+                        "maxSizeInMegabytes": 1024,
+                        "requiresDuplicateDetection": false,
+                        "duplicateDetectionHistoryTimeWindow": "PT10M",
+                        "enableBatchedOperations": true,
+                        "status": "Active",
+                        "supportOrdering": true,
+                        "autoDeleteOnIdle": "P10675199DT2H48M5.4775807S",
+                        "enablePartitioning": false,
+                        "enableExpress": false
+                    },
+                    "resources": [
+                        {
+                            "apiVersion": "[variables('sbVersion')]",
+                            "name": "[parameters('topicSubscriptionName')]",
+                            "type": "Subscriptions",
+                            "dependsOn": [
+                                "[parameters('topicName')]"
+                            ],
+                            "properties": {
+                                "lockDuration": "PT30S",
+                                "requiresSession": false,
+                                "defaultMessageTimeToLive": "P14D",
+                                "deadLetteringOnMessageExpiration": false,
+                                "deadLetteringOnFilterEvaluationExceptions": false,
+                                "maxDeliveryCount": 1000,
+                                "status": "Active",
+                                "enableBatchedOperations": true,
+                                "autoDeleteOnIdle": "P10675198DT2H48M5S"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "apiVersion": "2017-04-01",
+                    "type": "Microsoft.ServiceBus/namespaces/topics/authorizationRules",
+                    "name": "[concat(variables('sbNamespace'),'/SendOnlyKey')]",
+                    "dependsOn": [
+                        "[concat('Microsoft.ServiceBus/namespaces/', variables('sbNamespace'))]",
+                        "[concat('Microsoft.Resources/deployments/', 'primaryKey')]",
+                        "[concat('Microsoft.Resources/deployments/', 'secondaryKey')]"
+                    ],
+                    "location": "[variables('location')]",
+                    "properties": {
+                        "KeyName": "SendOnlyKey",
+                        "ClaimType": "SendSharedAccessKey",
+                        "ClaimValue": "None",
+                        "PrimaryKey": "[reference('primaryKey').outputs.key.value]",
+                        "SecondaryKey": "[reference('secondaryKey').outputs.key.value]",
+                        "Rights": [ "Send" ],
+                        "Revision": -1
+                    }
+                },
+                {
+                    "apiVersion": "2017-04-01",
+                    "type": "Microsoft.ServiceBus/namespaces/authorizationRules",
+                    "name": "[concat(variables('sbNamespace'),'/SendOnlyKey')]",
+                    "dependsOn": [
+                        "[concat('Microsoft.ServiceBus/namespaces/', variables('sbNamespace'))]",
+                        "[concat('Microsoft.Resources/deployments/', 'primaryKey')]",
+                        "[concat('Microsoft.Resources/deployments/', 'secondaryKey')]"
+                    ],
+                    "location": "[variables('location')]",
+                    "properties": {
+                        "KeyName": "SendOnlyKey",
+                        "ClaimType": "SendSharedAccessKey",
+                        "ClaimValue": "None",
+                        "PrimaryKey": "[reference('primaryKey').outputs.key.value]",
+                        "SecondaryKey": "[reference('secondaryKey').outputs.key.value]",
+                        "Rights": [ "Send" ],
+                        "Revision": -1
+                    }
+                }
+            ]
+        },
+        {
+            "apiVersion": "2017-04-01",
+            "type": "Microsoft.ServiceBus/namespaces/queues",
+            "name": "[concat(variables('sbNamespace'),'/',parameters('queueName'))]",
+            "location": "[variables('location')]",
+            "dependsOn": [
+                "[concat('Microsoft.ServiceBus/namespaces/', variables('sbNamespace'))]"
+            ],
+            "properties": {
+                "lockDuration": "PT30S",
                 "maxSizeInMegabytes": 1024,
                 "requiresDuplicateDetection": false,
-                "duplicateDetectionHistoryTimeWindow": "PT10M",
-                "enableBatchedOperations": true,
-                "status": "Active",
-                "supportOrdering": true,
-                "autoDeleteOnIdle": "P10675199DT2H48M5.4775807S",
-                "enablePartitioning": false,
-                "enableExpress": false
-          }
-    },
-    {
-              "apiVersion": "[variables('sbVersion')]",
-              "type": "Microsoft.ServiceBus/namespaces/topics/subscriptions",
-              "name": "[concat(variables('sbNamespace'),'/topic/subscription')]",
-             
-              "dependsOn": [
-                "[resourceId('Microsoft.ServiceBus/namespaces/topics', parameters('sbNamespace'), 'topic')]"
-              ],
-              "properties": {
-                "lockDuration": "PT30S",
                 "requiresSession": false,
                 "defaultMessageTimeToLive": "P14D",
                 "deadLetteringOnMessageExpiration": false,
-                "deadLetteringOnFilterEvaluationExceptions": false,
-                "maxDeliveryCount": 1000,
-                "status": "Active",
                 "enableBatchedOperations": true,
-                "autoDeleteOnIdle": "P10675198DT2H48M5S"
-              }
-   },
-   {
-          "apiVersion": "[variables('sbVersion')]",
-          "name": "[concat(variables('sbNamespace'),'/SendOnlyKey')]",
-          "type": "Microsoft.ServiceBus/namespaces/authorizationRules",
-          "dependsOn": [
-            "[concat('Microsoft.ServiceBus/namespaces/', variables('sbNamespace'))]",
-            "[concat('Microsoft.Resources/deployments/', 'primaryKey')]",
-            "[concat('Microsoft.Resources/deployments/', 'secondaryKey')]"
-          ],
-          "location": "[variables('location')]",
-          "properties": {
-            "KeyName": "SendOnlyKey",
-            "ClaimType": "SendSharedAccessKey",
-            "ClaimValue": "None",
-            "PrimaryKey": "[reference('primaryKey').outputs.key.value]",
-            "SecondaryKey": "[reference('secondaryKey').outputs.key.value]",
-            "Rights": [ "Send" ],
-            "Revision": -1
-          }
-    },
-    {
-        "type": "Microsoft.ServiceBus/namespaces/queues",
-        "apiVersion": "[variables('sbVersion')]",
-        "name": "[concat(variables('sbNamespace'),'/',variables('queueName'))]",
-        "location": "[variables('location')]",
-        "dependsOn": [
-            "[concat('Microsoft.ServiceBus/namespaces/', variables('sbNamespace'))]"
-        ],
-        "properties": {
-            "lockDuration": "PT30S",
-            "maxSizeInMegabytes": 1024,
-            "requiresDuplicateDetection": false,
-            "requiresSession": false,
-            "defaultMessageTimeToLive": "P14D",
-            "deadLetteringOnMessageExpiration": false,
-            "enableBatchedOperations": true,
-            "duplicateDetectionHistoryTimeWindow": "PT10M",
-            "maxDeliveryCount": 10,
-            "status": "Active",
-            "autoDeleteOnIdle": "P10675199DT2H48M5.4775807S",
-            "enablePartitioning": false,
-            "enableExpress": false
+                "duplicateDetectionHistoryTimeWindow": "PT10M",
+                "maxDeliveryCount": 10,
+                "status": "Active",
+                "autoDeleteOnIdle": "P10675199DT2H48M5.4775807S",
+                "enablePartitioning": false,
+                "enableExpress": false
             }
+        },
+        {
+            "apiVersion": "[variables('sbVersion')]",
+            "name": "[parameters('queueAuthorizationRuleName')]",
+            "type": "Microsoft.ServiceBus/namespaces/topics/authorizationRules",
+            "dependsOn": [
+                "[concat(variables('sbNamespace'),'/',parameters('queueName'))]"
+            ],
+            "properties": {
+                "Rights": [ "Listen" ]
+            }
+        },
+        {
+            "apiVersion": "[variables('sbVersion')]",
+            "name": "[parameters('topicAuthorizationRuleName')]",
+            "type": "Microsoft.ServiceBus/namespaces/queues/authorizationRules",
+            "dependsOn": [
+                "[concat(variables('sbNamespace'),'/',parameters('queueName'))]"
+            ],
+            "properties": {
+                "Rights": [ "Listen" ]
+            }
+        }
+    ],
+    "outputs": {
+        "NamespaceDefaultConnectionString": {
+            "type": "string",
+            "value": "[listkeys(variables('authRuleResourceId'), variables('sbVersion')).primaryConnectionString]"
+        },
+        "SendOnlyConnectionString": {
+            "type": "string",
+            "value": "[listkeys(variables('sendAuthRuleResourceId'), variables('sbVersion')).primaryConnectionString]"
+        }
     }
-  ],
-  "outputs": {
-    "NamespaceDefaultConnectionString": {
-      "type": "string",
-      "value": "[listkeys(variables('authRuleResourceId'), variables('sbVersion')).primaryConnectionString]"
-    },
-    "SendOnlyConnectionString": {
-      "type": "string",
-      "value": "[listkeys(variables('sendAuthRuleResourceId'), variables('sbVersion')).primaryConnectionString]"
-    }
-  }
 }
