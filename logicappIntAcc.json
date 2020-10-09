@@ -9,7 +9,7 @@
             "type": "string"
         },
         "skuCapacity": {
-            "type": "integer"
+            "type": "string"
         },
         "skuName": {
             "type": "string"
