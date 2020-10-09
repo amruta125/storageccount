@@ -132,7 +132,7 @@
                 {
                     "apiVersion": "2017-04-01",
                     "type": "Microsoft.ServiceBus/namespaces/topics/authorizationRules",
-                    "name": "[concat(variables('sbNamespace'),'/SendOnlyKey')]",
+                    "name": "[concat(variables('sbNamespace'),'/',parameters('topicName'),'/SendOnlyKey')]",
                     "dependsOn": [
                         "[concat('Microsoft.ServiceBus/namespaces/', variables('sbNamespace'))]",
                         "[concat('Microsoft.Resources/deployments/', 'primaryKey')]",
@@ -197,10 +197,10 @@
         },
         {
             "apiVersion": "[variables('sbVersion')]",
-            "name": "[parameters('queueAuthorizationRuleName')]",
+            "name": "[concat(variables('sbNamespace'),'/',parameters('topicName'),'/',parameters('topicAuthorizationRuleName'))]",
             "type": "Microsoft.ServiceBus/namespaces/topics/authorizationRules",
             "dependsOn": [
-                "[concat(variables('sbNamespace'),'/',parameters('queueName'))]"
+                "[concat(variables('sbNamespace'),'/',parameters('topicName'))]"
             ],
             "properties": {
                 "Rights": [ "Listen" ]
@@ -208,7 +208,7 @@
         },
         {
             "apiVersion": "[variables('sbVersion')]",
-            "name": "[parameters('topicAuthorizationRuleName')]",
+            "name": "[concat(variables('sbNamespace'),'/',parameters('queueName'),'/',parameters('queueAuthorizationRuleName'))]",
             "type": "Microsoft.ServiceBus/namespaces/queues/authorizationRules",
             "dependsOn": [
                 "[concat(variables('sbNamespace'),'/',parameters('queueName'))]"
