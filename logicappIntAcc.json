@@ -46,7 +46,7 @@
                         "ManagedWith": "ArmTemplate"
                     },
                     "properties": {
-                        "integrationServiceEnvironmentId": "[parameters('iseID')]",
+                        "integrationServiceEnvironmentId": "[parameters('iseID')]"
                     },
                     "sku": {
                         "name": "[parameters('skuName')]",
