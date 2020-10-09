@@ -85,7 +85,7 @@
     {
             "type": "Microsoft.ApiManagement/service/apis/schemas",
             "apiVersion": "2019-12-01",
-            "name": "[concat(parameters('service_tsg_sb_demo_name'), '/la-tsg-aip-getsapdata/5f30c0b02e933610383449ee')]",
+            "name": "[concat(parameters('apimInstanceName'),parameters('apimInstanceName'))]",
             "dependsOn": [
                 "[resourceId('Microsoft.ApiManagement/service/apis', parameters('apimInstanceName'), parameters('apis_service_app_name'))]",
             ],
@@ -95,7 +95,7 @@
                     "definitions": {}
                 }
             }
-        },
+     },
     {
       "type": "Microsoft.ApiManagement/service/apis/policies",
       "name": "[concat(parameters('apimInstanceName'), '/', parameters('apis_service_app_name'), '/', parameters('policies_policy_name'))]",
