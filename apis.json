@@ -41,7 +41,7 @@
         "apiRevision": "1",
         "description": "",
         "serviceUrl": "http://servicefabric",
-        "path": "myapp",
+        "path": "testapp",
         "protocols": [
           "http",
           "https"
