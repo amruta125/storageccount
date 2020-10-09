@@ -19,7 +19,10 @@
         },
         "logicAppState": {
             "type": "string"
-        }
+        },
+        "iseID" : {
+           "type": "string"
+       }
     },
     "variables": {},
     "resources": [
@@ -43,7 +46,7 @@
                         "ManagedWith": "ArmTemplate"
                     },
                     "properties": {
-
+                        "integrationServiceEnvironmentId": "[parameters('iseID')]",
                     },
                     "sku": {
                         "name": "[parameters('skuName')]",
