@@ -5,7 +5,7 @@
         "sbNamespace": {
             "type": "string",
             "metadata": {
-                "description": "The service bus namespace"
+                "description": "Service bus namespace"
             }
         },
         "topicName": {
