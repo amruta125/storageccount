@@ -85,7 +85,6 @@
         "[resourceId('Microsoft.ApiManagement/service/apis/operations', parameters('apimInstanceName'), parameters('apis_service_app_name'), parameters('apis_app_name_operation'))]"
       ]
     },
-   
     {
       "type": "Microsoft.ApiManagement/service/apis/policies",
       "name": "[concat(parameters('apimInstanceName'), '/', parameters('apis_service_app_name'), '/', parameters('policies_policy_name'))]",
