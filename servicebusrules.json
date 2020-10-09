@@ -197,17 +197,6 @@
         },
         {
             "apiVersion": "[variables('sbVersion')]",
-            "name": "[concat(variables('sbNamespace'),'/', parameters('topicName'),'/', parameters('topicAuthorizationRuleName'))]",
-            "type": "Microsoft.ServiceBus/namespaces/topics/authorizationRules",
-            "dependsOn": [
-                "[concat(variables('sbNamespace'),'/',parameters('topicName'))]"
-            ],
-            "properties": {
-                "Rights": [ "Listen" ]
-            }
-        },
-        {
-            "apiVersion": "[variables('sbVersion')]",
             "name": "[concat(variables('sbNamespace'),'/',parameters('queueName'),'/',parameters('queueAuthorizationRuleName'))]",
             "type": "Microsoft.ServiceBus/namespaces/queues/authorizationRules",
             "dependsOn": [
@@ -216,7 +205,7 @@
             "properties": {
                 "Rights": [ "Listen" ]
             }
-        }
+      }
     ],
     "outputs": {
         "NamespaceDefaultConnectionString": {
