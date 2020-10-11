@@ -9,7 +9,7 @@
     "variables": {
         "location": "[resourceGroup().location]",
         "sbVersion": "2014-09-01",
-        "sbNamespace": "[concat(parameters('sbNamespace'),uniqueString(resourceGroup().id))]",
+        "namespaces_name": "[concat(parameters('namespaces_name'),uniqueString(resourceGroup().id))]",
         "defaultSASKeyName": "RootManageSharedAccessKey",
         "authRuleResourceId": "[resourceId('Microsoft.ServiceBus/namespaces/authorizationRules', variables('sbNamespace'), variables('defaultSASKeyName'))]",
         "sendAuthRuleResourceId": "[resourceId('Microsoft.ServiceBus/namespaces/authorizationRules', variables('sbNamespace'), 'SendOnlyKey')]",
