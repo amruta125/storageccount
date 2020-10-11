@@ -33,13 +33,13 @@
       "type": "Microsoft.Logic/integrationAccounts",
       "apiVersion": "2016-06-01",
       "name": "[parameters('integration_account_name')]",
-      "location": "East US",
+      "location": "East US 2",
       "sku": {
         "name": "[parameters('skuName')]"
       },
       "properties": {
         "integrationServiceEnvironment": {
-          "location": "East US",
+          "location": "East US 2",
           "tags": {
             "CaseCode": "s4du",
             "Tier": "Sandbox",
