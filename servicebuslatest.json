@@ -2,8 +2,7 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "namespaces_demospnamespacenywbdcq6drgny_name": {
-            "defaultValue": "demospnamespacenywbdcq6drgny",
+        "namespaces_name": {
             "type": "String"
         }
     },
@@ -12,7 +11,7 @@
         {
             "type": "Microsoft.ServiceBus/namespaces",
             "apiVersion": "2018-01-01-preview",
-            "name": "[parameters('namespaces_demospnamespacenywbdcq6drgny_name')]",
+            "name": "[parameters('namespaces_name')]",
             "location": "East US 2",
             "sku": {
                 "name": "Standard",
@@ -25,54 +24,24 @@
         {
             "type": "Microsoft.ServiceBus/namespaces/AuthorizationRules",
             "apiVersion": "2017-04-01",
-            "name": "[concat(parameters('namespaces_demospnamespacenywbdcq6drgny_name'), '/RootManageSharedAccessKey')]",
+            "name": "[concat(parameters('namespaces_name'), '/SendOnlyKey')]",
             "location": "East US 2",
             "dependsOn": [
-                "[resourceId('Microsoft.ServiceBus/namespaces', parameters('namespaces_demospnamespacenywbdcq6drgny_name'))]"
-            ],
-            "properties": {
-                "rights": [
-                    "Listen",
-                    "Manage",
-                    "Send"
-                ]
-            }
-        },
-        {
-            "type": "Microsoft.ServiceBus/namespaces/AuthorizationRules",
-            "apiVersion": "2017-04-01",
-            "name": "[concat(parameters('namespaces_demospnamespacenywbdcq6drgny_name'), '/SendOnlyKey')]",
-            "location": "East US 2",
-            "dependsOn": [
-                "[resourceId('Microsoft.ServiceBus/namespaces', parameters('namespaces_demospnamespacenywbdcq6drgny_name'))]"
+                "[resourceId('Microsoft.ServiceBus/namespaces', parameters('namespaces_name'))]"
             ],
             "properties": {
                 "rights": [
                     "Send"
                 ]
-            }
-        },
-        {
-            "type": "Microsoft.ServiceBus/namespaces/networkRuleSets",
-            "apiVersion": "2018-01-01-preview",
-            "name": "[concat(parameters('namespaces_demospnamespacenywbdcq6drgny_name'), '/default')]",
-            "location": "East US 2",
-            "dependsOn": [
-                "[resourceId('Microsoft.ServiceBus/namespaces', parameters('namespaces_demospnamespacenywbdcq6drgny_name'))]"
-            ],
-            "properties": {
-                "defaultAction": "Deny",
-                "virtualNetworkRules": [],
-                "ipRules": []
             }
         },
         {
             "type": "Microsoft.ServiceBus/namespaces/queues",
             "apiVersion": "2017-04-01",
-            "name": "[concat(parameters('namespaces_demospnamespacenywbdcq6drgny_name'), '/testqueue')]",
+            "name": "[concat(parameters('namespaces_name'), '/testqueue')]",
             "location": "East US 2",
             "dependsOn": [
-                "[resourceId('Microsoft.ServiceBus/namespaces', parameters('namespaces_demospnamespacenywbdcq6drgny_name'))]"
+                "[resourceId('Microsoft.ServiceBus/namespaces', parameters('namespaces_name'))]"
             ],
             "properties": {
                 "lockDuration": "PT30S",
@@ -93,10 +62,10 @@
         {
             "type": "Microsoft.ServiceBus/namespaces/topics",
             "apiVersion": "2017-04-01",
-            "name": "[concat(parameters('namespaces_demospnamespacenywbdcq6drgny_name'), '/testtopic')]",
+            "name": "[concat(parameters('namespaces_name'), '/testtopic')]",
             "location": "East US 2",
             "dependsOn": [
-                "[resourceId('Microsoft.ServiceBus/namespaces', parameters('namespaces_demospnamespacenywbdcq6drgny_name'))]"
+                "[resourceId('Microsoft.ServiceBus/namespaces', parameters('namespaces_name'))]"
             ],
             "properties": {
                 "defaultMessageTimeToLive": "P10675199DT2H48M5.4775807S",
@@ -114,11 +83,11 @@
         {
             "type": "Microsoft.ServiceBus/namespaces/queues/authorizationRules",
             "apiVersion": "2017-04-01",
-            "name": "[concat(parameters('namespaces_demospnamespacenywbdcq6drgny_name'), '/testqueue/Sendonly')]",
+            "name": "[concat(parameters('namespaces_name'), '/testqueue/Sendonly')]",
             "location": "East US 2",
             "dependsOn": [
-                "[resourceId('Microsoft.ServiceBus/namespaces/queues', parameters('namespaces_demospnamespacenywbdcq6drgny_name'), 'testqueue')]",
-                "[resourceId('Microsoft.ServiceBus/namespaces', parameters('namespaces_demospnamespacenywbdcq6drgny_name'))]"
+                "[resourceId('Microsoft.ServiceBus/namespaces/queues', parameters('namespaces_name'), 'testqueue')]",
+                "[resourceId('Microsoft.ServiceBus/namespaces', parameters('namespaces_name'))]"
             ],
             "properties": {
                 "rights": [
@@ -131,11 +100,11 @@
         {
             "type": "Microsoft.ServiceBus/namespaces/topics/authorizationRules",
             "apiVersion": "2017-04-01",
-            "name": "[concat(parameters('namespaces_demospnamespacenywbdcq6drgny_name'), '/testtopic/sendonly')]",
+            "name": "[concat(parameters('namespaces_name'), '/testtopic/sendonly')]",
             "location": "East US 2",
             "dependsOn": [
-                "[resourceId('Microsoft.ServiceBus/namespaces/topics', parameters('namespaces_demospnamespacenywbdcq6drgny_name'), 'testtopic')]",
-                "[resourceId('Microsoft.ServiceBus/namespaces', parameters('namespaces_demospnamespacenywbdcq6drgny_name'))]"
+                "[resourceId('Microsoft.ServiceBus/namespaces/topics', parameters('namespaces_name'), 'testtopic')]",
+                "[resourceId('Microsoft.ServiceBus/namespaces', parameters('namespaces_name'))]"
             ],
             "properties": {
                 "rights": [
@@ -148,11 +117,11 @@
         {
             "type": "Microsoft.ServiceBus/namespaces/topics/subscriptions",
             "apiVersion": "2017-04-01",
-            "name": "[concat(parameters('namespaces_demospnamespacenywbdcq6drgny_name'), '/testtopic/testSubscription')]",
+            "name": "[concat(parameters('namespaces_name'), '/testtopic/testSubscription')]",
             "location": "East US 2",
             "dependsOn": [
-                "[resourceId('Microsoft.ServiceBus/namespaces/topics', parameters('namespaces_demospnamespacenywbdcq6drgny_name'), 'testtopic')]",
-                "[resourceId('Microsoft.ServiceBus/namespaces', parameters('namespaces_demospnamespacenywbdcq6drgny_name'))]"
+                "[resourceId('Microsoft.ServiceBus/namespaces/topics', parameters('namespaces_name'), 'testtopic')]",
+                "[resourceId('Microsoft.ServiceBus/namespaces', parameters('namespaces_name'))]"
             ],
             "properties": {
                 "lockDuration": "PT1M",
@@ -165,25 +134,7 @@
                 "enableBatchedOperations": true,
                 "autoDeleteOnIdle": "P10675199DT2H48M5.4775807S"
             }
-        },
-        {
-            "type": "Microsoft.ServiceBus/namespaces/topics/subscriptions/rules",
-            "apiVersion": "2017-04-01",
-            "name": "[concat(parameters('namespaces_demospnamespacenywbdcq6drgny_name'), '/testtopic/testSubscription/$Default')]",
-            "location": "East US 2",
-            "dependsOn": [
-                "[resourceId('Microsoft.ServiceBus/namespaces/topics/subscriptions', parameters('namespaces_demospnamespacenywbdcq6drgny_name'), 'testtopic', 'testSubscription')]",
-                "[resourceId('Microsoft.ServiceBus/namespaces/topics', parameters('namespaces_demospnamespacenywbdcq6drgny_name'), 'testtopic')]",
-                "[resourceId('Microsoft.ServiceBus/namespaces', parameters('namespaces_demospnamespacenywbdcq6drgny_name'))]"
-            ],
-            "properties": {
-                "action": {},
-                "filterType": "SqlFilter",
-                "sqlFilter": {
-                    "sqlExpression": "1=1",
-                    "compatibilityLevel": 20
-                }
-            }
         }
+      
     ]
 }
