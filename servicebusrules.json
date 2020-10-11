@@ -94,28 +94,7 @@
                         "autoDeleteOnIdle": "P10675199DT2H48M5.4775807S",
                         "enablePartitioning": false,
                         "enableExpress": false
-                    },
-                    "resources": [
-                        {
-                            "apiVersion": "[variables('sbVersion')]",
-                            "name": "[parameters('topicSubscriptionName')]",
-                            "type": "Subscriptions",
-                            "dependsOn": [
-                                "[parameters('topicName')]"
-                            ],
-                            "properties": {
-                                "lockDuration": "PT30S",
-                                "requiresSession": false,
-                                "defaultMessageTimeToLive": "P14D",
-                                "deadLetteringOnMessageExpiration": false,
-                                "deadLetteringOnFilterEvaluationExceptions": false,
-                                "maxDeliveryCount": 1000,
-                                "status": "Active",
-                                "enableBatchedOperations": true,
-                                "autoDeleteOnIdle": "P10675198DT2H48M5S"
-                            }
-                        }
-                    ]
+                    }
                 },
                 {
                     "apiVersion": "2017-04-01",
