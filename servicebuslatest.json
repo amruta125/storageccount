@@ -11,8 +11,8 @@
         "sbVersion": "2014-09-01",
         "namespaces_name": "[concat(parameters('namespaces_name'),uniqueString(resourceGroup().id))]",
         "defaultSASKeyName": "RootManageSharedAccessKey",
-        "authRuleResourceId": "[resourceId('Microsoft.ServiceBus/namespaces/authorizationRules', variables('sbNamespace'), variables('defaultSASKeyName'))]",
-        "sendAuthRuleResourceId": "[resourceId('Microsoft.ServiceBus/namespaces/authorizationRules', variables('sbNamespace'), 'SendOnlyKey')]",
+        "authRuleResourceId": "[resourceId('Microsoft.ServiceBus/namespaces/authorizationRules', variables('namespaces_name'), variables('defaultSASKeyName'))]",
+        "sendAuthRuleResourceId": "[resourceId('Microsoft.ServiceBus/namespaces/authorizationRules', variables('namespaces_name'), 'SendOnlyKey')]",
         "keyGeneratorTemplateUri": "https://raw.githubusercontent.com/sjkp/Azure.ARM.ServiceBus/master/Azure.ARM.ServiceBus/Templates/keygenerator.json"
     },
     "resources": [
