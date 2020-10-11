@@ -39,7 +39,6 @@
       },
       "properties": {
         "integrationServiceEnvironment": {
-          "location": "East US 2",
           "tags": {
             "CaseCode": "s4du",
             "Tier": "Sandbox",
