@@ -23,6 +23,7 @@
         "sendAuthRuleResourceId": "[resourceId('Microsoft.ServiceBus/namespaces/authorizationRules', parameters('namespaces_name'), 'SendOnlyKey')]",
         "keyGeneratorTemplateUri": "https://raw.githubusercontent.com/sjkp/Azure.ARM.ServiceBus/master/Azure.ARM.ServiceBus/Templates/keygenerator.json"
     },
+    
     "resources": [
         {
             "apiVersion": "2015-01-01",
