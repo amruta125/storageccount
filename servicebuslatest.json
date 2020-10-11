@@ -4,12 +4,20 @@
     "parameters": {
         "namespaces_name": {
             "type": "String"
+        },
+        "queue_name": {
+            "type": "String"
+        },
+        "topic_name": {
+            "type": "String"
+        },
+        "subscription_name": {
+            "type": "String"
         }
     },
     "variables": {
         "location": "[resourceGroup().location]",
         "sbVersion": "2014-09-01",
-        "namespaces_name": "[concat(parameters('namespaces_name'),uniqueString(resourceGroup().id))]",
         "defaultSASKeyName": "RootManageSharedAccessKey",
         "authRuleResourceId": "[resourceId('Microsoft.ServiceBus/namespaces/authorizationRules', variables('namespaces_name'), variables('defaultSASKeyName'))]",
         "sendAuthRuleResourceId": "[resourceId('Microsoft.ServiceBus/namespaces/authorizationRules', variables('namespaces_name'), 'SendOnlyKey')]",
@@ -76,7 +84,7 @@
         {
             "type": "Microsoft.ServiceBus/namespaces/queues",
             "apiVersion": "2017-04-01",
-            "name": "[concat(parameters('namespaces_name'), '/testqueue')]",
+            "name": "[concat(parameters('namespaces_name'), '/',parameters('queue_name'))]",
             "location": "East US 2",
             "dependsOn": [
                 "[resourceId('Microsoft.ServiceBus/namespaces', parameters('namespaces_name'))]"
@@ -100,7 +108,7 @@
         {
             "type": "Microsoft.ServiceBus/namespaces/topics",
             "apiVersion": "2017-04-01",
-            "name": "[concat(parameters('namespaces_name'), '/testtopic')]",
+            "name": "[concat(parameters('namespaces_name'), '/',parameters('topic_name'))]",
             "location": "East US 2",
             "dependsOn": [
                 "[resourceId('Microsoft.ServiceBus/namespaces', parameters('namespaces_name'))]"
@@ -121,10 +129,10 @@
         {
             "type": "Microsoft.ServiceBus/namespaces/queues/authorizationRules",
             "apiVersion": "2017-04-01",
-            "name": "[concat(parameters('namespaces_name'), '/testqueue/Sendonly')]",
+            "name": "[concat(parameters('namespaces_name'), '/',  parameters('queue_name'), '/Sendonly')]",
             "location": "East US 2",
             "dependsOn": [
-                "[resourceId('Microsoft.ServiceBus/namespaces/queues', parameters('namespaces_name'), 'testqueue')]",
+                "[resourceId('Microsoft.ServiceBus/namespaces/queues', parameters('namespaces_name'), parameters('queue_name'))]",
                 "[resourceId('Microsoft.ServiceBus/namespaces', parameters('namespaces_name'))]"
             ],
             "properties": {
@@ -138,10 +146,10 @@
         {
             "type": "Microsoft.ServiceBus/namespaces/topics/authorizationRules",
             "apiVersion": "2017-04-01",
-            "name": "[concat(parameters('namespaces_name'), '/testtopic/sendonly')]",
+            "name": "[concat(parameters('namespaces_name'), '/', parameters('topic_name'),'/sendonly')]",
             "location": "East US 2",
             "dependsOn": [
-                "[resourceId('Microsoft.ServiceBus/namespaces/topics', parameters('namespaces_name'), 'testtopic')]",
+                "[resourceId('Microsoft.ServiceBus/namespaces/topics', parameters('namespaces_name'), parameters('topic_name'))]",
                 "[resourceId('Microsoft.ServiceBus/namespaces', parameters('namespaces_name'))]"
             ],
             "properties": {
@@ -155,10 +163,10 @@
         {
             "type": "Microsoft.ServiceBus/namespaces/topics/subscriptions",
             "apiVersion": "2017-04-01",
-            "name": "[concat(parameters('namespaces_name'), '/testtopic/testSubscription')]",
+            "name": "[concat(parameters('namespaces_name'), '/', parameters('topic_name'), '/', parameters('subscription_name'))]",
             "location": "East US 2",
             "dependsOn": [
-                "[resourceId('Microsoft.ServiceBus/namespaces/topics', parameters('namespaces_name'), 'testtopic')]",
+                "[resourceId('Microsoft.ServiceBus/namespaces/topics', parameters('namespaces_name'), parameters('topic_name'))]",
                 "[resourceId('Microsoft.ServiceBus/namespaces', parameters('namespaces_name'))]"
             ],
             "properties": {
