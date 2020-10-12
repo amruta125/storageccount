@@ -13,7 +13,7 @@
     },
     "skuTier": {
       "type": "string"
-    }
+    },
    "storageSkuName": {
       "type": "string"
     }	  
