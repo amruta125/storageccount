@@ -74,7 +74,13 @@
             "metadata": {
                 "description": "subscription name"
             }
-        }
+        },
+        "sasTokenExpiry": {
+            "type": "string"
+        },
+       "accountSasProperties": {  
+            "type": "object"
+        }  
     },
     "variables": {},
     "resources": [
