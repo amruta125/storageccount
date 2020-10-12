@@ -1,4 +1,6 @@
-{
+  
+
+ {
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
@@ -115,18 +117,18 @@
                     "integration_account_name": {
                         "value": "[parameters('integration_account_name')]"
                     },
-                }
-                "workflows_name": {
-                    "value": "[parameters('workflows_name')]"
-                },
-                "workflowState": {
-                    "value": "[parameters('workflowState')]"
-                },
-                "skuName": {
-                    "value": "[parameters('skuName')]"
-                },
-                "location": {
-                    "value": "[parameters('location')]"
+                    "workflows_name": {
+                        "value": "[parameters('workflows_name')]"
+                    },
+                    "workflowState": {
+                        "value": "[parameters('workflowState')]"
+                    },
+                    "skuName": {
+                        "value": "[parameters('skuName')]"
+                    },
+                    "location": {
+                        "value": "[parameters('locationName')]"
+                    }
                 }
             }
         },
@@ -156,5 +158,6 @@
                 }
             }
         }
+
     ]
 }
