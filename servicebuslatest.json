@@ -59,7 +59,7 @@
             "type": "Microsoft.ServiceBus/namespaces",
             "apiVersion": "2018-01-01-preview",
             "name": "[parameters('namespaces_name')]",
-            "location": "East US 2",
+            "location": "[resourceGroup().location]",
             "sku": {
                 "name": "Standard",
                 "tier": "Standard"
@@ -86,7 +86,7 @@
             "type": "Microsoft.ServiceBus/namespaces/queues",
             "apiVersion": "2017-04-01",
             "name": "[concat(parameters('namespaces_name'), '/',parameters('queue_name'))]",
-            "location": "East US 2",
+            "location": "[resourceGroup().location]",
             "dependsOn": [
                 "[resourceId('Microsoft.ServiceBus/namespaces', parameters('namespaces_name'))]"
             ],
@@ -110,7 +110,7 @@
             "type": "Microsoft.ServiceBus/namespaces/topics",
             "apiVersion": "2017-04-01",
             "name": "[concat(parameters('namespaces_name'), '/',parameters('topic_name'))]",
-            "location": "East US 2",
+            "location": "[resourceGroup().location]",
             "dependsOn": [
                 "[resourceId('Microsoft.ServiceBus/namespaces', parameters('namespaces_name'))]"
             ],
@@ -131,7 +131,7 @@
             "type": "Microsoft.ServiceBus/namespaces/queues/authorizationRules",
             "apiVersion": "2017-04-01",
             "name": "[concat(parameters('namespaces_name'), '/',  parameters('queue_name'), '/Sendonly')]",
-            "location": "East US 2",
+            "location": "[resourceGroup().location]",
             "dependsOn": [
                 "[resourceId('Microsoft.ServiceBus/namespaces/queues', parameters('namespaces_name'), parameters('queue_name'))]",
                 "[resourceId('Microsoft.ServiceBus/namespaces', parameters('namespaces_name'))]"
@@ -148,7 +148,7 @@
             "type": "Microsoft.ServiceBus/namespaces/topics/authorizationRules",
             "apiVersion": "2017-04-01",
             "name": "[concat(parameters('namespaces_name'), '/', parameters('topic_name'),'/sendonly')]",
-            "location": "East US 2",
+            "location": "[resourceGroup().location]",
             "dependsOn": [
                 "[resourceId('Microsoft.ServiceBus/namespaces/topics', parameters('namespaces_name'), parameters('topic_name'))]",
                 "[resourceId('Microsoft.ServiceBus/namespaces', parameters('namespaces_name'))]"
@@ -165,7 +165,7 @@
             "type": "Microsoft.ServiceBus/namespaces/topics/subscriptions",
             "apiVersion": "2017-04-01",
             "name": "[concat(parameters('namespaces_name'), '/', parameters('topic_name'), '/', parameters('subscription_name'))]",
-            "location": "East US 2",
+            "location": "[resourceGroup().location]",
             "dependsOn": [
                 "[resourceId('Microsoft.ServiceBus/namespaces/topics', parameters('namespaces_name'), parameters('topic_name'))]",
                 "[resourceId('Microsoft.ServiceBus/namespaces', parameters('namespaces_name'))]"
