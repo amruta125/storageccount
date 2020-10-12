@@ -105,12 +105,17 @@
                     "storageAccountName": {
                         "value": "[parameters('storageAccountName')]"
                     },
-
                     "containerName": {
                         "value": "[parameters('containerName')]"
                     },
                     "storageAccountType": {
                         "value": "[parameters('storageAccountType')]"
+                    },
+                   "skuTier": {
+                        "value": "[parameters('skuTier')]"
+                    },
+                   "storageSkuName": {
+                        "value": "[parameters('storageSkuName')]"
                     }
                 }
             }
