@@ -96,7 +96,7 @@
             "properties": {
                 "mode": "incremental",
                 "templateLink": {
-                    "uri": "https://raw.githubusercontent.com/amruta125/storageccount/main/storageaccount.json",
+                    "uri": "storageaccount.json",
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
