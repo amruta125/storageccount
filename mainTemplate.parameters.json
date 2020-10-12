@@ -14,7 +14,8 @@
         "skuTier": {
             "value": "Standard"
         },
-         "storageSkuName": {
+        
+        "storageSkuName": {
             "value": "Standard_RAGRS"
         },
         "namespaces_name": {
