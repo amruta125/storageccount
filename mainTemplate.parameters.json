@@ -11,6 +11,12 @@
         "containerName": {
             "value": "Container1"
         },
+        "skuTier": {
+            "value": "Standard"
+        },
+         "storageSkuName": {
+            "value": "Standard_RAGRS"
+        },
         "namespaces_name": {
             "value": "sbtsgaip"
         },
