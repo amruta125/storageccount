@@ -35,7 +35,7 @@
         "workflowState": {
             "value": "enabled"
         },
-        "location": {
+        "locationName": {
             "value": "East US 2"
         }
     }
