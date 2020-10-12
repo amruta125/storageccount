@@ -45,7 +45,7 @@
                 "description": "Workflow state"
             }
         },
-        "location": {
+        "locationName": {
             "type": "string",
             "metadata": {
                 "description": "location"
@@ -97,23 +97,6 @@
         {
             "apiVersion": "2015-01-01",
             "type": "Microsoft.Resources/deployments",
-            "name": "servicebus",
-            "properties": {
-                "mode": "incremental",
-                "templateLink": {
-                    "uri": "https://raw.githubusercontent.com/amruta125/storageccount/main/servicebuslatest.json",
-                    "contentVersion": "1.0.0.0"
-                },
-                "parametersLink": {
-                   "uri": "https://raw.githubusercontent.com/amruta125/storageccount/main/mainTemplate.parameters.json",
-                   "contentVersion": "1.0.0.0"
-                 }
-            }
-        },
-
-        {
-            "apiVersion": "2015-01-01",
-            "type": "Microsoft.Resources/deployments",
             "name": "LogicAppIntegrationAccount",
             "properties": {
                 "mode": "incremental",
@@ -126,6 +109,23 @@
                    "contentVersion": "1.0.0.0"
                  }
             }
+        },
+        {
+            "apiVersion": "2015-01-01",
+            "type": "Microsoft.Resources/deployments",
+            "name": "servicebus",
+            "properties": {
+                "mode": "incremental",
+                "templateLink": {
+                    "uri": "https://raw.githubusercontent.com/amruta125/storageccount/main/servicebuslatest.json",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parametersLink": {
+                   "uri": "https://raw.githubusercontent.com/amruta125/storageccount/main/mainTemplate.parameters.json",
+                   "contentVersion": "1.0.0.0"
+                 }
+            }
         }
+
     ]
 } 
