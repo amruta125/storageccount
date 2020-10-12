@@ -80,7 +80,8 @@
         },
        "accountSasProperties": {  
             "type": "object"
-        }  
+        }
+     
     },
     "variables": {},
     "resources": [
