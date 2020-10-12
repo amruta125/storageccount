@@ -25,8 +25,8 @@
        "type": "object",  
        "defaultValue": {  
           "signedServices": "b",  
-          "signedPermission": "rl",  
-          "signedResourceTypes": "sco",  
+          "signedPermission": "r",  
+          "signedResourceTypes": "c",  
           "keyToSign": "key2",  
           "signedExpiry": "[parameters('sasTokenExpiry')]"  
         }  
