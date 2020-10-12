@@ -10,7 +10,14 @@
     },
     "containerName": {
       "type": "string"
-    }
+    },
+   "skuTier": {
+      "type": "string"
+    },
+   "storageSkuName": {
+      "type": "string"
+    }	  
+	  
   },
   "variables": {},  
   "resources": [
@@ -20,8 +27,8 @@
       "apiVersion": "2019-06-01",
       "location": "[resourceGroup().location]",
        "sku": {
-        "tier": "Standard",
-        "name": "Standard_RAGRS"
+        "tier": "[parameters('skuTier')]",
+        "name": "[parameters('storageSkuName')]"
       },
       "kind": "StorageV2",
       "properties": {
