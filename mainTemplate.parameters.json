@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "storageAccountName": {
-            "value": "satsgaip30"
+            "value": "satsgaip"
         },
         "storageAccountType": {
             "value": "Standard_LRS"
@@ -12,7 +12,7 @@
             "value": "Container1"
         },
         "namespaces_name": {
-            "value": "sbnamespace"
+            "value": "sbtsgaip"
         },
         "queue_name": {
             "value": "queue1"
@@ -24,10 +24,10 @@
             "value": "subscription1"
         },
         "integration_account_name": {
-            "value": "IntegrationAcc"
+            "value": "iatsgaip"
         },
         "workflows_name": {
-            "value": "logicwf"
+            "value": "latsgaip"
         },
         "skuName": {
             "value": "Free"
@@ -36,7 +36,7 @@
             "value": "enabled"
         },
         "locationName": {
-            "value": "East US 2"
+            "value": "East US"
         }
     }
 }
