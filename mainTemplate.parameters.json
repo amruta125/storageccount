@@ -1,0 +1,55 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+  
+  "storageAccountName": {
+      "value": "satsgaip30"
+    },
+    "storageAccountType": {
+      "value": "Standard_LRS"
+    },
+    "containerName": {
+     "value": "Container1"
+    },
+    "sasTokenExpiry": {  
+       "value":  "2020-12-31T23:59:00Z"  
+    },  
+	  
+    "accountSasProperties": {  
+       "defaultValue": {  
+          "signedServices": "b",  
+          "signedPermission": "r",  
+          "signedResourceTypes": "c",  
+          "keyToSign": "key2",  
+          "signedExpiry": "[parameters('sasTokenExpiry')]"  
+        }  
+   },
+   "namespaces_name": {
+       "value": "sbnamespace"
+   },
+   "queue_name": {
+       "value": "queue1"
+   },
+   "topic_name": {
+       "value": "topic1"
+   },
+   "subscription_name": {
+       "value": "subscription1"
+   },
+   "integration_account_name": {
+      "value": "IntegrationAcc"
+    },
+    "workflows_name": {
+      "value": "logicwf"
+    },
+    "skuName": {
+      "value": "Free"
+    },
+    "workflowState": {
+      "value": "enabled"
+    },
+     "location": {
+       "value": "East US 2"
+    }
+}
