@@ -10,7 +10,13 @@
     },
     "containerName": {
       "type": "string"
+    },
+    "skuTier": {
+      "type": "string"
     }
+   "storageSkuName": {
+      "type": "string"
+    }	  
 	  
   },
   "variables": {},  
