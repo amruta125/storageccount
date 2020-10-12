@@ -126,7 +126,7 @@
                     "skuName": {
                         "value": "[parameters('skuName')]"
                     },
-                    "location": {
+                    "locationName": {
                         "value": "[parameters('locationName')]"
                     }
                 }
