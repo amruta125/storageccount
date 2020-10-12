@@ -89,17 +89,10 @@
                     "uri": "https://raw.githubusercontent.com/amruta125/storageccount/main/storageaccount.json",
                     "contentVersion": "1.0.0.0"
                 },
-                "parameters": {
-                    "storageAccountName": {
-                        "value": "[parameters('storageAccountName')]"
-                    },
-                    "containerName": {
-                        "value": "[parameters('containerName')]"
-                    },
-                    "storageAccountType": {
-                        "value": "[parameters('storageAccountType')]"
-                    }
-                }
+               "parametersLink": {
+                   "uri": "https://raw.githubusercontent.com/amruta125/storageccount/main/mainTemplate.parameters.json",
+                   "contentVersion":"1.0.0.0"
+                   }
             }
         },
         {
@@ -112,20 +105,10 @@
                     "uri": "https://raw.githubusercontent.com/amruta125/storageccount/main/servicebuslatest.json",
                     "contentVersion": "1.0.0.0"
                 },
-                "parameters": {
-                    "namespaces_name": {
-                        "value": "[parameters('namespaces_name')]"
-                    },
-                    "queue_name": {
-                         "value": "[parameters('queue_name')]"
-                    },
-                    "topic_name": {
-                        "value": "[parameters('topic_name')]"
-                    },
-                    "subscription_name": {
-                        "value": "[parameters('subscription_name')]"
-                    }
-                }
+                "parametersLink": {
+                   "uri": "https://raw.githubusercontent.com/amruta125/storageccount/main/mainTemplate.parameters.json",
+                   "contentVersion":"1.0.0.0"
+                 }
             }
         },
 
@@ -139,25 +122,11 @@
                     "uri": "https://raw.githubusercontent.com/amruta125/storageccount/main/logicappintegrationacc.json",
                     "contentVersion": "1.0.0.0"
                 },
-                "parameters": {
-                    "integration_account_name": {
-                        "value": "[parameters('integration_account_name')]"
-                    },
-                    "workflows_name": {
-                        "value": "[parameters('workflows_name')]"
-                    },
-                    "workflowState": {
-                        "value": "[parameters('workflowState')]"
-                    },
-                    "skuName": {
-                        "value": "[parameters('skuName')]"
-                    },
-                    "location": {
-                        "value": "[parameters('location')]"
-                    }
-                }
+                "parametersLink": {
+                   "uri": "https://raw.githubusercontent.com/amruta125/storageccount/main/mainTemplate.parameters.json",
+                   "contentVersion":"1.0.0.0"
+                 }
             }
         }
-
     ]
 } 
