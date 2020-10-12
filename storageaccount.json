@@ -6,31 +6,17 @@
       "type": "string"
     },
     "storageAccountType": {
-      "type": "string",
-      "defaultValue": "Standard_LRS",
-      "allowedValues": [
-        "Standard_LRS",
-        "Standard_GRS",
-        "Standard_ZRS"        
-      ]
+      "type": "string"
     },
     "containerName": {
       "type": "string"
     },
     "sasTokenExpiry": {  
-       "type": "string",  
-       "defaultValue":  "2020-12-31T23:59:00Z"  
+       "type": "string"
     },  
 	  
     "accountSasProperties": {  
-       "type": "object",  
-       "defaultValue": {  
-          "signedServices": "b",  
-          "signedPermission": "r",  
-          "signedResourceTypes": "c",  
-          "keyToSign": "key2",  
-          "signedExpiry": "[parameters('sasTokenExpiry')]"  
-        }  
+       "type": "object"
     }  
 
   },
