@@ -22,6 +22,18 @@
                 "description": "Storage Account Type"
             }
         },
+      "skuTier": {
+          "type": "string",
+           "metadata": {
+                "description": "Storage Sku Tier"
+            }
+        },
+       "storageSkuName": {
+          "type": "string",
+           "metadata": {
+                "description": "Storage Sku Name"
+            }
+        },
         "integration_account_name": {
             "type": "string",
             "metadata": {
