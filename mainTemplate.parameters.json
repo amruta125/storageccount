@@ -20,6 +20,9 @@
         "storageAccessTier": {
             "value": "Hot"
         },
+       "storageKind": {
+            "value": "StorageV2"
+        },
        "containerPublicLevelAccess": {
             "value": "Container"
         },
@@ -49,6 +52,12 @@
         },
         "locationName": {
             "value": "West US 2"
+        },
+        "sbSkuName": {
+            "value": "Standard"
+        },
+        "sbTier": {
+            "value": "Standard"
         }
     }
 }
