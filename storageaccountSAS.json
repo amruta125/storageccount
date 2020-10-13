@@ -14,7 +14,8 @@
         "storageAccountName": {  
             "type": "string",  
             "defaultValue": "storagetoken"  
-        },  
+        },
+        
         "accountType": {  
             "type": "string",  
             "defaultValue": "Standard_LRS"  
