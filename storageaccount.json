@@ -16,7 +16,13 @@
     },
    "storageSkuName": {
       "type": "string"
-    }	  
+    },
+   "storageAccessTier": {
+      "type": "string"
+    },
+   "containerPublicLevelAccess": {
+      "type": "string"
+    }	
 	  
   },
   "variables": {},  
@@ -32,9 +38,9 @@
       },
       "kind": "StorageV2",
       "properties": {
-        "accessTier": "Hot",
+        "accessTier": "[parameters('storageAccessTier')]",
         "allowBlobPublicAccess": false,
-         "supportsHttpsTrafficOnly": true,
+        "supportsHttpsTrafficOnly": true,
         "accountType": "[parameters('storageAccountType')]"
       }
     },
@@ -47,7 +53,12 @@
           ],
           "properties": {
                 "denyEncryptionScopeOverride": false,
-                "publicAccess": "Container"
+	        "cors": {
+                    "corsRules": []
+                },
+                "deleteRetentionPolicy": {
+                    "enabled": false
+                }
             }
     },
     {
@@ -59,7 +70,7 @@
             "[resourceId('Microsoft.Storage/storageAccounts/blobServices', parameters('storageAccountName'), 'default')]"
         ],
         "properties": {
-            "publicAccess": "Container"
+            "publicAccess": "[parameters('containerPublicLevelAccess')]"
         }
     }
   ],
