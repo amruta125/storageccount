@@ -35,7 +35,7 @@
       "kind": "StorageV2",
       "copy": {
         "name": "storagecopy",
-        "count": 2
+        "count": 1
       },
       "properties": {}
     }
