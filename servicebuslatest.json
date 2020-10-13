@@ -20,6 +20,7 @@
         "sbTier": {
             "type": "string"
         }
+        
     },
     "variables": {
         "location": "[resourceGroup().location]",
