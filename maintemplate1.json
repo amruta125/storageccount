@@ -26,7 +26,12 @@
                 "description": "Storage Access Tier"
             }
         },
-     
+       "storageKind": {
+            "type": "string",
+            "metadata": {
+                "description": "Storage Kind"
+            }
+        },
       "containerPublicLevelAccess": {
             "type": "string",
             "metadata": {
@@ -97,6 +102,18 @@
             "type": "string",
             "metadata": {
                 "description": "subscription name"
+            }
+        },
+       "sbSkuName": {
+            "type": "string",
+            "metadata": {
+                "description": "Service Bus Sku name"
+            }
+        },
+       "sbTier": {
+            "type": "string",
+            "metadata": {
+                "description": "Service Bus Tier"
             }
         }
     },
@@ -188,6 +205,12 @@
                     },
                     "subscription_name": {
                         "value": "[parameters('subscription_name')]"
+                    },
+                    "sbSkuName": {
+                         "value": "[parameters('sbSkuName')]"
+                    },
+                    "sbTier": {
+                         "value": "[parameters('sbTier')]"
                     }
                 }
             }
