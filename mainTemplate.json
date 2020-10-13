@@ -21,6 +21,18 @@
                 "description": "Storage Account Type"
             }
         },
+        "storageAccessTier": {
+            "type": "string",
+            "metadata": {
+                "description": "Storage Access Tier"
+            }
+        },
+        "containerPublicLevelAccess": {
+            "type": "string",
+            "metadata": {
+                "description": "Storage Container Public level Access"
+            }
+        },
         "integration_account_name": {
             "type": "string",
             "metadata": {
