@@ -77,6 +77,9 @@
         "operationDisplayName": {
             "value": "Values"
         },
+        "apimInstanceName": {
+            "value": "tsg-sb-demo"
+        },
          "apiOperationUrlTemplate": {
             "value": "/api/values"
         }
