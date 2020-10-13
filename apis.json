@@ -25,6 +25,9 @@
     },
     "apis_operation_policy": {
        "type": "string"
+    },
+    "displayName": {
+       "type": "string"
     }
 
   },
@@ -38,7 +41,7 @@
       "apiVersion": "2017-03-01",
       "scale": null,
       "properties": {
-        "displayName": "BAIN Service App",
+        "displayName": "[parameters('displayName')]",
         "apiRevision": "1",
         "description": "",
         "serviceUrl": "http://bainserviceapp",
