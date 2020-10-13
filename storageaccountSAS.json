@@ -13,7 +13,7 @@
         },  
         "storageAccountName": {  
             "type": "string",  
-            "defaultValue": "storageSAS"  
+            "defaultValue": "storagetoken"  
         },  
         "accountType": {  
             "type": "string",  
