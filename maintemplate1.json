@@ -150,6 +150,9 @@
                     },
                    "containerPublicLevelAccess": {
                        "value": "[parameters('containerPublicLevelAccess')]"
+                   },
+                  "storageKind": {
+                       "value": "[parameters('storageKind')]"
                    }
                  
                 }
