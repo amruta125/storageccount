@@ -22,7 +22,10 @@
     },
    "containerPublicLevelAccess": {
       "type": "string"
-    }	
+    },	
+   "storageKind": {
+      "type": "string"
+    } 
 	  
   },
   "variables": {},  
@@ -36,7 +39,7 @@
         "tier": "[parameters('skuTier')]",
         "name": "[parameters('storageSkuName')]"
       },
-      "kind": "StorageV2",
+      "kind": "[parameters('storageKind')]",
       "properties": {
         "accessTier": "[parameters('storageAccessTier')]",
         "allowBlobPublicAccess": false,
