@@ -26,6 +26,7 @@
                 "description": "Storage Access Tier"
             }
         },
+     
        "storageKind": {
             "type": "string",
             "metadata": {
