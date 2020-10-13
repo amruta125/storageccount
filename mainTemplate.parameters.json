@@ -50,6 +50,9 @@
         "workflowState": {
             "value": "enabled"
         },
+        "integrationAccState": {
+            "value": "enabled"
+        },
         "locationName": {
             "value": "West US 2"
         },
