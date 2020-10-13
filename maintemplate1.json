@@ -33,19 +33,19 @@
                 "description": "Storage Kind"
             }
         },
-      "containerPublicLevelAccess": {
+        "containerPublicLevelAccess": {
             "type": "string",
             "metadata": {
                 "description": "Storage Container Public level Access"
             }
         }, 
-      "skuTier": {
+        "skuTier": {
           "type": "string",
            "metadata": {
                 "description": "Storage Sku Tier"
             }
         },
-       "storageSkuName": {
+         "storageSkuName": {
           "type": "string",
            "metadata": {
                 "description": "Storage Sku Name"
@@ -73,6 +73,12 @@
             "type": "string",
             "metadata": {
                 "description": "Workflow state"
+            }
+        },
+        "integrationAccState": {
+            "type": "string",
+            "metadata": {
+                "description": "Integration Account state"
             }
         },
         "locationName": {
@@ -178,6 +184,9 @@
                     },
                     "workflowState": {
                         "value": "[parameters('workflowState')]"
+                    },
+                    "integrationAccState": {
+                        "value": "[parameters('integrationAccState')]"
                     },
                     "skuName": {
                         "value": "[parameters('skuName')]"
