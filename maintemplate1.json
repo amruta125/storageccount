@@ -111,16 +111,52 @@
                 "description": "subscription name"
             }
         },
-       "sbSkuName": {
+        "sbSkuName": {
             "type": "string",
             "metadata": {
                 "description": "Service Bus Sku name"
             }
         },
-       "sbTier": {
+        "sbTier": {
             "type": "string",
             "metadata": {
                 "description": "Service Bus Tier"
+            }
+        },
+        "displayName": {
+            "type": "string",
+            "metadata": {
+                "description": "Display name of Api"
+            }
+        },
+       "operationDisplayName": {
+            "type": "string",
+            "metadata": {
+                "description": "Display name of Operation"
+            }
+        },
+       "serviceURL": {
+            "type": "string",
+            "metadata": {
+                "description": "Api Service URL"
+            }
+        },
+        "path": {
+            "type": "string",
+            "metadata": {
+                "description": "Api Path"
+            }
+        },
+        "apiOperationUrlTemplate": {
+            "type": "string",
+            "metadata": {
+                "description": "URL template for API operation"
+            }
+        },
+        "apiRevision": {
+            "type": "string",
+            "metadata": {
+                "description": "Api Revision"
             }
         }
      
@@ -197,6 +233,38 @@
                 }
             }
         },
+        {
+            "apiVersion": "2015-01-01",
+            "type": "Microsoft.Resources/deployments",
+            "name": "API",
+            "properties": {
+                "mode": "incremental",
+                "templateLink": {
+                    "uri": "https://raw.githubusercontent.com/amruta125/storageccount/main/apis.json",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "displayName": {
+                        "value": "[parameters('displayName')]"
+                    },
+                    "apiRevision": {
+                        "value": "[parameters('apiRevision')]"
+                    },
+                    "serviceURL": {
+                        "value": "[parameters('serviceURL')]"
+                    },
+                    "path": {
+                        "value": "[parameters('path')]"
+                    },
+                    "operationDisplayName": {
+                        "value": "[parameters('operationDisplayName')]"
+                    },
+                    "apiOperationUrlTemplate": {
+                        "value": "[parameters('apiOperationUrlTemplate')]"
+                    }
+                }
+            }
+        },    
         {
             "apiVersion": "2015-01-01",
             "type": "Microsoft.Resources/deployments",
