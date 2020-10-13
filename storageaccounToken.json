@@ -40,7 +40,7 @@
             "type": "object",  
             "defaultValue": {  
                 "signedServices": "b",  
-                "signedPermission": "rl",  
+                "signedPermission": "r",  
                 "signedResourceTypes": "sco",  
                 "keyToSign": "key2",  
                 "signedExpiry": "[parameters('sasTokenExpiry')]"  
