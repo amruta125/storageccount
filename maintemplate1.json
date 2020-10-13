@@ -116,6 +116,7 @@
                 "description": "Service Bus Tier"
             }
         }
+     
     },
     "variables": {},
     "resources": [
@@ -154,7 +155,6 @@
                   "storageKind": {
                        "value": "[parameters('storageKind')]"
                    }
-                 
                 }
             }
         },
