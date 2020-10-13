@@ -3,22 +3,22 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "namespaces_name": {
-            "type": "String"
+            "type": "string"
         },
         "queue_name": {
-            "type": "String"
+            "type": "string"
         },
         "topic_name": {
-            "type": "String"
+            "type": "string"
         },
         "subscription_name": {
-            "type": "String"
+            "type": "string"
         },
         "sbSkuName": {
-            "type": "String"
-        }
+            "type": "string"
+        },
         "sbTier": {
-            "type": "String"
+            "type": "string"
         }
     },
     "variables": {
