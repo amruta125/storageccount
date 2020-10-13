@@ -13,11 +13,16 @@
         },
         "subscription_name": {
             "type": "String"
+        },
+        "sbSkuName": {
+            "type": "String"
+        }
+        "sbTier": {
+            "type": "String"
         }
     },
     "variables": {
         "location": "[resourceGroup().location]",
-        "sbVersion": "2014-09-01",
         "defaultSASKeyName": "RootManageSharedAccessKey",
         "authRuleResourceId": "[resourceId('Microsoft.ServiceBus/namespaces/authorizationRules', parameters('namespaces_name'), variables('defaultSASKeyName'))]",
         "sendAuthRuleResourceId": "[resourceId('Microsoft.ServiceBus/namespaces/authorizationRules', parameters('namespaces_name'), 'SendOnlyKey')]",
@@ -61,8 +66,8 @@
             "name": "[parameters('namespaces_name')]",
             "location": "[resourceGroup().location]",
             "sku": {
-                "name": "Standard",
-                "tier": "Standard"
+                "name": "[parameters('sbSkuName')]",
+                "tier": "[parameters('sbTier')]"
             },
             "properties": {
                 "zoneRedundant": false
