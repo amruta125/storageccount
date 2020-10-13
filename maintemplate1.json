@@ -20,6 +20,18 @@
                 "description": "Storage Account Type"
             }
         },
+       "storageAccessTier": {
+            "type": "string",
+            "metadata": {
+                "description": "Storage Access Tier"
+            }
+        },
+      "containerPublicLevelAccess": {
+            "type": "string",
+            "metadata": {
+                "description": "Storage Container Public level Access"
+            }
+        }, 
       "skuTier": {
           "type": "string",
            "metadata": {
@@ -114,7 +126,13 @@
                     },
                    "storageSkuName": {
                         "value": "[parameters('storageSkuName')]"
-                    }
+                    },
+                  "storageAccessTier": {
+                        "value": "[parameters('storageAccessTier')]"
+                    },
+                   "containerPublicLevelAccess": {
+                       "value": "[parameters('containerPublicLevelAccess')]"
+                   }
                 }
             }
         },
