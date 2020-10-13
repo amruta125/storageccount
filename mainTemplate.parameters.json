@@ -61,6 +61,25 @@
         },
         "sbTier": {
             "value": "Standard"
+        },
+        "displayName": {
+            "value": "BAIN App Service"
+        },
+        "apiRevision": {
+            "value": "1"
+        },
+        "serviceURL": {
+            "value": "http://bainserviceapp"
+        },
+        "path": {
+            "value": "Bainapp"
+        },
+        "operationDisplayName": {
+            "value": "Values"
+        },
+         "apiOperationUrlTemplate": {
+            "value": "/api/values"
         }
+        
     }
 }
