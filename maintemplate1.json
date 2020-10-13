@@ -129,6 +129,12 @@
                 "description": "Display name of Api"
             }
         },
+       "apimInstanceName": {
+            "type": "string",
+            "metadata": {
+                "description": "Apim instance name"
+            }
+        },
        "operationDisplayName": {
             "type": "string",
             "metadata": {
@@ -249,6 +255,9 @@
                     },
                     "apiRevision": {
                         "value": "[parameters('apiRevision')]"
+                    },
+                    "apimInstanceName":  {
+                        "value": "[parameters('apimInstanceName')]"
                     },
                     "serviceURL": {
                         "value": "[parameters('serviceURL')]"
