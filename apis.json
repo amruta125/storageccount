@@ -9,25 +9,76 @@
       }
     },
     "apis_service_app_name": {
-      "type": "string"
+      "type": "string",
+      "metadata": {
+        "description": "The name of your App name."
+      }
     },
     "apim_service_product_name": {
-      "type": "string"
+      "type": "string",
+      "metadata": {
+        "description": "The name of product."
+      }
     },
     "apis_app_name_operation": {
-      "type": "string"
+      "type": "string",
+      "metadata": {
+        "description": "The name of operation."
+      }
     },
     "policies_policy_name": {
-      "type": "string"
+      "type": "string",
+      "metadata": {
+        "description": "The name of policy."
+      }
     },
     "api_schema_name": {
-      "type": "string"
+      "type": "string",
+       "metadata": {
+        "description": "The name of schema."
+      }
     },
     "apis_operation_policy": {
-       "type": "string"
+       "type": "string",
+       "metadata": {
+        "description": "The name of operation policy."
+      }
+    },
+    "apiRevision": {
+       "type": "string",
+       "metadata": {
+        "description": "Revision of API."
+      }
+    },
+   "serviceURL": {
+       "type": "string",
+       "metadata": {
+         "description": "API Service URL"
+      }
+   },
+   "path": {
+       "type": "string",
+       "metadata": {
+         "description": "API Path"
+      }
+   },
+   "operationDisplayName": {
+       "type": "string",
+       "metadata": {
+        "description": "The display name of operation."
+      }
+    },
+    "apiOperationUrlTemplate": {
+       "type": "string",
+       "metadata": {
+        "description": "URL template for API operation"
+      }
     },
     "displayName": {
-       "type": "string"
+       "type": "string",
+       "metadata": {
+        "description": "The display name of api."
+      }
     }
 
   },
@@ -42,10 +93,10 @@
       "scale": null,
       "properties": {
         "displayName": "[parameters('displayName')]",
-        "apiRevision": "1",
+        "apiRevision": "[parameters('apiRevision')]",
         "description": "",
-        "serviceUrl": "http://bainserviceapp",
-        "path": "Bainapp",
+        "serviceUrl": "[parameters('serviceURL')]",
+        "path": "[parameters('path')]",
         "protocols": [
           "http",
           "https"
@@ -62,9 +113,9 @@
       "apiVersion": "2017-03-01",
       "scale": null,
       "properties": {
-        "displayName": "Values",
+        "displayName": "[parameters('operationDisplayName')]",
         "method": "GET",
-        "urlTemplate": "/api/values",
+        "urlTemplate": "[parameters('apiOperationUrlTemplate')]",
         "description": "",
         "policies": null
       },
