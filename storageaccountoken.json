@@ -13,7 +13,7 @@
         },  
         "storageAccountName": {  
             "type": "string",  
-            "defaultValue": "storagenew"  
+            "defaultValue": "satsgaip50"  
         },
         
         "accountType": {  
