@@ -17,6 +17,12 @@
         "storageSkuName": {
             "value": "Standard_RAGRS"
         },
+        "storageAccessTier": {
+            "value": "Hot"
+        },
+       "containerPublicLevelAccess": {
+            "value": "Container"
+        },
         "namespaces_name": {
             "value": "sbtsgaip"
         },
