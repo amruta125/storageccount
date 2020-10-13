@@ -26,6 +26,7 @@
                 "description": "Storage Access Tier"
             }
         },
+     
       "containerPublicLevelAccess": {
             "type": "string",
             "metadata": {
