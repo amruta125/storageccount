@@ -9,11 +9,11 @@
     "parameters": {  
         "location": {  
             "type": "string",  
-            "defaultValue": "southeastasia"  
+            "defaultValue": "east us 2"  
         },  
         "storageAccountName": {  
             "type": "string",  
-            "defaultValue": "storagetoken"  
+            "defaultValue": "storagenew"  
         },
         
         "accountType": {  
