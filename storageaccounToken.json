@@ -13,7 +13,7 @@
         },  
         "storageAccountName": {  
             "type": "string",  
-            "defaultValue": "satsgaip60"  
+            "defaultValue": "satsgaip61"  
         },
         
         "accountType": {  
@@ -42,7 +42,7 @@
                 "signedServices": "b",  
                 "signedPermission": "r",  
                 "signedResourceTypes": "c",  
-                "keyToSign": "key3",  
+                "keyToSign": "key2",  
                 "signedExpiry": "[parameters('sasTokenExpiry')]"  
             }  
         }  
