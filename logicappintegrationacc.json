@@ -12,11 +12,14 @@
     "skuName": {
       "type": "string"
     },
-    "workflowState": {
+    "integrationAccState": {
       "type": "string"
     },
      "locationName": {
        "type": "string"
+    },
+     "workflowState": {
+      "type": "string"
     }
   },
   "variables": {},
@@ -30,7 +33,7 @@
         "name": "[parameters('skuName')]",
       },
       "properties": {
-        "state": "[parameters('workflowState')]"
+        "state": "[parameters('integrationAccState')]"
       }
     },
     {
@@ -42,7 +45,7 @@
         "[resourceId('Microsoft.Logic/integrationAccounts', parameters('integration_account_name'))]"
       ],
       "properties": {
-        "state": "Enabled",
+        "state": "[parameters('workflowState')]",
         "integrationAccount": {
           "id": "[resourceId('Microsoft.Logic/integrationAccounts', parameters('integration_account_name'))]"
         },
