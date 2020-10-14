@@ -26,6 +26,12 @@
                 "description": "CaseCode  for tag"
             }
         },
+       "applicationStorageTag": {
+            "type": "string",
+              "metadata": {
+                "description": "Application name for Storage account"
+            }
+        },
         "applicationLogicAppTag": {
             "type": "string",
               "metadata": {
@@ -307,8 +313,11 @@
                     "caseCodeTag": {
                         "value": "[parameters('caseCodeTag')]"
                     },
-                   "managedTag": {
+                    "managedTag": {
                         "value": "[parameters('managedTag')]"
+                    },  
+                   "applicationStorageTag": {
+                        "value": "[parameters('applicationStorageTag')]"
                     },   
                    "accountSasProperties": {
                         "value": "[parameters('accountSasProperties')]"
