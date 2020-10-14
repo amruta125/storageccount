@@ -2,6 +2,25 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
+       
+        "tierTag": {
+          "type": "string"
+        },
+       "departmentTag": {
+          "type": "string"
+        },
+       "ownerTag": {
+          "type": "string"
+        },
+       "caseCodeTag": {
+          "type": "string"
+        },
+       "applicationServiceBusTag": {
+          "type": "string"
+        },	
+       "managedTag": {
+          "type": "string"
+        },
         "namespaces_name": {
             "type": "string"
         },
@@ -66,6 +85,14 @@
             "apiVersion": "2018-01-01-preview",
             "name": "[parameters('namespaces_name')]",
             "location": "[resourceGroup().location]",
+             "tags": {
+                "Tier": "[parameters('tierTag')]",
+                "Department": "[parameters('departmentTag')]",
+                "Owner": "[parameters('ownerTag')]",
+                "CaseCode": "[parameters('caseCodeTag')]",
+	            "Application": "[parameters('applicationServiceBusTag')]",
+  	            "ManagedWith": "[parameters('managedTag')]"
+             },
             "sku": {
                 "name": "[parameters('sbSkuName')]",
                 "tier": "[parameters('sbTier')]"
