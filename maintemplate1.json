@@ -135,6 +135,12 @@
                 "description": "Apim instance name"
             }
         },
+       "apim_service_product_name": {
+            "type": "string",
+            "metadata": {
+                "description": "Apim Service product name"
+            }
+        },
         "apis_service_app_name": {
             "type": "string",
             "metadata": {
@@ -321,6 +327,9 @@
                     },
                     "apiProtocol": {
                         "value": "[parameters('apiProtocol')]"
+                    },
+                   "apim_service_product_name": {
+                        "value": "[parameters('apim_service_product_name')]"
                     },
                     "apiPolicy": {
                         "value": "[parameters('apiPolicy')]"
