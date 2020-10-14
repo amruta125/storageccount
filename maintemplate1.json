@@ -38,12 +38,6 @@
                 "description": "Application name for Logic app"
             }
         },
-        "applicationAPITag": {
-            "type": "string",
-              "metadata": {
-                "description": "Application name for API app"
-            }
-        },
         "applicationServiceBusTag": {
             "type": "string",
               "metadata": {
@@ -401,25 +395,6 @@
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
-                 
-                  "tierTag": {
-                        "value": "[parameters('tierTag')]"
-                    },
-                    "departmentTag": {
-                        "value": "[parameters('departmentTag')]"
-                    },
-                    "ownerTag": {
-                        "value": "[parameters('ownerTag')]"
-                    },
-                    "caseCodeTag": {
-                        "value": "[parameters('caseCodeTag')]"
-                    },
-                    "applicationAPITag": {
-                        "value": "[parameters('applicationAPITag')]"
-                    },
-                   "managedTag": {
-                        "value": "[parameters('managedTag')]"
-                    },     
                     "displayName": {
                         "value": "[parameters('displayName')]"
                     },
