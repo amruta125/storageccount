@@ -24,10 +24,10 @@
       "type": "string"
     },
    "sasTokenExpiry": {  
-      "type": "string",  
+      "type": "string" 
     }, 	
    "accountSasProperties": {  
-       "type": "object",  
+       "type": "object"  
     },
    "containerPublicLevelAccess": {
       "type": "string"
