@@ -32,6 +32,7 @@
                 "description": "Application name for storage account tag"
             }
         },
+     
         "applicationLogicAppTag": {
             "type": "string",
               "metadata": {
