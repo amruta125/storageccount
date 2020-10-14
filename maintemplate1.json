@@ -201,6 +201,12 @@
                 "description": "API policy"
             }
         },
+       "policies_policy_name": {
+            "type": "string",
+            "metadata": {
+                "description": "API policy name"
+            }
+        },
         "apiRevision": {
             "type": "string",
             "metadata": {
@@ -327,6 +333,9 @@
                     },
                     "apiProtocol": {
                         "value": "[parameters('apiProtocol')]"
+                    },
+                   "policies_policy_name": {
+                        "value": "[parameters('policies_policy_name')]"
                     },
                    "apim_service_product_name": {
                         "value": "[parameters('apim_service_product_name')]"
