@@ -42,7 +42,7 @@
       "kind": "[parameters('storageKind')]",
       "properties": {
         "accessTier": "[parameters('storageAccessTier')]",
-        "allowBlobPublicAccess": false,
+        "allowBlobPublicAccess": true,
         "supportsHttpsTrafficOnly": true,
         "accountType": "[parameters('storageAccountType')]"
       }
