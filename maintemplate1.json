@@ -213,6 +213,12 @@
                 "description": "API schema name"
             }
         },
+       "apis_operation_policy": {
+            "type": "string",
+            "metadata": {
+                "description": "API operation policy"
+            }
+        },
         "apiRevision": {
             "type": "string",
             "metadata": {
@@ -321,6 +327,9 @@
                     },
                    "apis_app_name_operation":  {
                         "value": "[parameters('apis_app_name_operation')]"
+                    },
+                    "apis_operation_policy":  {
+                        "value": "[parameters('apis_operation_policy')]"
                     },
                     "serviceURL": {
                         "value": "[parameters('serviceURL')]"
