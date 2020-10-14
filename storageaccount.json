@@ -118,7 +118,7 @@
 		},
 		"storageAccountConnectionStringWithSAS": {  
 			 "type": "string",  
-			 "value": "[concat('BlobEndpoint=',variables('blobEndPoint'),';SharedAccessSignature=', listAccountSas(variables('storageAccountNameLower'), variables('storageAccountApiVersion'), parameters('accountSasProperties')).accountSasToken)]"  
+			 "value": "[concat('BlobEndpoint=',variables('blobEndPoint'),';SharedAccessSignature=', listAccountSas(variables('storageAccountNameLower'), parameters('accountSasProperties')).accountSasToken)]"  
         }  
 	}
 }
