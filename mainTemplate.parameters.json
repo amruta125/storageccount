@@ -92,6 +92,9 @@
         "apiProtocol": {
             "value": "https"
         },
+       "api_schema_name": {
+            "value": "Schema1"
+        },
         "apis_service_app_name": {
              "value": "BAIN Service APP"
         },
