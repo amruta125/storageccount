@@ -23,7 +23,22 @@
    "containerPublicLevelAccess": {
       "type": "string"
     },	
-   "storageKind": {
+   "tierTag": {
+      "type": "string"
+    },
+   "departmentTag": {
+      "type": "string"
+    },
+   "ownerTag": {
+      "type": "string"
+    },
+   "caseCodeTag": {
+      "type": "string"
+    },
+   "applicationStorageTag": {
+      "type": "string"
+    },	
+   "managedTag": {
       "type": "string"
     } 
 	  
@@ -35,7 +50,15 @@
       "name": "[parameters('storageAccountName')]",
       "apiVersion": "2019-06-01",
       "location": "[resourceGroup().location]",
-       "sku": {
+      "tags": {
+                "Tier": "[parameters('tierTag')]",
+                "Department": "[parameters('departmentTag')]",
+                "Owner": "[parameters('ownerTag')]",
+                "CaseCode": "[parameters('caseCodeTag')]",
+	        "Application" = "[parameters('applicationStorageTag')]"
+  	        "ManagedWith" = "[parameters('managedTag')]"
+      },
+      "sku": {
         "tier": "[parameters('skuTier')]",
         "name": "[parameters('storageSkuName')]"
       },
