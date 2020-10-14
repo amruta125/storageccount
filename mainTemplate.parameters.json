@@ -2,6 +2,33 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
+         "tierTag": {
+            "value": "DEV"
+        },
+        "departmentTag": {
+            "value": "TSG"
+        },
+        "ownerTag": {
+            "value": "TSGCloudOps"
+        },
+        "caseCodeTag": {
+            "value": "dp0"
+        },
+        "applicationStorageTag": {
+            "value": "Storage Account"
+        },
+        "applicationServiceBusTag": {
+            "value": "Service Bus"
+        },
+        "applicationLogicAppTag": {
+            "value": "Logic App"
+        },
+        "applicationAPITag": {
+            "value": "APIs"
+        },
+        "managedTag": {
+            "value": "ARM Template"
+        },
         "storageAccountName": {
             "value": "satsgaip"
         },
