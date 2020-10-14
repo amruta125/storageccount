@@ -83,6 +83,9 @@
         "apim_service_product_name": {
             "value": "APIList"
         },
+        "apis_operation_policy": {
+            "value": "Policy"
+        },
         "apis_app_name_operation": {
             "value": "listofApis"
         },
