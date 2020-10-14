@@ -54,7 +54,7 @@
   },
   "variables": {
         "storageAccountNameLower": "[toLower(trim(parameters('storageAccountName')))]", 
-	"storageAccountApiVersion": "2019-06-01",  
+	"storageAccountApiVersion": "2018-07-01",  
         "blobEndPoint":"[concat('https://',variables('storageAccountNameLower'),'.blob.core.windows.net/')]" 
   },  
   "resources": [
