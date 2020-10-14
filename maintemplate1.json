@@ -207,6 +207,12 @@
                 "description": "API policy name"
             }
         },
+       "api_schema_name": {
+            "type": "string",
+            "metadata": {
+                "description": "API schema name"
+            }
+        },
         "apiRevision": {
             "type": "string",
             "metadata": {
@@ -306,6 +312,9 @@
                     },
                     "apimInstanceName":  {
                         "value": "[parameters('apimInstanceName')]"
+                    },
+                    "api_schema_name":  {
+                        "value": "[parameters('api_schema_name')]"
                     },
                    "apis_service_app_name":  {
                         "value": "[parameters('apis_service_app_name')]"
