@@ -19,7 +19,7 @@
     },	
    "managedTag": {
       "type": "string"
-    } 
+    },
     "integration_account_name": {
       "type": "string"
     },
