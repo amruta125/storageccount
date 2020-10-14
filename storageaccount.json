@@ -60,7 +60,7 @@
       "type": "Microsoft.Storage/storageAccounts",
       "name": "[parameters('storageAccountName')]",
       "apiVersion": "2019-06-01",
-      "location": "west us 2",
+      "location": "west us",
       "tags": {
                 "Tier": "[parameters('tierTag')]",
                 "Department": "[parameters('departmentTag')]",
