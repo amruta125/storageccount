@@ -80,6 +80,9 @@
         "apimInstanceName": {
             "value": "tsg-sb-demo"
         },
+        "apim_service_product_name": {
+            "value": "APIList"
+        },
         "apis_app_name_operation": {
             "value": "listofApis"
         },
