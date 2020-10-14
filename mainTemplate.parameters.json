@@ -26,6 +26,9 @@
         "managedTag": {
             "value": "ARM Template"
         },
+        "sasTokenExpiry": {  
+            "value":  "2020-12-31T23:59:00Z"  
+        },
         "accountSasProperties": {
             "value": {  
                 "signedServices": "b",  
@@ -34,9 +37,6 @@
                 "keyToSign": "key2",  
                 "signedExpiry": "[parameters('sasTokenExpiry')]"  
             }  
-        },
-        "sasTokenExpiry": {  
-            "value":  "2020-12-31T23:59:00Z"  
         },
         "storageAccountName": {
             "value": "satsgaip"
