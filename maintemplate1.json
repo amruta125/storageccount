@@ -2,6 +2,60 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
+        "tierTag": {
+            "type": "string",
+            "metadata": {
+                "description": "Tier name for tag"
+            }
+        },
+        "departmentTag": {
+             "type": "string",
+              "metadata": {
+                "description": "Department name for tag"
+            }
+        },
+        "ownerTag": {
+             "type": "string",
+              "metadata": {
+                "description": "Owner name for tag"
+            }
+        },
+        "caseCodeTag": {
+           "type": "string",
+              "metadata": {
+                "description": "CaseCode  for tag"
+            }
+        },
+        "applicationStorageTag": {
+            "type": "string",
+              "metadata": {
+                "description": "Application name for storage account tag"
+            }
+        },
+        "applicationLogicAppTag": {
+            "type": "string",
+              "metadata": {
+                "description": "Application name for Logic app"
+            }
+        },
+        "applicationAPITag": {
+            "type": "string",
+              "metadata": {
+                "description": "Application name for API app"
+            }
+        },
+        "applicationServiceBusTag": {
+            "type": "string",
+              "metadata": {
+                "description": "Application name for Service bus app"
+            }
+        },
+        "managedTag": {
+              "type": "string",
+              "metadata": {
+                "description": "Managed with"
+            }
+        },
         "storageAccountName": {
             "type": "string",
             "metadata": {
@@ -241,6 +295,24 @@
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
+                    "tierTag": {
+                        "value": "[parameters('tierTag')]"
+                    },
+                    "departmentTag": {
+                        "value": "[parameters('departmentTag')]"
+                    },
+                    "ownerTag": {
+                        "value": "[parameters('ownerTag')]"
+                    },
+                    "caseCodeTag": {
+                        "value": "[parameters('caseCodeTag')]"
+                    },
+                    "applicationStorageTag": {
+                        "value": "[parameters('applicationStorageTag')]"
+                    },
+                   "managedTag": {
+                        "value": "[parameters('managedTag')]"
+                    },     
                     "storageAccountName": {
                         "value": "[parameters('storageAccountName')]"
                     },
@@ -279,6 +351,24 @@
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
+                   "tierTag": {
+                        "value": "[parameters('tierTag')]"
+                    },
+                    "departmentTag": {
+                        "value": "[parameters('departmentTag')]"
+                    },
+                    "ownerTag": {
+                        "value": "[parameters('ownerTag')]"
+                    },
+                    "caseCodeTag": {
+                        "value": "[parameters('caseCodeTag')]"
+                    },
+                    "applicationLogicAppTag": {
+                        "value": "[parameters('applicationLogicAppTag')]"
+                    },
+                   "managedTag": {
+                        "value": "[parameters('managedTag')]"
+                    },     
                     "integration_account_name": {
                         "value": "[parameters('integration_account_name')]"
                     },
@@ -311,6 +401,25 @@
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
+                 
+                  "tierTag": {
+                        "value": "[parameters('tierTag')]"
+                    },
+                    "departmentTag": {
+                        "value": "[parameters('departmentTag')]"
+                    },
+                    "ownerTag": {
+                        "value": "[parameters('ownerTag')]"
+                    },
+                    "caseCodeTag": {
+                        "value": "[parameters('caseCodeTag')]"
+                    },
+                    "applicationAPITag": {
+                        "value": "[parameters('applicationAPITag')]"
+                    },
+                   "managedTag": {
+                        "value": "[parameters('managedTag')]"
+                    },     
                     "displayName": {
                         "value": "[parameters('displayName')]"
                     },
@@ -376,6 +485,25 @@
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
+                    "tierTag": {
+                        "value": "[parameters('tierTag')]"
+                    },
+                    "departmentTag": {
+                        "value": "[parameters('departmentTag')]"
+                    },
+                    "ownerTag": {
+                        "value": "[parameters('ownerTag')]"
+                    },
+                    "caseCodeTag": {
+                        "value": "[parameters('caseCodeTag')]"
+                    },
+                    "applicationServiceBusTag": {
+                        "value": "[parameters('applicationServiceBusTag')]"
+                    },
+                   "managedTag": {
+                        "value": "[parameters('managedTag')]"
+                    },     
+                 
                     "namespaces_name": {
                         "value": "[parameters('namespaces_name')]"
                     },
