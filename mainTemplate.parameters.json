@@ -36,7 +36,7 @@
             }  
         },
         "sasTokenExpiry": {  
-            "value":  "2020-12-31"  
+            "value":  "2020-10-15T23:59:00Z"  
         },
         "storageAccountName": {
             "value": "satsgaip"
