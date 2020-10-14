@@ -57,7 +57,7 @@
             "value": "Hot"
         },
        "storageKind": {
-            "value": "StorageV2"
+            "value": "BlobStorage"
         },
        "containerPublicLevelAccess": {
             "value": "Container"
