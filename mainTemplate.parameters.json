@@ -14,10 +14,6 @@
         "caseCodeTag": {
             "value": "dp0"
         },
-        
-        "applicationStorageTag": {
-            "value": "Storage Account"
-        },
         "applicationServiceBusTag": {
             "value": "Service Bus"
         },
