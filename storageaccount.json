@@ -41,9 +41,6 @@
    "caseCodeTag": {
       "type": "string"
     },
-   "applicationStorageTag": {
-      "type": "string"
-    },	
    "managedTag": {
       "type": "string"
     } 
