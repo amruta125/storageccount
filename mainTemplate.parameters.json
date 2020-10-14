@@ -23,9 +23,6 @@
         "applicationLogicAppTag": {
             "value": "Logic App"
         },
-        "applicationAPITag": {
-            "value": "APIs"
-        },
         "managedTag": {
             "value": "ARM Template"
         },
