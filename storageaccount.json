@@ -24,8 +24,7 @@
       "type": "string"
     },
    "sasTokenExpiry": {  
-      "type": "string",
-      "defaultValue":  "2020-12-31T23:59:00Z"   
+      "type": "string"
     }, 	
    "accountSasProperties": {  
        "type": "object"  
