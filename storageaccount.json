@@ -43,7 +43,11 @@
     },
    "managedTag": {
       "type": "string"
-    } 
+    },
+   "applicationStorageTag": {
+      "type": "string"
+    }
+	 	  
 	  
   },
   "variables": {
