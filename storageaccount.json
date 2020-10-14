@@ -17,6 +17,9 @@
    "storageSkuName": {
       "type": "string"
     },
+   "storageKind": {
+      "type": "string"
+    },
    "storageAccessTier": {
       "type": "string"
     },
