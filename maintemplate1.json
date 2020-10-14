@@ -50,6 +50,18 @@
                 "description": "Managed with"
             }
         },
+        "accountSasProperties": {
+            "type": "object",
+            "metadata": {
+                "description": "Storage aaccount SAS token properties"
+            }
+        },
+        "sasTokenExpiry": {
+            "type": "string",
+            "metadata": {
+                "description": "Storage account SAS token expiry date"
+            }
+        },
         "storageAccountName": {
             "type": "string",
             "metadata": {
@@ -306,7 +318,13 @@
                     },
                    "managedTag": {
                         "value": "[parameters('managedTag')]"
-                    },     
+                    },   
+                   "accountSasProperties": {
+                        "value": "[parameters('accountSasProperties')]"
+                    },
+                   "sasTokenExpiry": {
+                        "value": "[parameters('sasTokenExpiry')]"
+                    },
                     "storageAccountName": {
                         "value": "[parameters('storageAccountName')]"
                     },
