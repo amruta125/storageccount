@@ -29,15 +29,17 @@
         "sasTokenExpiry": {  
             "value":  "2020-12-31T23:59:00Z"  
         },
-       
-        "accountSasProperties": {
-            "value": {  
-                "signedServices": "b",  
-                "signedPermission": "r",  
-                "signedResourceTypes": "c",  
-                "keyToSign": "key2",  
-                "signedExpiry": "[parameters('sasTokenExpiry')]"  
-            }  
+        "keytoSign": {  
+            "value":  "key2"  
+        },
+        "signedResourcetypes": {  
+            "value":  "c"  
+        },
+        "signedPermissions": {  
+            "value":  "r"  
+        },
+        "signedService": {  
+            "value":  "b"  
         },
         "storageAccountName": {
             "value": "satsgaip"
