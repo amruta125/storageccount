@@ -55,8 +55,8 @@
                 "Department": "[parameters('departmentTag')]",
                 "Owner": "[parameters('ownerTag')]",
                 "CaseCode": "[parameters('caseCodeTag')]",
-	        "Application" = "[parameters('applicationStorageTag')]"
-  	        "ManagedWith" = "[parameters('managedTag')]"
+	        "Application": "[parameters('applicationStorageTag')]",
+  	        "ManagedWith": "[parameters('managedTag')]"
       },
       "sku": {
         "tier": "[parameters('skuTier')]",
