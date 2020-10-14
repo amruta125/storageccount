@@ -159,6 +159,30 @@
                 "description": "URL template for API operation"
             }
         },
+       "contentTypeSchema": {
+            "type": "string",
+            "metadata": {
+             "description": "Content type for the schema under the operation"
+            }
+       },
+       "operationPolicy": {
+            "type": "string",
+            "metadata": {
+                "description": "Policy value for policy under operations"
+            }
+        },
+       "apiProtocol": {
+            "type": "string",
+            "metadata": {
+                "description": "API Protocol"
+            }
+        },
+        "apiPolicy": {
+            "type": "string",
+            "metadata": {
+                "description": "API policy"
+            }
+        },
         "apiRevision": {
             "type": "string",
             "metadata": {
@@ -268,8 +292,20 @@
                     "operationDisplayName": {
                         "value": "[parameters('operationDisplayName')]"
                     },
+                   "operationPolicy": {
+                        "value": "[parameters('operationPolicy')]"
+                    },
                     "apiOperationUrlTemplate": {
                         "value": "[parameters('apiOperationUrlTemplate')]"
+                    },
+                    "contentTypeSchema": {
+                        "value": "[parameters('contentTypeSchema')]"
+                    },
+                    "apiProtocol": {
+                        "value": "[parameters('apiProtocol')]"
+                    },
+                    "apiPolicy": {
+                        "value": "[parameters('apiPolicy')]"
                     }
                 }
             }
