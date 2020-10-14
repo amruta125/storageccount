@@ -2,7 +2,24 @@
   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-   
+    "tierTag": {
+      "type": "string"
+    },
+   "departmentTag": {
+      "type": "string"
+    },
+   "ownerTag": {
+      "type": "string"
+    },
+   "caseCodeTag": {
+      "type": "string"
+    },
+   "applicationLogicAppTag": {
+      "type": "string"
+    },	
+   "managedTag": {
+      "type": "string"
+    } 
     "integration_account_name": {
       "type": "string"
     },
@@ -29,6 +46,14 @@
       "apiVersion": "2016-06-01",
       "name": "[parameters('integration_account_name')]",
       "location": "[parameters('locationName')]",
+       "tags": {
+                "Tier": "[parameters('tierTag')]",
+                "Department": "[parameters('departmentTag')]",
+                "Owner": "[parameters('ownerTag')]",
+                "CaseCode": "[parameters('caseCodeTag')]",
+	        "Application": "[parameters('applicationStorageTag')]",
+  	        "ManagedWith": "[parameters('managedTag')]"
+      },
       "sku": {
         "name": "[parameters('skuName')]",
       },
@@ -41,6 +66,14 @@
       "apiVersion": "2017-07-01",
       "name": "[parameters('workflows_name')]",
       "location": "[parameters('locationName')]",
+       "tags": {
+                "Tier": "[parameters('tierTag')]",
+                "Department": "[parameters('departmentTag')]",
+                "Owner": "[parameters('ownerTag')]",
+                "CaseCode": "[parameters('caseCodeTag')]",
+	              "Application": "[parameters('applicationLogicAppTag')]",
+  	            "ManagedWith": "[parameters('managedTag')]"
+      },
       "dependsOn": [
         "[resourceId('Microsoft.Logic/integrationAccounts', parameters('integration_account_name'))]"
       ],
