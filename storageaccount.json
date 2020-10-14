@@ -52,14 +52,15 @@
     }	  
   },
   "variables": {
-        "storageAccountNameLower": "[toLower(trim(parameters('storageAccountName')))]",   
+        "storageAccountNameLower": "[toLower(trim(parameters('storageAccountName')))]", 
+	"storageAccountApiVersion": "2019-06-01",  
         "blobEndPoint":"[concat('https://',variables('storageAccountNameLower'),'.blob.core.windows.net/')]" 
   },  
   "resources": [
     {
       "type": "Microsoft.Storage/storageAccounts",
       "name": "[parameters('storageAccountName')]",
-      "apiVersion": "2019-06-01",
+      "apiVersion": "[variables('storageAccountApiVersion')]", 
       "location": "[resourceGroup().location]",
       "tags": {
                 "Tier": "[parameters('tierTag')]",
@@ -118,7 +119,7 @@
 		},
 		"storageAccountConnectionStringWithSAS": {  
 			 "type": "string",  
-			 "value": "[concat('BlobEndpoint=',variables('blobEndPoint'),';SharedAccessSignature=', listAccountSas(variables('storageAccountNameLower'), parameters('accountSasProperties')).accountSasToken)]"  
+			 "value": "[concat('BlobEndpoint=',variables('blobEndPoint'),';SharedAccessSignature=', listAccountSas(variables('storageAccountNameLower'), variables('storageAccountApiVersion'), parameters('accountSasProperties')).accountSasToken)]"  
         }  
 	}
 }
