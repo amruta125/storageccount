@@ -135,6 +135,18 @@
                 "description": "Apim instance name"
             }
         },
+        "apis_service_app_name": {
+            "type": "string",
+            "metadata": {
+                "description": "Apim instance name"
+            }
+        },
+        "apis_app_name_operation": {
+            "type": "string",
+            "metadata": {
+                "description": "Apim api operation"
+            }
+        },
        "operationDisplayName": {
             "type": "string",
             "metadata": {
@@ -282,6 +294,12 @@
                     },
                     "apimInstanceName":  {
                         "value": "[parameters('apimInstanceName')]"
+                    },
+                   "apis_service_app_name":  {
+                        "value": "[parameters('apis_service_app_name')]"
+                    },
+                   "apis_app_name_operation":  {
+                        "value": "[parameters('apis_app_name_operation')]"
                     },
                     "serviceURL": {
                         "value": "[parameters('serviceURL')]"
