@@ -50,16 +50,16 @@
                 "description": "Managed with"
             }
         },
+       "sasTokenExpiry": {
+            "type": "string",
+            "metadata": {
+                "description": "Storage account SAS token expiry date"
+            }
+        },
         "accountSasProperties": {
             "type": "object",
             "metadata": {
                 "description": "Storage aaccount SAS token properties"
-            }
-        },
-        "sasTokenExpiry": {
-            "type": "string",
-            "metadata": {
-                "description": "Storage account SAS token expiry date"
             }
         },
         "storageAccountName": {
