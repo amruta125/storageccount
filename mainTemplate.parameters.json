@@ -17,6 +17,9 @@
         "applicationServiceBusTag": {
             "value": "Service Bus"
         },
+        "applicationStorageTag": {
+            "value": "storage Account"
+        },
         "applicationLogicAppTag": {
             "value": "Logic App"
         },
