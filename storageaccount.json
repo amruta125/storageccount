@@ -44,8 +44,9 @@
    "managedTag": {
       "type": "string"
     },
-  	  
-	  
+    "applicationStorageTag": {
+      "type": "string"
+    }	  
   },
   "variables": {
         "storageAccountNameLower": "[toLower(trim(parameters('storageAccountName')))]",   
@@ -62,6 +63,7 @@
                 "Department": "[parameters('departmentTag')]",
                 "Owner": "[parameters('ownerTag')]",
                 "CaseCode": "[parameters('caseCodeTag')]",
+	        "Application": "[parameters('applicationStorageTag')]",
   	        "ManagedWith": "[parameters('managedTag')]"
       },
       "sku": {
