@@ -103,6 +103,12 @@
        "metadata": {
         "description": "The display name of api."
       }
+    },
+    "methodName": {
+       "type": "string",
+       "metadata": {
+        "description": "Method name for operation. Ex. GET,POST"
+      }
     }
 
   },
@@ -137,9 +143,15 @@
       "scale": null,
       "properties": {
         "displayName": "[parameters('operationDisplayName')]",
-        "method": "GET",
+        "method": "[parameters('methodName')]",
         "urlTemplate": "[parameters('apiOperationUrlTemplate')]",
         "description": "Operations will be created under the APIs in APIM service",
+        "request": {
+          "description": "string",
+          "queryParameters": [],
+          "headers": [],
+          "representations": []
+        },
         "responses": [
                     {
                         "statusCode": 200,
