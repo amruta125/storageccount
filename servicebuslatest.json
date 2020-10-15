@@ -51,7 +51,7 @@
     
     "resources": [
         {
-            "apiVersion": "2015-01-01",
+            "apiVersion": "2020-06-01",
             "name": "primaryKey",
             "type": "Microsoft.Resources/deployments",
             "properties": {
@@ -66,7 +66,7 @@
             }
         },
         {
-            "apiVersion": "2015-01-01",
+            "apiVersion": "2020-06-01",
             "name": "secondaryKey",
             "type": "Microsoft.Resources/deployments",
             "properties": {
