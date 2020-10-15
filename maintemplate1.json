@@ -279,13 +279,18 @@
                 "description": "API operation policy"
             }
         },
-     
         "apiRevision": {
             "type": "string",
             "metadata": {
                 "description": "Api Revision"
             }
-        }
+        },
+       "methodName": {
+            "type": "string",
+            "metadata": {
+                "description": "Method name for operation"
+            }
+       }
      
     },
     "variables": {},
@@ -463,8 +468,10 @@
                     },
                     "apiPolicy": {
                         "value": "[parameters('apiPolicy')]"
+                    },
+		   "methodName": {
+                        "value": "[parameters('methodName')]"
                     }
-		    
 		
                 }
             }
