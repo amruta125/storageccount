@@ -1,46 +1,7 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
-    "parameters": {
-       
-        "tierTag": {
-          "type": "string"
-        },
-       "departmentTag": {
-          "type": "string"
-        },
-       "ownerTag": {
-          "type": "string"
-        },
-       "caseCodeTag": {
-          "type": "string"
-        },
-       "applicationServiceBusTag": {
-          "type": "string"
-        },	
-       "managedTag": {
-          "type": "string"
-        },
-        "namespaces_name": {
-            "type": "string"
-        },
-        "queue_name": {
-            "type": "string"
-        },
-        "topic_name": {
-            "type": "string"
-        },
-        "subscription_name": {
-            "type": "string"
-        },
-        "sbSkuName": {
-            "type": "string"
-        },
-        "sbTier": {
-            "type": "string"
-        }
-        
-    },
+    "parameters": {},
     "variables": {
         "location": "[resourceGroup().location]",
         "defaultSASKeyName": "RootManageSharedAccessKey",
