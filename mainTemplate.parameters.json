@@ -35,7 +35,7 @@
                 "signedPermission": "rl",  
                 "signedResourceTypes": "sco",  
                 "keyToSign": "key2",  
-                "signedExpiry": "2020-12-31T23:59:00Z""
+                "signedExpiry": "2020-12-31T23:59:00Z"
             }
         },
         "keytoSign": {  
