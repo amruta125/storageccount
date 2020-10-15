@@ -27,14 +27,7 @@
       "type": "string"
     }, 	
    "accountSasProperties": {  
-       "type": "object",
-       "defaultValue": {  
-                "signedServices": "[parameters('signedService')]",  
-                "signedPermission": "[parameters('signedPermissions')]",  
-                "signedResourceTypes": "[parameters('signedResourcetypes')]",  
-                "keyToSign": "[parameters('keytoSign')]",  
-                "signedExpiry": "[parameters('sasTokenExpiry')]"  
-            }   
+       "type": "object"
     },
    "containerPublicLevelAccess": {
       "type": "string"
