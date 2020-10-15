@@ -38,18 +38,6 @@
                 "signedExpiry": "2020-12-31T23:59:00Z"
             }
         },
-        "keytoSign": {  
-            "value":  "key2"  
-        },
-        "signedResourcetypes": {  
-            "value":  "c"  
-        },
-        "signedPermissions": {  
-            "value":  "r"  
-        },
-        "signedService": {  
-            "value":  "b"  
-        },
         "storageAccountName": {
             "value": "satsgaip"
         },
