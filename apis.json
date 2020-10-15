@@ -146,10 +146,6 @@
         "method": "[parameters('methodName')]",
         "urlTemplate": "[parameters('apiOperationUrlTemplate')]",
         "description": "Operations will be created under the APIs in APIM service",
-        "request": {
-          "description": "Description of the request",
-          "headers": []
-        },
         "responses": [
                     {
                         "statusCode": 200,
