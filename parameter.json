@@ -1,0 +1,103 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+         "tierTag": {
+            "value": "DEV"
+        },
+        "departmentTag": {
+            "value": "TSG"
+        },
+        "ownerTag": {
+            "value": "TSGCloudOps"
+        },
+        "caseCodeTag": {
+            "value": "dp0"
+        },
+        "applicationServiceBusTag": {
+            "value": "Service Bus"
+        },
+        "applicationStorageTag": {
+            "value": "storage Account"
+        },
+        "applicationLogicAppTag": {
+            "value": "Logic App"
+        },
+        "managedTag": {
+            "value": "ARM Template"
+        },
+        "sasTokenExpiry": {  
+            "value":  "2020-12-31T23:59:00Z"  
+        },
+        "accountSasProperties": {  
+            "value":  {
+                "signedServices": "b",  
+                "signedPermission": "rl",  
+                "signedResourceTypes": "sco",  
+                "keyToSign": "key2",  
+                "signedExpiry": "2020-12-31T23:59:00Z"
+            }
+        },
+        "storageAccountName": {
+            "value": "satsgaip"
+        },
+        "storageAccountType": {
+            "value": "Standard_LRS"
+        },
+        "containerName": {
+            "value": "Container1"
+        },
+        "skuTier": {
+            "value": "Standard"
+        },
+        "storageSkuName": {
+            "value": "Standard_RAGRS"
+        },
+        "storageAccessTier": {
+            "value": "Hot"
+        },
+       "storageKind": {
+            "value": "BlobStorage"
+        },
+       "containerPublicLevelAccess": {
+            "value": "Container"
+        },
+        "namespaces_name": {
+            "value": "sbtsgaip"
+        },
+        "queue_name": {
+            "value": "queue1"
+        },
+        "topic_name": {
+            "value": "topic1"
+        },
+        "subscription_name": {
+            "value": "subscription1"
+        },
+        "integration_account_name": {
+            "value": "iatsgaip"
+        },
+        "workflows_name": {
+            "value": "latsgaip"
+        },
+        "skuName": {
+            "value": "Free"
+        },
+        "workflowState": {
+            "value": "enabled"
+        },
+        "integrationAccState": {
+            "value": "enabled"
+        },
+        "locationName": {
+            "value": "West US 2"
+        },
+        "sbSkuName": {
+            "value": "Standard"
+        },
+        "sbTier": {
+            "value": "Standard"
+        }
+        
+    }
+}
