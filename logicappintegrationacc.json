@@ -43,7 +43,7 @@
   "resources": [
     {
       "type": "Microsoft.Logic/integrationAccounts",
-      "apiVersion": "2016-06-01",
+      "apiVersion": "2019-05-01",
       "name": "[parameters('integration_account_name')]",
       "location": "[parameters('locationName')]",
        "tags": {
@@ -63,7 +63,7 @@
     },
     {
       "type": "Microsoft.Logic/workflows",
-      "apiVersion": "2017-07-01",
+      "apiVersion": "2019-05-01",
       "name": "[parameters('workflows_name')]",
       "location": "[parameters('locationName')]",
        "tags": {
@@ -71,8 +71,8 @@
                 "Department": "[parameters('departmentTag')]",
                 "Owner": "[parameters('ownerTag')]",
                 "CaseCode": "[parameters('caseCodeTag')]",
-	              "Application": "[parameters('applicationLogicAppTag')]",
-  	            "ManagedWith": "[parameters('managedTag')]"
+	        "Application": "[parameters('applicationLogicAppTag')]",
+  	        "ManagedWith": "[parameters('managedTag')]"
       },
       "dependsOn": [
         "[resourceId('Microsoft.Logic/integrationAccounts', parameters('integration_account_name'))]"
