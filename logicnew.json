@@ -1,44 +1,7 @@
 {
   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
-  "parameters": {
-    "tierTag": {
-      "type": "string"
-    },
-   "departmentTag": {
-      "type": "string"
-    },
-   "ownerTag": {
-      "type": "string"
-    },
-   "caseCodeTag": {
-      "type": "string"
-    },
-   "applicationLogicAppTag": {
-      "type": "string"
-    },	
-   "managedTag": {
-      "type": "string"
-    },
-    "integration_account_name": {
-      "type": "string"
-    },
-    "workflows_name": {
-      "type": "string"
-    },
-    "skuName": {
-      "type": "string"
-    },
-    "integrationAccState": {
-      "type": "string"
-    },
-     "locationName": {
-       "type": "string"
-    },
-     "workflowState": {
-      "type": "string"
-    }
-  },
+  "parameters": {},
   "variables": {},
   "resources": [
     {
