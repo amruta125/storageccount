@@ -285,6 +285,12 @@
             "metadata": {
                 "description": "Api Revision"
             }
+        },
+       "methodName": {
+            "type": "string",
+            "metadata": {
+                "description": "Method name for operation"
+            }
         }
      
     },
@@ -463,7 +469,11 @@
                     },
                     "apiPolicy": {
                         "value": "[parameters('apiPolicy')]"
+                    },
+		    "methodName": {
+                        "value": "[parameters('methodName')]"
                     }
+		
                 }
             }
         },    
