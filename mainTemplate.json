@@ -2,8 +2,68 @@
  {
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
-    "parameters": {
-         "storageAccountName": {
+     "parameters": {
+        "tierTag": {
+            "type": "string",
+            "metadata": {
+                "description": "Tier name for tag"
+            }
+        },
+        "departmentTag": {
+             "type": "string",
+              "metadata": {
+                "description": "Department name for tag"
+            }
+        },
+        "ownerTag": {
+             "type": "string",
+              "metadata": {
+                "description": "Owner name for tag"
+            }
+        },
+        "caseCodeTag": {
+           "type": "string",
+              "metadata": {
+                "description": "CaseCode  for tag"
+            }
+        },
+       "applicationStorageTag": {
+            "type": "string",
+              "metadata": {
+                "description": "Application name for Storage account"
+            }
+        },
+        "applicationLogicAppTag": {
+            "type": "string",
+              "metadata": {
+                "description": "Application name for Logic app"
+            }
+        },
+        "applicationServiceBusTag": {
+            "type": "string",
+              "metadata": {
+                "description": "Application name for Service bus app"
+            }
+        },
+        "managedTag": {
+              "type": "string",
+              "metadata": {
+                "description": "Managed with"
+            }
+        },
+       "sasTokenExpiry": {
+            "type": "string",
+            "metadata": {
+                "description": "Storage account SAS token expiry date"
+            }
+        },
+        "accountSasProperties": {
+            "type": "object",
+            "metadata": {
+                "description": "Storage aaccount SAS token properties"
+            }
+        },
+        "storageAccountName": {
             "type": "string",
             "metadata": {
                 "description": "Storage account name"
@@ -21,16 +81,35 @@
                 "description": "Storage Account Type"
             }
         },
-        "storageAccessTier": {
+       "storageAccessTier": {
             "type": "string",
             "metadata": {
                 "description": "Storage Access Tier"
+            }
+        },
+     
+       "storageKind": {
+            "type": "string",
+            "metadata": {
+                "description": "Storage Kind"
             }
         },
         "containerPublicLevelAccess": {
             "type": "string",
             "metadata": {
                 "description": "Storage Container Public level Access"
+            }
+        }, 
+        "skuTier": {
+          "type": "string",
+           "metadata": {
+                "description": "Storage Sku Tier"
+            }
+        },
+         "storageSkuName": {
+          "type": "string",
+           "metadata": {
+                "description": "Storage Sku Name"
             }
         },
         "integration_account_name": {
@@ -55,6 +134,12 @@
             "type": "string",
             "metadata": {
                 "description": "Workflow state"
+            }
+        },
+        "integrationAccState": {
+            "type": "string",
+            "metadata": {
+                "description": "Integration Account state"
             }
         },
         "locationName": {
@@ -86,7 +171,123 @@
             "metadata": {
                 "description": "subscription name"
             }
+        },
+        "sbSkuName": {
+            "type": "string",
+            "metadata": {
+                "description": "Service Bus Sku name"
+            }
+        },
+        "sbTier": {
+            "type": "string",
+            "metadata": {
+                "description": "Service Bus Tier"
+            }
+        },
+        "displayName": {
+            "type": "string",
+            "metadata": {
+                "description": "Display name of Api"
+            }
+        },
+       "apimInstanceName": {
+            "type": "string",
+            "metadata": {
+                "description": "Apim instance name"
+            }
+        },
+       "apim_service_product_name": {
+            "type": "string",
+            "metadata": {
+                "description": "Apim Service product name"
+            }
+        },
+        "apis_service_app_name": {
+            "type": "string",
+            "metadata": {
+                "description": "Apim instance name"
+            }
+        },
+        "apis_app_name_operation": {
+            "type": "string",
+            "metadata": {
+                "description": "Apim api operation"
+            }
+        },
+       "operationDisplayName": {
+            "type": "string",
+            "metadata": {
+                "description": "Display name of Operation"
+            }
+        },
+       "serviceURL": {
+            "type": "string",
+            "metadata": {
+                "description": "Api Service URL"
+            }
+        },
+        "path": {
+            "type": "string",
+            "metadata": {
+                "description": "Api Path"
+            }
+        },
+        "apiOperationUrlTemplate": {
+            "type": "string",
+            "metadata": {
+                "description": "URL template for API operation"
+            }
+        },
+       "contentTypeSchema": {
+            "type": "string",
+            "metadata": {
+             "description": "Content type for the schema under the operation"
+            }
+       },
+       "operationPolicy": {
+            "type": "string",
+            "metadata": {
+                "description": "Policy value for policy under operations"
+            }
+        },
+       "apiProtocol": {
+            "type": "string",
+            "metadata": {
+                "description": "API Protocol"
+            }
+        },
+        "apiPolicy": {
+            "type": "string",
+            "metadata": {
+                "description": "API policy"
+            }
+        },
+       "policies_policy_name": {
+            "type": "string",
+            "metadata": {
+                "description": "API policy name"
+            }
+        },
+       "api_schema_name": {
+            "type": "string",
+            "metadata": {
+                "description": "API schema name"
+            }
+        },
+       "apis_operation_policy": {
+            "type": "string",
+            "metadata": {
+                "description": "API operation policy"
+            }
+        },
+     
+        "apiRevision": {
+            "type": "string",
+            "metadata": {
+                "description": "Api Revision"
+            }
         }
+     
     },
     "variables": {},
     "resources": [
