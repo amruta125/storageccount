@@ -1,4 +1,4 @@
- {
+{
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
@@ -279,12 +279,20 @@
                 "description": "API operation policy"
             }
         },
+     
         "apiRevision": {
             "type": "string",
             "metadata": {
                 "description": "Api Revision"
             }
+        },
+       "methodName": {
+            "type": "string",
+            "metadata": {
+                "description": "Method name for operation"
+            }
         }
+     
     },
     "variables": {},
     "resources": [
@@ -461,7 +469,11 @@
                     },
                     "apiPolicy": {
                         "value": "[parameters('apiPolicy')]"
+                    },
+		           "methodName": {
+                        "value": "[parameters('methodName')]"
                     }
+		
                 }
             }
         },    
@@ -518,7 +530,7 @@
         }
 
     ],
-	"outputs": {
+    "outputs": {
 		
 		"storageAccountConnectionStringWithSAS": {  
 			 "type": "string",  
