@@ -1,7 +1,56 @@
 {
   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
-  "parameters": {},
+  "parameters": {
+   "storageAccountName": {
+      "type": "string"
+    },
+    "storageAccountType": {
+      "type": "string"
+    },
+    "containerName": {
+      "type": "string"
+    },
+    "skuTier": {
+      "type": "string"
+    },
+   "storageSkuName": {
+      "type": "string"
+    },
+   "storageKind": {
+      "type": "string"
+    },
+   "storageAccessTier": {
+      "type": "string"
+    },
+   "sasTokenExpiry": {  
+      "type": "string"
+    }, 	
+   "accountSasProperties": {  
+       "type": "object"
+    },
+   "containerPublicLevelAccess": {
+      "type": "string"
+    },	
+   "tierTag": {
+      "type": "string"
+    },
+   "departmentTag": {
+      "type": "string"
+    },
+   "ownerTag": {
+      "type": "string"
+    },
+   "caseCodeTag": {
+      "type": "string"
+    },
+   "managedTag": {
+      "type": "string"
+    },
+    "applicationStorageTag": {
+      "type": "string"
+    }	  
+  },
   "variables": {
         "storageAccountNameLower": "[toLower(trim(parameters('storageAccountName')))]", 
 	"storageAccountApiVersion": "2018-07-01",  
