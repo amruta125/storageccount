@@ -302,7 +302,7 @@
                     "contentVersion": "1.0.0.0"
                 },
                "parametersLink": {
-                   "uri": "https://raw.githubusercontent.com/amruta125/storageccount/main/mainTemplate.parameters.json",
+                   "uri": "https://raw.githubusercontent.com/amruta125/storageccount/main/parameter.json",
                    "contentVersion": "1.0.0.0"
                    }
             }
@@ -318,7 +318,7 @@
                     "contentVersion": "1.0.0.0"
                 },
                 "parametersLink": {
-                   "uri": "https://raw.githubusercontent.com/amruta125/storageccount/main/mainTemplate.parameters.json",
+                   "uri": "https://raw.githubusercontent.com/amruta125/storageccount/main/parameter.json",
                    "contentVersion": "1.0.0.0"
                  }
             }
@@ -334,7 +334,7 @@
                     "contentVersion": "1.0.0.0"
                 },
                 "parametersLink": {
-                   "uri": "https://raw.githubusercontent.com/amruta125/storageccount/main/mainTemplate.parameters.json",
+                   "uri": "https://raw.githubusercontent.com/amruta125/storageccount/main/parameter.json",
                    "contentVersion": "1.0.0.0"
                  }
             }
