@@ -53,7 +53,7 @@
   },
   "variables": {
         "storageAccountNameLower": "[toLower(trim(parameters('storageAccountName')))]", 
-	"storageAccountApiVersion": "2018-07-01",  
+	"storageAccountApiVersion": "2019-06-01",  
         "blobEndPoint":"[concat('https://',variables('storageAccountNameLower'),'.blob.core.windows.net/')]" 
   },  
   "resources": [
@@ -101,7 +101,7 @@
     },
     {
         "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
-        "apiVersion": "2019-04-01",
+        "apiVersion": "2019-06-01",
         "name": "[concat(parameters('storageAccountName'), '/default/container1')]",
         "dependsOn": [
 	    "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]",
