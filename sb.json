@@ -2,115 +2,98 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "sbNamespace": {
-            "type": "string",
-            "metadata": {
-                "description": "The service bus namespace"
-            }
+       
+        "tierTag": {
+          "type": "string"
         },
-        "topicName": {
-            "type": "string",
-            "metadata": {
-                "description": "Service bus topic name"
-            }
+       "departmentTag": {
+          "type": "string"
         },
-        "queueName": {
-            "type": "string",
-            "metadata": {
-                "description": "Service bus queue name"
-            }
+       "ownerTag": {
+          "type": "string"
         },
-        "topicSubscriptionName": {
-            "type": "string",
-            "metadata": {
-                "description": "Service bus topic subscription name"
-            }
+       "caseCodeTag": {
+          "type": "string"
+        },
+       "applicationServiceBusTag": {
+          "type": "string"
+        },	
+       "managedTag": {
+          "type": "string"
+        },
+        "namespaces_name": {
+            "type": "string"
+        },
+        "queue_name": {
+            "type": "string"
+        },
+        "topic_name": {
+            "type": "string"
+        },
+        "subscription_name": {
+            "type": "string"
+        },
+        "sbSkuName": {
+            "type": "string"
+        },
+        "sbTier": {
+            "type": "string"
         }
+        
     },
     "variables": {
         "location": "[resourceGroup().location]",
-        "sbVersion": "2014-09-01",
-        "sbNamespace": "[concat(parameters('sbNamespace'),uniqueString(resourceGroup().id))]",
         "defaultSASKeyName": "RootManageSharedAccessKey",
-        "authRuleResourceId": "[resourceId('Microsoft.ServiceBus/namespaces/authorizationRules', variables('sbNamespace'), variables('defaultSASKeyName'))]",
-        "sendAuthRuleResourceId": "[resourceId('Microsoft.ServiceBus/namespaces/authorizationRules', variables('sbNamespace'), 'SendOnlyKey')]",
-        "keyGeneratorTemplateUri": "https://raw.githubusercontent.com/amruta125/storageccount/main/keygenerator.json"
+        "authRuleResourceId": "[resourceId('Microsoft.ServiceBus/namespaces/authorizationRules', parameters('namespaces_name'), variables('defaultSASKeyName'))]",
+        "sendAuthRuleResourceId": "[resourceId('Microsoft.ServiceBus/namespaces/authorizationRules', parameters('namespaces_name'), 'SendOnlyKey')]",
+        "keyGeneratorTemplateUri": "https://raw.githubusercontent.com/sjkp/Azure.ARM.ServiceBus/master/Azure.ARM.ServiceBus/Templates/keygenerator.json"
     },
+    
     "resources": [
-        
+       
         {
-            "apiVersion": "[variables('sbVersion')]",
-            "name": "[variables('sbNamespace')]",
             "type": "Microsoft.ServiceBus/namespaces",
-            "location": "[variables('location')]",
-            "properties": {
-                "messagingSku": 2
+            "apiVersion": "2018-01-01-preview",
+            "name": "[parameters('namespaces_name')]",
+            "location": "[resourceGroup().location]",
+             "tags": {
+                "Tier": "[parameters('tierTag')]",
+                "Department": "[parameters('departmentTag')]",
+                "Owner": "[parameters('ownerTag')]",
+                "CaseCode": "[parameters('caseCodeTag')]",
+	            "Application": "[parameters('applicationServiceBusTag')]",
+  	            "ManagedWith": "[parameters('managedTag')]"
+             },
+            "sku": {
+                "name": "[parameters('sbSkuName')]",
+                "tier": "[parameters('sbTier')]"
             },
-            "resources": [
-                {
-                    "apiVersion": "[variables('sbVersion')]",
-                    "name": "[parameters('topicName')]",
-                    "type": "Topics",
-                    "dependsOn": [
-                        "[concat('Microsoft.ServiceBus/namespaces/', variables('sbNamespace'))]"
-                    ],
-                    "properties": {
-                        "defaultMessageTimeToLive": "P14D",
-                        "maxSizeInMegabytes": 1024,
-                        "requiresDuplicateDetection": false,
-                        "duplicateDetectionHistoryTimeWindow": "PT10M",
-                        "enableBatchedOperations": true,
-                        "status": "Active",
-                        "supportOrdering": true,
-                        "autoDeleteOnIdle": "P10675199DT2H48M5.4775807S",
-                        "enablePartitioning": false,
-                        "enableExpress": false
-                    },
-                    "resources": [
-                        {
-                            "apiVersion": "[variables('sbVersion')]",
-                            "name": "[parameters('topicSubscriptionName')]",
-                            "type": "Subscriptions",
-                            "dependsOn": [
-                                "[parameters('topicName')]"
-                            ],
-                            "properties": {
-                                "lockDuration": "PT30S",
-                                "requiresSession": false,
-                                "defaultMessageTimeToLive": "P14D",
-                                "deadLetteringOnMessageExpiration": false,
-                                "deadLetteringOnFilterEvaluationExceptions": false,
-                                "maxDeliveryCount": 1000,
-                                "status": "Active",
-                                "enableBatchedOperations": true,
-                                "autoDeleteOnIdle": "P10675198DT2H48M5S"
-                            }
-                        }
-                    ]
-                },
-                {
-                    "apiVersion": "2017-04-01",
-                    "type": "Microsoft.ServiceBus/namespaces/authorizationRules",
-                    "name": "[concat(variables('sbNamespace'),'/SendOnlyKey')]",
-                    "dependsOn": [
-                        "[concat('Microsoft.ServiceBus/namespaces/', variables('sbNamespace'))]"
-                        
-                    ],
-                    "location": "[variables('location')]",
-                    "properties": {
-                        "Rights": [ "Send" ],
-                        "Revision": -1
-                    }
-                }
-            ]
+            "properties": {
+                "zoneRedundant": false
+            }
         },
         {
+            "type": "Microsoft.ServiceBus/namespaces/AuthorizationRules",
             "apiVersion": "2017-04-01",
-            "type": "Microsoft.ServiceBus/namespaces/queues",
-            "name": "[concat(variables('sbNamespace'),'/',parameters('queueName'))]",
-            "location": "[variables('location')]",
+            "name": "[concat(parameters('namespaces_name'), '/SendOnlyKey')]",
+            "location": "East US 2",
             "dependsOn": [
-                "[concat('Microsoft.ServiceBus/namespaces/', variables('sbNamespace'))]"
+                "[resourceId('Microsoft.ServiceBus/namespaces', parameters('namespaces_name'))]"
+		
+            ],
+            "properties": {
+                "rights": [
+                    "Send"
+                ]
+            }
+        },
+        {
+            "type": "Microsoft.ServiceBus/namespaces/queues",
+            "apiVersion": "2017-04-01",
+            "name": "[concat(parameters('namespaces_name'), '/',parameters('queue_name'))]",
+            "location": "[resourceGroup().location]",
+            "dependsOn": [
+                "[resourceId('Microsoft.ServiceBus/namespaces', parameters('namespaces_name'))]"
             ],
             "properties": {
                 "lockDuration": "PT30S",
@@ -127,8 +110,83 @@
                 "enablePartitioning": false,
                 "enableExpress": false
             }
+        },
+        {
+            "type": "Microsoft.ServiceBus/namespaces/topics",
+            "apiVersion": "2017-04-01",
+            "name": "[concat(parameters('namespaces_name'), '/',parameters('topic_name'))]",
+            "location": "[resourceGroup().location]",
+            "dependsOn": [
+                "[resourceId('Microsoft.ServiceBus/namespaces', parameters('namespaces_name'))]"
+            ],
+            "properties": {
+                "defaultMessageTimeToLive": "P10675199DT2H48M5.4775807S",
+                "maxSizeInMegabytes": 1024,
+                "requiresDuplicateDetection": false,
+                "duplicateDetectionHistoryTimeWindow": "PT10M",
+                "enableBatchedOperations": true,
+                "status": "Active",
+                "supportOrdering": true,
+                "autoDeleteOnIdle": "P10675199DT2H48M5.4775807S",
+                "enablePartitioning": false,
+                "enableExpress": false
+            }
+        },
+        {
+            "type": "Microsoft.ServiceBus/namespaces/queues/authorizationRules",
+            "apiVersion": "2017-04-01",
+            "name": "[concat(parameters('namespaces_name'), '/',  parameters('queue_name'), '/Sendonly')]",
+            "location": "[resourceGroup().location]",
+            "dependsOn": [
+                "[resourceId('Microsoft.ServiceBus/namespaces/queues', parameters('namespaces_name'), parameters('queue_name'))]",
+                "[resourceId('Microsoft.ServiceBus/namespaces', parameters('namespaces_name'))]"
+            ],
+            "properties": {
+                "rights": [
+                    "Manage",
+                    "Listen",
+                    "Send"
+                ]
+            }
+        },
+        {
+            "type": "Microsoft.ServiceBus/namespaces/topics/authorizationRules",
+            "apiVersion": "2017-04-01",
+            "name": "[concat(parameters('namespaces_name'), '/', parameters('topic_name'),'/sendonly')]",
+            "location": "[resourceGroup().location]",
+            "dependsOn": [
+                "[resourceId('Microsoft.ServiceBus/namespaces/topics', parameters('namespaces_name'), parameters('topic_name'))]",
+                "[resourceId('Microsoft.ServiceBus/namespaces', parameters('namespaces_name'))]"
+            ],
+            "properties": {
+                "rights": [
+                    "Manage",
+                    "Listen",
+                    "Send"
+                ]
+            }
+        },
+        {
+            "type": "Microsoft.ServiceBus/namespaces/topics/subscriptions",
+            "apiVersion": "2017-04-01",
+            "name": "[concat(parameters('namespaces_name'), '/', parameters('topic_name'), '/', parameters('subscription_name'))]",
+            "location": "[resourceGroup().location]",
+            "dependsOn": [
+                "[resourceId('Microsoft.ServiceBus/namespaces/topics', parameters('namespaces_name'), parameters('topic_name'))]",
+                "[resourceId('Microsoft.ServiceBus/namespaces', parameters('namespaces_name'))]"
+            ],
+            "properties": {
+                "lockDuration": "PT1M",
+                "requiresSession": false,
+                "defaultMessageTimeToLive": "P10675199DT2H48M5.4775807S",
+                "deadLetteringOnMessageExpiration": false,
+                "deadLetteringOnFilterEvaluationExceptions": true,
+                "maxDeliveryCount": 10,
+                "status": "Active",
+                "enableBatchedOperations": true,
+                "autoDeleteOnIdle": "P10675199DT2H48M5.4775807S"
+            }
         }
-        
-    ],
-    "outputs": {}
+      
+    ]
 }
