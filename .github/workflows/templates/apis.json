@@ -1,0 +1,208 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "apimInstanceName": {
+      "type": "string",
+      "metadata": {
+        "description": "The name of your API Management Service."
+      }
+    },
+    "apis_service_app_name": {
+      "type": "string",
+      "metadata": {
+        "description": "The name of your App name."
+      }
+    },
+    "apim_service_product_name": {
+      "type": "string",
+      "metadata": {
+        "description": "The name of product."
+      }
+    },
+    "apis_app_name_operation": {
+      "type": "string",
+      "metadata": {
+        "description": "The name of operation."
+      }
+    },
+    "policies_policy_name": {
+      "type": "string",
+      "metadata": {
+        "description": "The name of policy."
+      }
+    },
+    "api_schema_name": {
+      "type": "string",
+       "metadata": {
+        "description": "The name of schema."
+      }
+    },
+    "apis_operation_policy": {
+       "type": "string",
+       "metadata": {
+        "description": "The name of operation policy."
+      }
+    },
+    "apiRevision": {
+       "type": "string",
+       "metadata": {
+        "description": "Revision of API."
+      }
+    },
+   "serviceURL": {
+       "type": "string",
+       "metadata": {
+         "description": "API Service URL"
+      }
+   },
+   "path": {
+       "type": "string",
+       "metadata": {
+         "description": "API Path"
+      }
+   },
+   "operationDisplayName": {
+       "type": "string",
+       "metadata": {
+        "description": "The display name of operation."
+      }
+    },
+    "operationPolicy": {
+       "type": "string",
+       "metadata": {
+        "description": "URL template for API operation"
+      }
+    },
+    "apiOperationUrlTemplate": {
+       "type": "string",
+       "metadata": {
+        "description": "URL template for API operation"
+      }
+    },
+   "contentTypeSchema": {
+       "type": "string",
+       "metadata": {
+        "description": "Content type for the schema under the operation"
+      }
+    },
+   "apiPolicy": {
+       "type": "string",
+       "metadata": {
+        "description": "API policy "
+      }
+    },
+    "apiProtocol": {
+       "type": "string",
+       "metadata": {
+        "description": "API protocols"
+      }
+    },
+    "displayName": {
+       "type": "string",
+       "metadata": {
+        "description": "The display name of api."
+      }
+    },
+    "methodName": {
+       "type": "string",
+       "metadata": {
+        "description": "Method name for operation. Ex. GET,POST"
+      }
+    }
+
+  },
+  "variables": {
+    "location": "[string(resourceGroup().location)]"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.ApiManagement/service/apis",
+      "name": "[concat(parameters('apimInstanceName'), '/', parameters('apis_service_app_name'))]",
+      "apiVersion": "2019-12-01",
+      "scale": null,
+      "properties": {
+        "displayName": "[parameters('displayName')]",
+        "apiRevision": "[parameters('apiRevision')]",
+        "description": "APIs will be created under the APIM service",
+        "serviceUrl": "[parameters('serviceURL')]",
+        "path": "[parameters('path')]",
+        "protocols": [
+          "[parameters('apiProtocol')]"
+        ],
+        "authenticationSettings": null,
+        "subscriptionKeyParameterNames": null,
+        "isCurrent": true
+      },
+
+    },
+    {
+      "type": "Microsoft.ApiManagement/service/apis/operations",
+      "name": "[concat(parameters('apimInstanceName'), '/', parameters('apis_service_app_name'), '/', parameters('apis_app_name_operation'))]",
+      "apiVersion": "2019-12-01",
+      "scale": null,
+      "properties": {
+        "displayName": "[parameters('operationDisplayName')]",
+        "method": "[parameters('methodName')]",
+        "urlTemplate": "[parameters('apiOperationUrlTemplate')]",
+        "description": "Operations will be created under the APIs in APIM service",
+        "request": {
+          "description": "string",
+          "queryParameters": [],
+          "headers": [],
+          "representations": []
+        },
+        "responses": [
+                    {
+                        "statusCode": 200,
+                        "description": "OK",
+                        "headers": []
+                    }
+                ],
+        "policies": null
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.ApiManagement/service/apis', parameters('apimInstanceName'), parameters('apis_service_app_name'))]"
+      ]
+    },
+    {
+      "type": "Microsoft.ApiManagement/service/apis/operations/policies",
+      "name": "[concat(parameters('apimInstanceName'), '/', parameters('apis_service_app_name'), '/',parameters('apis_app_name_operation'), '/', parameters('apis_operation_policy'))]",
+      "apiVersion": "2019-12-01",
+      "properties": {
+        "value": "[parameters('operationPolicy')]"
+      },
+      "resources": [],
+      "dependsOn": [
+        "[resourceId('Microsoft.ApiManagement/service/apis', parameters('apimInstanceName') , parameters('apis_service_app_name'))]",
+        "[resourceId('Microsoft.ApiManagement/service/apis/operations', parameters('apimInstanceName'), parameters('apis_service_app_name'), parameters('apis_app_name_operation'))]"
+      ]
+    },
+    {
+      "type": "Microsoft.ApiManagement/service/apis/schemas",
+      "apiVersion": "2019-12-01",
+      "name": "[concat(parameters('apimInstanceName'), '/', parameters('apis_service_app_name'), '/',parameters('api_schema_name'))]",
+      "dependsOn": [
+        "[resourceId('Microsoft.ApiManagement/service/apis', parameters('apimInstanceName'),  parameters('apis_service_app_name'))]"
+      ],
+      "properties": {
+        "contentType": "[parameters('contentTypeSchema')]",
+        "document": {
+          "definitions": {}
+        }
+      }
+    },
+    {
+      "type": "Microsoft.ApiManagement/service/apis/policies",
+      "name": "[concat(parameters('apimInstanceName'), '/', parameters('apis_service_app_name'), '/', parameters('policies_policy_name'))]",
+      "apiVersion": "2019-12-01",
+      "properties": {
+        "value": "[parameters('apiPolicy')]"
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.ApiManagement/service/apis', parameters('apimInstanceName'), parameters('apis_service_app_name'))]"
+      ]
+    }
+
+  ]
+}
