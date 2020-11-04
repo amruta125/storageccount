@@ -1,0 +1,541 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "tierTag": {
+            "type": "string",
+            "metadata": {
+                "description": "Tier name for tag"
+            }
+        },
+        "departmentTag": {
+             "type": "string",
+              "metadata": {
+                "description": "Department name for tag"
+            }
+        },
+        "ownerTag": {
+             "type": "string",
+              "metadata": {
+                "description": "Owner name for tag"
+            }
+        },
+        "caseCodeTag": {
+           "type": "string",
+              "metadata": {
+                "description": "CaseCode  for tag"
+            }
+        },
+       "applicationStorageTag": {
+            "type": "string",
+              "metadata": {
+                "description": "Application name for Storage account"
+            }
+        },
+        "applicationLogicAppTag": {
+            "type": "string",
+              "metadata": {
+                "description": "Application name for Logic app"
+            }
+        },
+        "applicationServiceBusTag": {
+            "type": "string",
+              "metadata": {
+                "description": "Application name for Service bus app"
+            }
+        },
+        "managedTag": {
+              "type": "string",
+              "metadata": {
+                "description": "Managed with"
+            }
+        },
+       "sasTokenExpiry": {
+            "type": "string",
+            "metadata": {
+                "description": "Storage account SAS token expiry date"
+            }
+        },
+        "accountSasProperties": {
+            "type": "object",
+            "metadata": {
+                "description": "Storage aaccount SAS token properties"
+            }
+        },
+        "storageAccountName": {
+            "type": "string",
+            "metadata": {
+                "description": "Storage account name"
+            }
+        },
+        "containerName": {
+            "type": "string",
+            "metadata": {
+                "description": "Container name"
+            }
+        },
+        "storageAccountType": {
+            "type": "string",
+            "metadata": {
+                "description": "Storage Account Type"
+            }
+        },
+       "storageAccessTier": {
+            "type": "string",
+            "metadata": {
+                "description": "Storage Access Tier"
+            }
+        },
+     
+       "storageKind": {
+            "type": "string",
+            "metadata": {
+                "description": "Storage Kind"
+            }
+        },
+        "containerPublicLevelAccess": {
+            "type": "string",
+            "metadata": {
+                "description": "Storage Container Public level Access"
+            }
+        }, 
+        "skuTier": {
+          "type": "string",
+           "metadata": {
+                "description": "Storage Sku Tier"
+            }
+        },
+         "storageSkuName": {
+          "type": "string",
+           "metadata": {
+                "description": "Storage Sku Name"
+            }
+        },
+        "integration_account_name": {
+            "type": "string",
+            "metadata": {
+                "description": "Integration Account Name"
+            }
+        },
+        "workflows_name": {
+            "type": "string",
+            "metadata": {
+                "description": "Workflows Name"
+            }
+        },
+        "skuName": {
+            "type": "string",
+            "metadata": {
+                "description": "Sku Name"
+            }
+        },
+        "workflowState": {
+            "type": "string",
+            "metadata": {
+                "description": "Workflow state"
+            }
+        },
+        "integrationAccState": {
+            "type": "string",
+            "metadata": {
+                "description": "Integration Account state"
+            }
+        },
+        "locationName": {
+            "type": "string",
+            "metadata": {
+                "description": "location"
+            }
+        },
+        "namespaces_name": {
+            "type": "string",
+            "metadata": {
+                "description": "namespace name"
+            }
+        },
+        "queue_name": {
+            "type": "string",
+            "metadata": {
+                "description": "queue name"
+            }
+        },
+        "topic_name": {
+            "type": "string",
+            "metadata": {
+                "description": "topic name"
+            }
+        },
+        "subscription_name": {
+            "type": "string",
+            "metadata": {
+                "description": "subscription name"
+            }
+        },
+        "sbSkuName": {
+            "type": "string",
+            "metadata": {
+                "description": "Service Bus Sku name"
+            }
+        },
+        "sbTier": {
+            "type": "string",
+            "metadata": {
+                "description": "Service Bus Tier"
+            }
+        },
+        "displayName": {
+            "type": "string",
+            "metadata": {
+                "description": "Display name of Api"
+            }
+        },
+       "apimInstanceName": {
+            "type": "string",
+            "metadata": {
+                "description": "Apim instance name"
+            }
+        },
+       "apim_service_product_name": {
+            "type": "string",
+            "metadata": {
+                "description": "Apim Service product name"
+            }
+        },
+        "apis_service_app_name": {
+            "type": "string",
+            "metadata": {
+                "description": "Apim instance name"
+            }
+        },
+        "apis_app_name_operation": {
+            "type": "string",
+            "metadata": {
+                "description": "Apim api operation"
+            }
+        },
+       "operationDisplayName": {
+            "type": "string",
+            "metadata": {
+                "description": "Display name of Operation"
+            }
+        },
+       "serviceURL": {
+            "type": "string",
+            "metadata": {
+                "description": "Api Service URL"
+            }
+        },
+        "path": {
+            "type": "string",
+            "metadata": {
+                "description": "Api Path"
+            }
+        },
+        "apiOperationUrlTemplate": {
+            "type": "string",
+            "metadata": {
+                "description": "URL template for API operation"
+            }
+        },
+       "contentTypeSchema": {
+            "type": "string",
+            "metadata": {
+             "description": "Content type for the schema under the operation"
+            }
+       },
+       "operationPolicy": {
+            "type": "string",
+            "metadata": {
+                "description": "Policy value for policy under operations"
+            }
+        },
+       "apiProtocol": {
+            "type": "string",
+            "metadata": {
+                "description": "API Protocol"
+            }
+        },
+        "apiPolicy": {
+            "type": "string",
+            "metadata": {
+                "description": "API policy"
+            }
+        },
+       "policies_policy_name": {
+            "type": "string",
+            "metadata": {
+                "description": "API policy name"
+            }
+        },
+       "api_schema_name": {
+            "type": "string",
+            "metadata": {
+                "description": "API schema name"
+            }
+        },
+       "apis_operation_policy": {
+            "type": "string",
+            "metadata": {
+                "description": "API operation policy"
+            }
+        },
+     
+        "apiRevision": {
+            "type": "string",
+            "metadata": {
+                "description": "Api Revision"
+            }
+        },
+       "methodName": {
+            "type": "string",
+            "metadata": {
+                "description": "Method name for operation"
+            }
+        }
+     
+    },
+    "variables": {},
+    "resources": [
+        {
+            "apiVersion": "2020-06-01",
+            "type": "Microsoft.Resources/deployments",
+            "name": "storage",
+            "properties": {
+                "mode": "incremental",
+                "templateLink": {
+                    "uri": "https://raw.githubusercontent.com/amruta125/storageccount/main/storageaccount.json",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "tierTag": {
+                        "value": "[parameters('tierTag')]"
+                    },
+                    "departmentTag": {
+                        "value": "[parameters('departmentTag')]"
+                    },
+                    "ownerTag": {
+                        "value": "[parameters('ownerTag')]"
+                    },
+                    "caseCodeTag": {
+                        "value": "[parameters('caseCodeTag')]"
+                    },
+                    "managedTag": {
+                        "value": "[parameters('managedTag')]"
+                    },  
+                   "applicationStorageTag": {
+                        "value": "[parameters('applicationStorageTag')]"
+                    },   
+                   "accountSasProperties": {
+                        "value": "[parameters('accountSasProperties')]"
+                    },
+                   "sasTokenExpiry": {
+                        "value": "[parameters('sasTokenExpiry')]"
+                    },
+                    "storageAccountName": {
+                        "value": "[parameters('storageAccountName')]"
+                    },
+                    "containerName": {
+                        "value": "[parameters('containerName')]"
+                    },
+                    "storageAccountType": {
+                        "value": "[parameters('storageAccountType')]"
+                    },
+                   "skuTier": {
+                        "value": "[parameters('skuTier')]"
+                    },
+                   "storageSkuName": {
+                        "value": "[parameters('storageSkuName')]"
+                    },
+                  "storageAccessTier": {
+                        "value": "[parameters('storageAccessTier')]"
+                    },
+                   "containerPublicLevelAccess": {
+                       "value": "[parameters('containerPublicLevelAccess')]"
+                   },
+                  "storageKind": {
+                       "value": "[parameters('storageKind')]"
+                   }
+                }
+            }
+        },
+        {
+            "apiVersion": "2020-06-01",
+            "type": "Microsoft.Resources/deployments",
+            "name": "LogicAppIntegrationAccount",
+            "properties": {
+                "mode": "incremental",
+                "templateLink": {
+                    "uri": "https://raw.githubusercontent.com/amruta125/storageccount/main/logicappintegrationacc.json",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                   "tierTag": {
+                        "value": "[parameters('tierTag')]"
+                    },
+                    "departmentTag": {
+                        "value": "[parameters('departmentTag')]"
+                    },
+                    "ownerTag": {
+                        "value": "[parameters('ownerTag')]"
+                    },
+                    "caseCodeTag": {
+                        "value": "[parameters('caseCodeTag')]"
+                    },
+                    "applicationLogicAppTag": {
+                        "value": "[parameters('applicationLogicAppTag')]"
+                    },
+                   "managedTag": {
+                        "value": "[parameters('managedTag')]"
+                    },     
+                    "integration_account_name": {
+                        "value": "[parameters('integration_account_name')]"
+                    },
+                    "workflows_name": {
+                        "value": "[parameters('workflows_name')]"
+                    },
+                    "workflowState": {
+                        "value": "[parameters('workflowState')]"
+                    },
+                    "integrationAccState": {
+                        "value": "[parameters('integrationAccState')]"
+                    },
+                    "skuName": {
+                        "value": "[parameters('skuName')]"
+                    },
+                    "locationName": {
+                        "value": "[parameters('locationName')]"
+                    }
+                }
+            }
+        },
+        {
+            "apiVersion": "2020-06-01",
+            "type": "Microsoft.Resources/deployments",
+            "name": "API",
+            "properties": {
+                "mode": "incremental",
+                "templateLink": {
+                    "uri": "https://raw.githubusercontent.com/amruta125/storageccount/main/apis.json",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "displayName": {
+                        "value": "[parameters('displayName')]"
+                    },
+                    "apiRevision": {
+                        "value": "[parameters('apiRevision')]"
+                    },
+                    "apimInstanceName":  {
+                        "value": "[parameters('apimInstanceName')]"
+                    },
+                    "api_schema_name":  {
+                        "value": "[parameters('api_schema_name')]"
+                    },
+                   "apis_service_app_name":  {
+                        "value": "[parameters('apis_service_app_name')]"
+                    },
+                   "apis_app_name_operation":  {
+                        "value": "[parameters('apis_app_name_operation')]"
+                    },
+                    "apis_operation_policy":  {
+                        "value": "[parameters('apis_operation_policy')]"
+                    },
+                    "serviceURL": {
+                        "value": "[parameters('serviceURL')]"
+                    },
+                    "path": {
+                        "value": "[parameters('path')]"
+                    },
+                    "operationDisplayName": {
+                        "value": "[parameters('operationDisplayName')]"
+                    },
+                   "operationPolicy": {
+                        "value": "[parameters('operationPolicy')]"
+                    },
+                    "apiOperationUrlTemplate": {
+                        "value": "[parameters('apiOperationUrlTemplate')]"
+                    },
+                    "contentTypeSchema": {
+                        "value": "[parameters('contentTypeSchema')]"
+                    },
+                    "apiProtocol": {
+                        "value": "[parameters('apiProtocol')]"
+                    },
+                   "policies_policy_name": {
+                        "value": "[parameters('policies_policy_name')]"
+                    },
+                   "apim_service_product_name": {
+                        "value": "[parameters('apim_service_product_name')]"
+                    },
+                    "apiPolicy": {
+                        "value": "[parameters('apiPolicy')]"
+                    },
+		           "methodName": {
+                        "value": "[parameters('methodName')]"
+                    }
+		
+                }
+            }
+        },    
+        {
+            "apiVersion": "2020-06-01",
+            "type": "Microsoft.Resources/deployments",
+            "name": "servicebus",
+            "properties": {
+                "mode": "incremental",
+                "templateLink": {
+                    "uri": "https://raw.githubusercontent.com/amruta125/storageccount/main/servicebuslatest.json",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "tierTag": {
+                        "value": "[parameters('tierTag')]"
+                    },
+                    "departmentTag": {
+                        "value": "[parameters('departmentTag')]"
+                    },
+                    "ownerTag": {
+                        "value": "[parameters('ownerTag')]"
+                    },
+                    "caseCodeTag": {
+                        "value": "[parameters('caseCodeTag')]"
+                    },
+                    "applicationServiceBusTag": {
+                        "value": "[parameters('applicationServiceBusTag')]"
+                    },
+                   "managedTag": {
+                        "value": "[parameters('managedTag')]"
+                    },     
+                 
+                    "namespaces_name": {
+                        "value": "[parameters('namespaces_name')]"
+                    },
+                    "queue_name": {
+                        "value": "[parameters('queue_name')]"
+                    },
+                    "topic_name": {
+                        "value": "[parameters('topic_name')]"
+                    },
+                    "subscription_name": {
+                        "value": "[parameters('subscription_name')]"
+                    },
+                    "sbSkuName": {
+                         "value": "[parameters('sbSkuName')]"
+                    },
+                    "sbTier": {
+                         "value": "[parameters('sbTier')]"
+                    }
+                }
+            }
+        }
+
+    ],
+    "outputs": {
+		
+		"storageAccountConnectionStringWithSAS": {  
+			 "type": "string",  
+			 "value": "[reference('storage').outputs.storageAccountConnectionStringWithSAS.value]"
+               }  
+	}
+  
+}
