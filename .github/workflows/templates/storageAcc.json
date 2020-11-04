@@ -23,6 +23,7 @@
    "storageAccessTier": {
       "type": "string"
     },
+	  
    "sasTokenExpiry": {  
       "type": "string"
     }, 	
