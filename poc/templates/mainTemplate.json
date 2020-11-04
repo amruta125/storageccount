@@ -303,7 +303,7 @@
             "properties": {
                 "mode": "incremental",
                 "templateLink": {
-                    "uri": ".github/workflows/templates/storageAcc.json",
+                    "uri": "https://raw.githubusercontent.com/amruta125/storageccount/main/.github/workflows/templates/storageAcc.json?token=AQOK5IBHGXG33AAH7MJMPH27UJULQ",
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
@@ -365,7 +365,7 @@
             "properties": {
                 "mode": "incremental",
                 "templateLink": {
-                    "uri": ".github/workflows/templates/logicApp.json",
+                    "uri": "https://raw.githubusercontent.com/amruta125/storageccount/main/.github/workflows/templates/logicApp.json?token=AQOK5IFYLGLYVX4ZQ5CNNFS7UJUHQ",
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
@@ -415,7 +415,7 @@
             "properties": {
                 "mode": "incremental",
                 "templateLink": {
-                    "uri": ".github/workflows/templates/apis.json",
+                    "uri": "https://raw.githubusercontent.com/amruta125/storageccount/main/.github/workflows/templates/apis.json?token=AQOK5IAH7MH3WHIGK6C4CES7UJUEY",
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
@@ -484,7 +484,7 @@
             "properties": {
                 "mode": "incremental",
                 "templateLink": {
-                    "uri": ".github/workflows/templates/servicebus.json",
+                    "uri": "https://raw.githubusercontent.com/amruta125/storageccount/main/.github/workflows/templates/servicebus.json?token=AQOK5IBGYF4KZHXBKZNIDNS7UJUJ2",
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
