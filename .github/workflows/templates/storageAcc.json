@@ -1,0 +1,125 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "storageAccountName": {
+      "type": "string"
+    },
+    "storageAccountType": {
+      "type": "string"
+    },
+    "containerName": {
+      "type": "string"
+    },
+    "skuTier": {
+      "type": "string"
+    },
+   "storageSkuName": {
+      "type": "string"
+    },
+   "storageKind": {
+      "type": "string"
+    },
+   "storageAccessTier": {
+      "type": "string"
+    },
+   "sasTokenExpiry": {  
+      "type": "string"
+    }, 	
+   "accountSasProperties": {  
+       "type": "object"
+    },
+   "containerPublicLevelAccess": {
+      "type": "string"
+    },	
+   "tierTag": {
+      "type": "string"
+    },
+   "departmentTag": {
+      "type": "string"
+    },
+   "ownerTag": {
+      "type": "string"
+    },
+   "caseCodeTag": {
+      "type": "string"
+    },
+   "managedTag": {
+      "type": "string"
+    },
+    "applicationStorageTag": {
+      "type": "string"
+    }	  
+  },
+  "variables": {
+        "storageAccountNameLower": "[toLower(trim(parameters('storageAccountName')))]", 
+	"storageAccountApiVersion": "2019-06-01",  
+        "blobEndPoint":"[concat('https://',variables('storageAccountNameLower'),'.blob.core.windows.net/')]" 
+  },  
+  "resources": [
+    {
+      "type": "Microsoft.Storage/storageAccounts",
+      "name": "[parameters('storageAccountName')]",
+      "apiVersion": "[variables('storageAccountApiVersion')]", 
+      "location": "[resourceGroup().location]",
+      "tags": {
+                "Tier": "[parameters('tierTag')]",
+                "Department": "[parameters('departmentTag')]",
+                "Owner": "[parameters('ownerTag')]",
+                "CaseCode": "[parameters('caseCodeTag')]",
+	        "Application": "[parameters('applicationStorageTag')]",
+  	        "ManagedWith": "[parameters('managedTag')]"
+      },
+      "sku": {
+        "tier": "[parameters('skuTier')]",
+        "name": "[parameters('storageSkuName')]"
+      },
+      "kind": "[parameters('storageKind')]",
+      "properties": {
+        "accessTier": "[parameters('storageAccessTier')]",
+        "allowBlobPublicAccess": true,
+        "supportsHttpsTrafficOnly": true,
+        "accountType": "[parameters('storageAccountType')]"
+      }
+    },
+    {
+       "type": "Microsoft.Storage/storageAccounts/blobServices",
+       "apiVersion": "2019-06-01",
+       "name": "[concat(parameters('storageAccountName'), '/default')]",
+        "dependsOn": [
+             "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]"
+          ],
+          "properties": {
+                "denyEncryptionScopeOverride": false,
+	        "cors": {
+                    "corsRules": []
+                },
+                "deleteRetentionPolicy": {
+                    "enabled": false
+                }
+            }
+    },
+    {
+        "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
+        "apiVersion": "2019-06-01",
+        "name": "[concat(parameters('storageAccountName'), '/default/container1')]",
+        "dependsOn": [
+	    "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]",
+            "[resourceId('Microsoft.Storage/storageAccounts/blobServices', parameters('storageAccountName'), 'default')]"
+        ],
+        "properties": {
+            "publicAccess": "[parameters('containerPublicLevelAccess')]"
+        }
+    }
+  ],
+   "outputs": {
+		"storageAccountInfo": {
+			"value": "[reference(concat('Microsoft.Storage/storageAccounts/', parameters('storageAccountName')),providers('Microsoft.Storage', 'storageAccounts').apiVersions[0])]",
+			"type" : "object"
+		},
+		"storageAccountConnectionStringWithSAS": {  
+			 "type": "string",  
+			 "value": "[concat('BlobEndpoint=',variables('blobEndPoint'),';SharedAccessSignature=', listAccountSas(variables('storageAccountNameLower'), variables('storageAccountApiVersion'), parameters('accountSasProperties')).accountSasToken)]"  
+               }  
+	}
+}
