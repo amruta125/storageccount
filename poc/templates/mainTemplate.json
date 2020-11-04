@@ -303,7 +303,7 @@
             "properties": {
                 "mode": "incremental",
                 "templateLink": {
-                    "relativePath": ".github/workflows/templates/storageAcc.json",
+                    "uri": ".github/workflows/templates/storageAcc.json",
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
@@ -365,7 +365,7 @@
             "properties": {
                 "mode": "incremental",
                 "templateLink": {
-                    "relativePath": ".github/workflows/templates/logicApp.json",
+                    "uri": ".github/workflows/templates/logicApp.json",
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
@@ -415,7 +415,7 @@
             "properties": {
                 "mode": "incremental",
                 "templateLink": {
-                    "relativePath": ".github/workflows/templates/apis.json",
+                    "uri": ".github/workflows/templates/apis.json",
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
@@ -484,7 +484,7 @@
             "properties": {
                 "mode": "incremental",
                 "templateLink": {
-                    "relativePath": ".github/workflows/templates/servicebus.json",
+                    "uri": ".github/workflows/templates/servicebus.json",
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
